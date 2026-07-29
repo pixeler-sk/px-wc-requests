@@ -613,6 +613,9 @@ msgstr ""
 msgid "Type:"
 msgstr ""
 
+msgid "Universal customer-request system for WooCommerce — withdrawal from contract and warranty claims. Requests stored as a CPT with custom statuses, configurable fields (including IBAN), emails and admin UI. Type/config driven and portable between eshops."
+msgstr ""
+
 msgid "Unknown request type."
 msgstr ""
 

@@ -614,6 +614,9 @@ msgstr "Typ"
 msgid "Type:"
 msgstr "Typ:"
 
+msgid "Universal customer-request system for WooCommerce — withdrawal from contract and warranty claims. Requests stored as a CPT with custom statuses, configurable fields (including IBAN), emails and admin UI. Type/config driven and portable between eshops."
+msgstr "Univerzálny systém zákazníckych žiadostí pre WooCommerce — odstúpenie od zmluvy a reklamácie. Typy žiadostí, ich polia aj stavy sú konfigurovateľné, takže plugin je prenositeľný medzi e-shopmi bez úpravy jadra. Obsahuje formuláre, lehoty, prílohy, e-maily a správu žiadostí v administrácii."
+
 msgid "Unknown request type."
 msgstr "Neznámy typ žiadosti."
 

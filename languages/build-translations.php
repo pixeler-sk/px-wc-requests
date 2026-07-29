@@ -26,9 +26,25 @@ $lang_dir  = __DIR__;
 $singulars = array();
 $plurals   = array(); // [singular, plural]
 
+// `vendor/` musí byť vynechaný — cudzie knižnice (Plugin Update Checker) majú
+// vlastnú text domain a ich reťazce do našich prekladov nepatria. Bez tohto sa
+// v .pot objavia hlášky ako „Check for updates", ktoré nikdy nič nepreloží.
+$skip_dirs = array( 'languages', 'vendor', 'scripts' );
+
 $rii = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $root, FilesystemIterator::SKIP_DOTS ) );
 foreach ( $rii as $file ) {
-	if ( $file->getExtension() !== 'php' || strpos( $file->getPathname(), DIRECTORY_SEPARATOR . 'languages' . DIRECTORY_SEPARATOR ) !== false ) {
+	if ( $file->getExtension() !== 'php' ) {
+		continue;
+	}
+
+	$skip = false;
+	foreach ( $skip_dirs as $skip_dir ) {
+		if ( strpos( $file->getPathname(), DIRECTORY_SEPARATOR . $skip_dir . DIRECTORY_SEPARATOR ) !== false ) {
+			$skip = true;
+			break;
+		}
+	}
+	if ( $skip ) {
 		continue;
 	}
 	$src = file_get_contents( $file->getPathname() );
@@ -44,12 +60,26 @@ foreach ( $rii as $file ) {
 		}
 	}
 }
+
+// Polia z hlavičky pluginu. WordPress ich pri vykresľovaní stránky Pluginy
+// prežene cez translate() s text domain pluginu, takže sa dajú preložiť — ale
+// sedia v komentári na začiatku súboru, kde ich extraktor vyššie nevidí.
+// Reťazce tu musia byť znak po znaku zhodné s hlavičkou v px-wc-requests.php.
+$header_strings = array(
+	'Universal customer-request system for WooCommerce — withdrawal from contract and warranty claims. Requests stored as a CPT with custom statuses, configurable fields (including IBAN), emails and admin UI. Type/config driven and portable between eshops.',
+);
+foreach ( $header_strings as $header_string ) {
+	$singulars[ $header_string ] = true;
+}
+
 ksort( $singulars );
 
 // ---------------------------------------------------------------------------
 // 2. Slovak translations
 // ---------------------------------------------------------------------------
 $sk = array(
+	// Popis pluginu z hlavičky (stránka Pluginy v administrácii)
+	'Universal customer-request system for WooCommerce — withdrawal from contract and warranty claims. Requests stored as a CPT with custom statuses, configurable fields (including IBAN), emails and admin UI. Type/config driven and portable between eshops.' => 'Univerzálny systém zákazníckych žiadostí pre WooCommerce — odstúpenie od zmluvy a reklamácie. Typy žiadostí, ich polia aj stavy sú konfigurovateľné, takže plugin je prenositeľný medzi e-shopmi bez úpravy jadra. Obsahuje formuláre, lehoty, prílohy, e-maily a správu žiadostí v administrácii.',
 	// Types & statuses
 	'Withdrawal from contract' => 'Odstúpenie od zmluvy',
 	'Withdrawals from contract' => 'Odstúpenia od zmluvy',
