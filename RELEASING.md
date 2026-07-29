@@ -1,8 +1,11 @@
-# Vydávanie verzií
+# Vydávanie a nasadzovanie
 
 Plugin nie je na wordpress.org. Distribuuje sa z verejného repozitára
 [pixeler-sk/px-wc-requests](https://github.com/pixeler-sk/px-wc-requests) a na
 klientskych weboch sa aktualizuje cez bežnú WordPress aktualizáciu.
+
+- **Vydanie novej verzie** → [Postup](#postup)
+- **Prvé nasadenie na web, ktorý plugin už má** → [Prvé nasadenie](#prvé-nasadenie-na-existujúci-web)
 
 ## Ako to funguje
 
@@ -50,6 +53,138 @@ verejný.
    ```bash
    gh release view v1.2.2
    ```
+
+## Prvé nasadenie na existujúci web
+
+Weby, kde plugin beží z čias pred zavedením aktualizácií, majú kód **bez**
+`inc/Updater.php` — a teda sa nemajú ako dozvedieť, že existuje novšia verzia.
+Prvú verziu s updaterom (1.2.1 a vyššie) tam preto treba dostať raz ručne.
+**Od nej ďalej už aktualizácie chodia samé.**
+
+Poradie krokov je rovnaké pre všetky weby: skontroluj → nasaď → over.
+
+### 1. Pred nasadením skontroluj prepísané šablóny
+
+```bash
+ls wp-content/themes/<téma>/px-wc-requests/
+```
+
+Ak si téma niektorú šablónu prepisuje, **prepis vyhráva aj po aktualizácii** —
+takže nová verzia sa v tom mieste neprejaví. Horší prípad: keď sa šablóna
+v plugine medzitým premenovala, prepis sa prestane načítavať a nikde to nevypíše
+chybu, len sa začne používať pôvodná šablóna z pluginu.
+
+Konkrétne pri skoku z **1.0.0 na 1.2.1** sa premenovala šablóna e-mailu
+s poznámkou:
+
+| 1.0.0 | 1.2.1 |
+|---|---|
+| `emails/customer-note.php` | `emails/request-note.php` |
+| `emails/plain/customer-note.php` | `emails/plain/request-note.php` |
+
+Ak má téma override starého názvu, premenuj ho spolu s aktualizáciou.
+
+### 2. Nasaď verziu
+
+Plugin **nedeaktivuj** — dáta sú v databáze (CPT `pxer_request` + options),
+takže prepis súborov o nič nepríde. Deaktivácia by len zbytočne zhodila
+rewrite pravidlá.
+
+**a) Cez WP admin — keď na web nemáš SSH (väčšina klientov)**
+
+1. Stiahni zip z posledného releasu:
+   https://github.com/pixeler-sk/px-wc-requests/releases/latest
+2. Pluginy → Pridať nový → **Nahrať plugin** → vyber zip → Inštalovať
+3. WordPress zistí, že plugin už existuje, a ukáže porovnanie starej a novej
+   verzie → **Nahradiť súčasnú verziu nahranou**
+
+**b) Cez WP-CLI — keď máš SSH**
+
+```bash
+wp plugin install \
+  https://github.com/pixeler-sk/px-wc-requests/releases/latest/download/px-wc-requests-1.2.1.zip \
+  --force
+```
+
+`--force` je nutné, inak WP-CLI iba oznámi, že plugin je už nainštalovaný.
+Názov súboru v URL obsahuje verziu, takže ho pri ďalšom vydaní treba prepísať.
+
+**c) Cez SFTP** — prepíš obsah `wp-content/plugins/px-wc-requests/`. Pozor na
+zvyšky: ak nová verzia súbor odstránila, SFTP mirror ho tam nechá. Radšej
+priečinok najprv vymaž a nahraj celý nanovo.
+
+### 3. Čo sa spraví samo
+
+Po prvom načítaní administrácie:
+
+- **Rewrite pravidlá** sa preplachnú, keď sa zmení verzia alebo slug endpointu
+  (`MyAccount::maybe_flush()`, podpis v option `pxer_rewrite_version`). Netreba
+  chodiť do Nastavenia → Trvalé odkazy.
+- **Dobehnú sa chýbajúce meta** na starých žiadostiach — vlastník a e-mail, aby
+  fungovala záložka „Moje žiadosti" a GDPR export (`Plugin::maybe_upgrade()`,
+  option `pxer_data_version`). Beží raz na schému a načíta všetky žiadosti
+  naraz; na webe s tisíckami žiadostí bude prvé načítanie admina pomalšie.
+
+### 4. Over, že to sedí
+
+1. Pluginy → verzia pri `Pixeler Woo Requests` je tá nová.
+2. Otvor jednu existujúcu žiadosť a záložku „Moje žiadosti" v účte zákazníka.
+
+**A hlavne over, že sa web naozaj dovolá na GitHub.** Toto je jediná vec, ktorá
+sa dá pokaziť ticho: keď hosting blokuje odchádzajúce HTTPS požiadavky na
+`api.github.com`, plugin funguje normálne, len sa už nikdy nedozvie o novej
+verzii — a nikde to nevypíše chybu.
+
+Po otvorení stránky Pluginy si Plugin Update Checker zapíše výsledok kontroly do
+option `external_updates-px-wc-requests`:
+
+```bash
+wp option get external_updates-px-wc-requests
+```
+
+Čo hľadať:
+
+| Výstup | Znamená |
+|---|---|
+| pole s `lastCheck` (nedávny timestamp) a `checkedVersion` | ✅ funguje |
+| `lastCheck` je, ale `update` je `null` | ✅ tiež v poriadku — beží najnovšia verzia |
+| option neexistuje | ✗ kontrola nikdy nedobehla — nie je nasadený `inc/Updater.php`, alebo je zablokovaný výstup na internet |
+
+Bez SSH sa to isté dá pozrieť cez ktorýkoľvek DB nástroj v tabuľke
+`wp_options`.
+
+Ak treba potvrdiť, že sa aktualizácia naozaj **ponúkne**, zníž na jednom webe
+dočasne verziu v hlavičke `px-wc-requests.php` na `1.2.0`, otvor Pluginy a klikni
+na *Skontrolovať znova* — aktualizácia sa musí objaviť. Potom verziu vráť.
+
+### 5. Ďalšie aktualizácie už ručne netreba
+
+Plugin Update Checker sa pýta GitHub API **raz za 12 hodín** (a navyše pri
+každom otvorení stránky Pluginy, najviac však raz za hodinu). Výsledok si kešuje,
+takže nová verzia sa neobjaví hneď po vydaní. Vynútiť sa dá cez
+Nástenka → Aktualizácie → *Skontrolovať znova*, alebo:
+
+```bash
+wp plugin update px-wc-requests
+```
+
+Aktualizácia sa **neinštaluje sama** — WordPress ju len ponúkne, klikať treba.
+Ak to má chodiť bez zásahu, zapni pri plugine automatické aktualizácie
+(Pluginy → *Povoliť automatické aktualizácie*).
+
+Repozitár je verejný, takže požiadavky na GitHub API idú neprihlásené a platí pre
+ne limit **60 požiadaviek za hodinu na IP**. Pri bežnej prevádzke sa to nedá
+vyčerpať, ale na zdieľanom hostingu s desiatkami WordPressov za jednou IP sa
+kontrola môže občas nepodariť. Nie je to porucha — nabudúce prejde.
+
+### Prehľad webov
+
+Doplň pri každom nasadení, nech je vidno, kde čo beží:
+
+| Web | Verzia | Nasadené |
+|---|---|---|
+| pneuvosovic.pixeler.sk (staging) | 1.2.1 | — |
+| benab | 1.0.0 | čaká |
 
 ## Verzovanie
 
