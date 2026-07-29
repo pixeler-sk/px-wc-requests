@@ -1,0 +1,59 @@
+.pxer-notes {
+	margin: 0 0 10px;
+	padding: 0;
+	list-style: none;
+}
+
+.pxer-notes .pxer-note {
+	margin-bottom: 10px;
+	position: relative;
+}
+
+.pxer-notes .pxer-note .pxer-note-content {
+	padding: 10px;
+	background: #efefef;
+	border-radius: 4px;
+}
+
+.pxer-notes .pxer-note.pxer-note-customer .pxer-note-content {
+	background: #d7cad2;
+}
+
+.pxer-notes .pxer-note .pxer-note-meta {
+	padding: 4px 10px 0;
+	margin: 0;
+	color: #777;
+	font-size: 11px;
+}
+
+.pxer-notes .pxer-note-badge {
+	display: inline-block;
+	margin-left: 6px;
+	padding: 0 6px;
+	background: #674399;
+	color: #fff;
+	border-radius: 3px;
+	font-size: 10px;
+	text-transform: uppercase;
+}
+
+.pxer-notes .pxer-delete-note {
+	float: right;
+	color: #a00;
+	text-decoration: none;
+}
+
+.pxer-note-empty {
+	color: #777;
+	font-style: italic;
+}
+
+.pxer-add-note label {
+	display: block;
+	font-weight: 600;
+	margin-bottom: 4px;
+}
+
+.pxer-add-note #pxer-note-type {
+	max-width: 60%;
+}

@@ -1,0 +1,11 @@
+# Vývojové a runtime súbory
+.claude/
+node_modules/
+build/
+*.log
+*.bak
+.DS_Store
+Thumbs.db
+
+# vendor/ sa commituje zámerne — plugin nemá composer build a zip pre release
+# sa skladá priamo z obsahu repozitára.

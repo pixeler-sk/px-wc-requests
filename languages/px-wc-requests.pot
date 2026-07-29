@@ -1,0 +1,738 @@
+# Translation template for Pixeler Woo Requests.
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: px-wc-requests\n"
+
+msgid "%1$s no. %2$d"
+msgstr ""
+
+msgid "A note has been added to your request %1$s no. %2$d:"
+msgstr ""
+
+msgid "A note has been added to your request {request_type} no. {request_number}"
+msgstr ""
+
+msgid "A note regarding your request"
+msgstr ""
+
+msgid "Account name / recipient"
+msgstr ""
+
+msgid "Action button: %s"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Add note"
+msgstr ""
+
+msgid "Add request"
+msgstr ""
+
+msgid "Add “%s” link to e-mails"
+msgstr ""
+
+msgid "Admin notification about a new customer request (withdrawal / claim)."
+msgstr ""
+
+msgid "All types"
+msgstr ""
+
+msgid "Already imported"
+msgstr ""
+
+msgid "An error occurred while saving the request."
+msgstr ""
+
+msgid "Append a link to the request form at the end of the selected customer e-mails."
+msgstr ""
+
+msgid "Assign the page that contains the shortcode of each request type."
+msgstr ""
+
+msgid "Available shortcodes"
+msgstr ""
+
+msgid "Back to my requests"
+msgstr ""
+
+msgid "Block duplicate requests within (hours)"
+msgstr ""
+
+msgid "Button texts"
+msgstr ""
+
+msgid "Change status to: %s"
+msgstr ""
+
+msgid "City"
+msgstr ""
+
+msgid "Claim form"
+msgstr ""
+
+msgid "Claims"
+msgstr ""
+
+msgid "Comma-separated emails. Defaults to %s."
+msgstr ""
+
+msgid "Contact"
+msgstr ""
+
+msgid "Continue"
+msgstr ""
+
+msgid "Could not create the form page."
+msgstr ""
+
+msgid "Create page for %s"
+msgstr ""
+
+msgid "Created:"
+msgstr ""
+
+msgid "Creating…"
+msgstr ""
+
+msgid "Custom field deleted."
+msgstr ""
+
+msgid "Custom field updated."
+msgstr ""
+
+msgid "Customer notification when their request status changes."
+msgstr ""
+
+msgid "Customer request created: %1$s no. %2$d"
+msgstr ""
+
+msgid "Customer requests"
+msgstr ""
+
+msgid "Customise the request button labels."
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "Date created:"
+msgstr ""
+
+msgid "Deadline:"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Delete this note?"
+msgstr ""
+
+msgid "Describe the defect"
+msgstr ""
+
+msgid "Dry run"
+msgstr ""
+
+msgid "Dry-run finished"
+msgstr ""
+
+msgid "E-mail"
+msgstr ""
+
+msgid "E-mail:"
+msgstr ""
+
+msgid "Edit page"
+msgstr ""
+
+msgid "Edit request"
+msgstr ""
+
+msgid "Email heading"
+msgstr ""
+
+msgid "Email type"
+msgstr ""
+
+msgid "Enable this email notification"
+msgstr ""
+
+msgid "Enable/Disable"
+msgstr ""
+
+msgid "Endpoint for the customer requests page."
+msgstr ""
+
+msgid "Exclude from: %s"
+msgstr ""
+
+msgid "File a claim"
+msgstr ""
+
+msgid "File not found."
+msgstr ""
+
+msgid "Filter requests list"
+msgstr ""
+
+msgid "First name"
+msgstr ""
+
+msgid "Form links in e-mails"
+msgstr ""
+
+msgid "Form page created and selected."
+msgstr ""
+
+msgid "Form pages"
+msgstr ""
+
+msgid "History & updates"
+msgstr ""
+
+msgid "How long a request stays open, counted from the order completion date."
+msgstr ""
+
+msgid "I agree with the %s."
+msgstr ""
+
+msgid "I agree with the processing of personal data"
+msgstr ""
+
+msgid "IBAN"
+msgstr ""
+
+msgid "IBAN:"
+msgstr ""
+
+msgid "Import"
+msgstr ""
+
+msgid "Import as status"
+msgstr ""
+
+msgid "Import finished"
+msgstr ""
+
+msgid "Import from WPify"
+msgstr ""
+
+msgid "Import requests from WPify"
+msgstr ""
+
+msgid "Imported from WPify (submitted %s)."
+msgstr ""
+
+msgid "In progress"
+msgstr ""
+
+msgid "Informational text shown on each request form (e.g. statutory withdrawal information). Have it reviewed by a lawyer."
+msgstr ""
+
+msgid "Invalid file extension, allowed only: %s"
+msgstr ""
+
+msgid "Invalid file type. Upload JPG or PNG only."
+msgstr ""
+
+msgid "Invalid request type."
+msgstr ""
+
+msgid "Invalid request."
+msgstr ""
+
+msgid "Item #%d"
+msgstr ""
+
+msgid "Items"
+msgstr ""
+
+msgid "Last name"
+msgstr ""
+
+msgid "Leave empty to use the global period."
+msgstr ""
+
+msgid "Legal notice on forms"
+msgstr ""
+
+msgid "Max requests per order"
+msgstr ""
+
+msgid "Max:"
+msgstr ""
+
+msgid "Maximum size per photo is 7 MB (JPG, PNG)"
+msgstr ""
+
+msgid "Minimum form fill time (seconds)"
+msgstr ""
+
+msgid "Missing source id."
+msgstr ""
+
+msgid "My requests"
+msgstr ""
+
+msgid "Need to return or claim items from this order?"
+msgstr ""
+
+msgid "New request"
+msgstr ""
+
+msgid "New request (admin)"
+msgstr ""
+
+msgid "New request: {request_type} no. {request_number}"
+msgstr ""
+
+msgid "No WPify data found (table %s does not exist)."
+msgstr ""
+
+msgid "No order found with this e-mail and number."
+msgstr ""
+
+msgid "No photos"
+msgstr ""
+
+msgid "No requests found"
+msgstr ""
+
+msgid "No requests in trash"
+msgstr ""
+
+msgid "No updates yet."
+msgstr ""
+
+msgid "Note"
+msgstr ""
+
+msgid "Note to customer"
+msgstr ""
+
+msgid "Notice: %s"
+msgstr ""
+
+msgid "One of the selected items is not eligible for this request."
+msgstr ""
+
+msgid "Open importer"
+msgstr ""
+
+msgid "Order"
+msgstr ""
+
+msgid "Order no.:"
+msgstr ""
+
+msgid "Order not found or has no items."
+msgstr ""
+
+msgid "Order not found or not accessible."
+msgstr ""
+
+msgid "Order not found."
+msgstr ""
+
+msgid "Order number"
+msgstr ""
+
+msgid "Order number:"
+msgstr ""
+
+msgid "Order statuses that start the clock."
+msgstr ""
+
+msgid "Order:"
+msgstr ""
+
+msgid "Page containing the shortcode %s"
+msgstr ""
+
+msgid "Page: %s"
+msgstr ""
+
+msgid "Period override (%1$s, in %2$s)"
+msgstr ""
+
+msgid "Period: %1$s (in %2$s)"
+msgstr ""
+
+msgid "Periods & deadlines"
+msgstr ""
+
+msgid "Phone"
+msgstr ""
+
+msgid "Photos"
+msgstr ""
+
+msgid "Pixeler Woo Requests requires the WooCommerce plugin to be active."
+msgstr ""
+
+msgid "Please enter a valid IBAN."
+msgstr ""
+
+msgid "Please fill in the description for each selected item."
+msgstr ""
+
+msgid "Please fill in the field: %s"
+msgstr ""
+
+msgid "Postcode"
+msgstr ""
+
+msgid "Previous requests for this order"
+msgstr ""
+
+msgid "Private note"
+msgstr ""
+
+msgid "Product"
+msgstr ""
+
+msgid "Protect the public form from bots and abuse. Set 0 to disable a limit."
+msgstr ""
+
+msgid "Quantity"
+msgstr ""
+
+msgid "Quantity:"
+msgstr ""
+
+msgid "Rate limit per IP / hour"
+msgstr ""
+
+msgid "Reason"
+msgstr ""
+
+msgid "Reason / description"
+msgstr ""
+
+msgid "Reason:"
+msgstr ""
+
+msgid "Received"
+msgstr ""
+
+msgid "Recipient(s)"
+msgstr ""
+
+msgid "Request"
+msgstr ""
+
+msgid "Request #%s"
+msgstr ""
+
+msgid "Request confirmation"
+msgstr ""
+
+msgid "Request created with status: %s"
+msgstr ""
+
+msgid "Request created."
+msgstr ""
+
+msgid "Request details"
+msgstr ""
+
+msgid "Request draft updated."
+msgstr ""
+
+msgid "Request failed."
+msgstr ""
+
+msgid "Request form: %s"
+msgstr ""
+
+msgid "Request not found."
+msgstr ""
+
+msgid "Request note"
+msgstr ""
+
+msgid "Request notes"
+msgstr ""
+
+msgid "Request number"
+msgstr ""
+
+msgid "Request number:"
+msgstr ""
+
+msgid "Request saved."
+msgstr ""
+
+msgid "Request status change"
+msgstr ""
+
+msgid "Request submitted."
+msgstr ""
+
+msgid "Request updated."
+msgstr ""
+
+msgid "Requests"
+msgstr ""
+
+msgid "Requests list"
+msgstr ""
+
+msgid "Requests list navigation"
+msgstr ""
+
+msgid "Resolved"
+msgstr ""
+
+msgid "Row #%1$s: %2$s"
+msgstr ""
+
+msgid "Sample note text shown in the preview."
+msgstr ""
+
+msgid "Sample product"
+msgstr ""
+
+msgid "Save the request to apply the status. The customer is notified by e-mail."
+msgstr ""
+
+msgid "Search requests"
+msgstr ""
+
+msgid "Security & anti-spam"
+msgstr ""
+
+msgid "Security check failed. Please reload the page and try again."
+msgstr ""
+
+msgid "Select at least one item."
+msgstr ""
+
+msgid "Select items"
+msgstr ""
+
+msgid "Sent to the customer right after they submit a request."
+msgstr ""
+
+msgid "Sent to the customer when you add a note addressed to them."
+msgstr ""
+
+msgid "Shown in My Account orders and e-mail links."
+msgstr ""
+
+msgid "Start counting from order status: %s"
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Status changed from %1$s to %2$s."
+msgstr ""
+
+msgid "Status of request {request_type} no. {request_number} has changed"
+msgstr ""
+
+msgid "Status:"
+msgstr ""
+
+msgid "Statutory refund deadline: %s."
+msgstr ""
+
+msgid "Street and number"
+msgstr ""
+
+msgid "Subject"
+msgstr ""
+
+msgid "Submissions faster than this are treated as bots."
+msgstr ""
+
+msgid "Submit button: %s"
+msgstr ""
+
+msgid "Submit request"
+msgstr ""
+
+msgid "System"
+msgstr ""
+
+msgid "The deadline for this request has already passed (it ended on %s)."
+msgstr ""
+
+msgid "The file must not be larger than %d MB."
+msgstr ""
+
+msgid "The maximum number of requests for this order has been reached."
+msgstr ""
+
+msgid "The period has not started yet — the order is not completed."
+msgstr ""
+
+msgid "The status of your request %1$s no. %2$d has changed to:"
+msgstr ""
+
+msgid "The status of your request %1$s no. %2$d has changed to: %3$s"
+msgstr ""
+
+msgid "The statutory warranty applies for 24 months from receipt of the goods. Please describe the defect as precisely as possible and attach photos if available."
+msgstr ""
+
+msgid "The uploaded file is not a valid image."
+msgstr ""
+
+msgid "There are no eligible items for this request."
+msgstr ""
+
+msgid "There are no notes yet."
+msgstr ""
+
+msgid "This is a sample preview of the email."
+msgstr ""
+
+msgid "This is non-destructive and can be run repeatedly — already imported requests are skipped. Customers are NOT e-mailed."
+msgstr ""
+
+msgid "This product cannot be selected in this request type."
+msgstr ""
+
+msgid "To continue, enter your e-mail and order number."
+msgstr ""
+
+msgid "Too many attempts. Please try again later."
+msgstr ""
+
+msgid "Total requests in WPify"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Type:"
+msgstr ""
+
+msgid "Unknown request type."
+msgstr ""
+
+msgid "Unknown request type: %s"
+msgstr ""
+
+msgid "View"
+msgstr ""
+
+msgid "View request"
+msgstr ""
+
+msgid "View requests"
+msgstr ""
+
+msgid "WPify Woo is active. Import its existing requests: %s"
+msgstr ""
+
+msgid "Warranty claim"
+msgstr ""
+
+msgid "Warranty claims"
+msgstr ""
+
+msgid "We have received your request"
+msgstr ""
+
+msgid "We have received your request %1$s no. %2$d and will get back to you soon."
+msgstr ""
+
+msgid "We have received your request {request_type} no. {request_number}"
+msgstr ""
+
+msgid "Withdraw from contract"
+msgstr ""
+
+msgid "Withdrawal from contract"
+msgstr ""
+
+msgid "Withdrawals"
+msgstr ""
+
+msgid "Withdrawals from contract"
+msgstr ""
+
+msgid "You are not allowed to do this."
+msgstr ""
+
+msgid "You are not allowed to view this file."
+msgstr ""
+
+msgid "You have already submitted an identical request recently."
+msgstr ""
+
+msgid "You have no requests yet."
+msgstr ""
+
+msgid "You have the right to withdraw from this contract within 14 days without giving any reason. The withdrawal period starts on the day you take possession of the goods. You bear the direct cost of returning the goods. We will refund all payments within 14 days of being informed of your decision to withdraw."
+msgstr ""
+
+msgid "Your request has been submitted successfully."
+msgstr ""
+
+msgid "added on %1$s at %2$s by %3$s"
+msgstr ""
+
+msgid "days"
+msgstr ""
+
+msgid "errors"
+msgstr ""
+
+msgid "for a possible refund"
+msgstr ""
+
+msgid "imported"
+msgstr ""
+
+msgid "months"
+msgstr ""
+
+msgid "note to customer"
+msgstr ""
+
+msgid "processing of personal data"
+msgstr ""
+
+msgid "skipped"
+msgstr ""
+
+msgid "— Select a page —"
+msgstr ""
+
+msgid "%s request processed."
+msgid_plural "%s requests processed."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%s request updated."
+msgid_plural "%s requests updated."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%s request not updated, somebody is editing it."
+msgid_plural "%s requests not updated, somebody is editing them."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%s request permanently deleted."
+msgid_plural "%s requests permanently deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%s request moved to the Trash."
+msgid_plural "%s requests moved to the Trash."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%s request restored from the Trash."
+msgid_plural "%s requests restored from the Trash."
+msgstr[0] ""
+msgstr[1] ""
+

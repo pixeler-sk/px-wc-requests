@@ -1,0 +1,104 @@
+.pxer-form-wrap,
+.pxer-search-wrap {
+	max-width: 720px;
+}
+
+.ajax-form {
+	position: relative;
+	transition: opacity .3s ease;
+}
+
+.ajax-form.ajax-processing {
+	opacity: .3;
+	pointer-events: none;
+}
+
+.pxer-fields {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 16px;
+	margin-bottom: 20px;
+}
+
+.pxer-field {
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+}
+
+.pxer-field-full {
+	grid-column: 1 / -1;
+}
+
+.pxer-field label {
+	font-weight: 600;
+	margin-bottom: 4px;
+}
+
+.pxer-field label small {
+	font-weight: 400;
+	opacity: .7;
+}
+
+.pxer-field .required {
+	color: #e2401c;
+}
+
+.pxer-field input[type="text"],
+.pxer-field input[type="email"],
+.pxer-field input[type="tel"],
+.pxer-field input[type="number"],
+.pxer-field textarea {
+	width: 100%;
+}
+
+.pxer-field-checkbox label {
+	font-weight: 400;
+	flex-direction: row;
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+}
+
+.pxer-help {
+	margin: 0 0 6px;
+	font-size: .9em;
+	opacity: .7;
+}
+
+.pxer-items-table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.pxer-items-table td {
+	vertical-align: middle;
+	padding: 8px;
+	border-bottom: 1px solid #eee;
+}
+
+.pxer-item-image img {
+	max-width: 64px;
+	height: auto;
+}
+
+.pxer-item-reason textarea {
+	width: 100%;
+}
+
+.ajax-form .not-valid {
+	border-color: #e2401c !important;
+	background: #fbeaea;
+}
+
+.pxer-history {
+	margin-top: 24px;
+	padding-top: 16px;
+	border-top: 1px solid #eee;
+}
+
+@media (max-width: 600px) {
+	.pxer-fields {
+		grid-template-columns: 1fr;
+	}
+}

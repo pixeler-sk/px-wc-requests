@@ -1,0 +1,8 @@
+# Normalizuj konce riadkov na LF v repozitári, v pracovnej kópii nechaj natívne.
+* text=auto
+
+# Skompilované preklady a obrázky sú binárne — git ich nesmie prepisovať.
+*.mo binary
+*.png binary
+*.jpg binary
+*.gif binary
