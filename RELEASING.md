@@ -133,29 +133,38 @@ Po prvom načítaní administrácie:
 **A hlavne over, že sa web naozaj dovolá na GitHub.** Toto je jediná vec, ktorá
 sa dá pokaziť ticho: keď hosting blokuje odchádzajúce HTTPS požiadavky na
 `api.github.com`, plugin funguje normálne, len sa už nikdy nedozvie o novej
-verzii — a nikde to nevypíše chybu.
+verzii.
 
-Po otvorení stránky Pluginy si Plugin Update Checker zapíše výsledok kontroly do
-option `external_updates-px-wc-requests`:
+Plugin Update Checker pridá do riadku pluginu na stránke Pluginy odkaz
+**„Check for updates"**. Klikni naň a riaď sa farbou hlášky:
+
+| Hláška | Znamená |
+|---|---|
+| 🟢 *The Pixeler Woo Requests plugin is up to date.* | ✅ web sa dovolal na GitHub, našiel release a porovnal verzie |
+| 🟢 *A new version of the … plugin is available.* | ✅ funguje, je čo aktualizovať |
+| 🔴 *Could not determine if updates are available for …* | ✗ nedovolal sa — zablokovaný výstup na internet alebo rate limit |
+
+Samotná existencia toho odkazu dokazuje, že `inc/Updater.php` je nasadený;
+farba hlášky dokazuje, že spojenie funguje.
+
+Cez SSH sa to isté dá overiť aj z option, do ktorej si PUC zapisuje výsledok:
 
 ```bash
 wp option get external_updates-px-wc-requests
 ```
 
-Čo hľadať:
+Nedávny `lastCheck` = kontrola dobehla. Chýbajúca option = nikdy neprebehla.
 
-| Výstup | Znamená |
-|---|---|
-| pole s `lastCheck` (nedávny timestamp) a `checkedVersion` | ✅ funguje |
-| `lastCheck` je, ale `update` je `null` | ✅ tiež v poriadku — beží najnovšia verzia |
-| option neexistuje | ✗ kontrola nikdy nedobehla — nie je nasadený `inc/Updater.php`, alebo je zablokovaný výstup na internet |
-
-Bez SSH sa to isté dá pozrieť cez ktorýkoľvek DB nástroj v tabuľke
-`wp_options`.
+**Jedna vec, ktorú zelená hláška nedokazuje.** Kvôli `REQUIRE_RELEASE_ASSETS`
+sa „up to date" zobrazí aj vtedy, keby novší release existoval, ale nemal
+priložený zip so sedícim názvom — tieto dva prípady sú z admina nerozlíšiteľné.
+Že sa budúce vydania naozaj ponúknu, garantuje zhoda medzi názvom, ktorý skladá
+CI (`px-wc-requests-<verzia>.zip`), a regexom v `inc/Updater.php`. Keď meníš
+jedno, skontroluj druhé.
 
 Ak treba potvrdiť, že sa aktualizácia naozaj **ponúkne**, zníž na jednom webe
 dočasne verziu v hlavičke `px-wc-requests.php` na `1.2.0`, otvor Pluginy a klikni
-na *Skontrolovať znova* — aktualizácia sa musí objaviť. Potom verziu vráť.
+na *Check for updates* — aktualizácia sa musí objaviť. Potom verziu vráť.
 
 ### 5. Ďalšie aktualizácie už ručne netreba
 
