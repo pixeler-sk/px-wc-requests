@@ -28,6 +28,59 @@ Plugin nie je hostovaný na wordpress.org. Aktualizácie chodia priamo z
 verejného repozitára https://github.com/pixeler-sk/px-wc-requests a zobrazujú
 sa v administrácii ako pri každom inom plugine.
 
+== Installation ==
+
+1. Nahraj plugin do `wp-content/plugins/px-wc-requests/` a aktivuj ho.
+2. WooCommerce → Nastavenia → **Zákaznícke žiadosti** — pre každý typ žiadosti
+   priraď stránku s formulárom (stránka sa dá vytvoriť jedným klikom).
+3. Do stránky vlož shortcode, ak si ju vytváral ručne:
+   `[pxer_request_form type="withdrawal"]` alebo `type="claim"`.
+4. V tých istých nastaveniach vyplň právne poučenie pre každý typ a vyber
+   e-maily, do ktorých sa má vkladať odkaz na formulár.
+
+Žiadosti nájdeš potom pod menu WooCommerce → Žiadosti.
+
+== Frequently Asked Questions ==
+
+= Ako zmením vzhľad formulára alebo e-mailov? =
+
+Skopíruj šablónu z `templates/` do `wp-content/themes/<tvoja-téma>/px-wc-requests/`
+a uprav ju tam. Prepis prežije aktualizáciu pluginu — ale pozor, práve preto sa
+v prepísanom mieste neprejavia zmeny z nových verzií.
+
+= Ako pridám vlastný typ žiadosti alebo pole? =
+
+Cez filtre `pxer_request_types`, `pxer_request_statuses` a
+`pxer_request_period_end`. Jadro pluginu sa upravovať nemusí.
+
+= Kde sú uložené prílohy z reklamácií? =
+
+V privátnom priečinku, ktorý nie je dostupný cez priamu URL. Súbory sa
+doručujú len cez kontrolovaný výdaj oprávnenému zákazníkovi alebo adminovi.
+
+= Sú žiadosti súčasťou GDPR exportu? =
+
+Áno. Žiadosti vrátane IBAN a kontaktných údajov sú zapojené do štandardného
+WordPress exportu aj výmazu osobných údajov.
+
+= Dá sa prejsť z WPify Woo (Withdrawal & Claims)? =
+
+Áno, plugin obsahuje dávkový migrátor s dry-run režimom. Je idempotentný,
+takže sa dá spustiť opakovane.
+
+== Other Notes ==
+
+**Aktualizácie**
+
+Plugin sa raz za 12 hodín pýta GitHub API, či existuje novšie vydanie. Overiť
+sa to dá odkazom „Check for updates" v riadku pluginu na stránke Pluginy —
+zelená hláška znamená, že spojenie funguje.
+
+**Rozšíriteľnosť**
+
+REST API v namespace `px-wc-requests/v1` (kontrola lehoty, odoslanie žiadosti,
+zoznam a detail) pre headless frontendy; hostia sa autorizujú kľúčom objednávky.
+
 == Changelog ==
 
 = 1.2.1 =

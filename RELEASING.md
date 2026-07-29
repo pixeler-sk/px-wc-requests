@@ -195,6 +195,39 @@ Doplň pri každom nasadení, nech je vidno, kde čo beží:
 | pneuvosovic.pixeler.sk (staging) | 1.2.1 | — |
 | benab | 1.0.0 | čaká |
 
+## Grafika v okne „Zobraziť podrobnosti"
+
+Banner a ikonu si Plugin Update Checker berie **z priečinka `assets/`
+nainštalovanej kópie pluginu**, nie z GitHubu. Názvy súborov musia sedieť presne
+(konvencia wordpress.org):
+
+| Súbor | Kde sa zobrazí |
+|---|---|
+| `assets/banner-1544x500.png` | hlavička okna „Zobraziť podrobnosti" |
+| `assets/icon-256x256.png` | riadky aktualizácií, Nástenka → Aktualizácie |
+| `assets/icon-128x128.png` | to isté, bez retina displeja |
+
+Dôsledok toho, že sa čítajú lokálne: **grafika sa na klientskom webe objaví až
+po aktualizácii na verziu, ktorá ju obsahuje.** Nie je to niečo, čo sa dá
+doplniť spätne bez vydania.
+
+**Banner dodávaj len v jednej veľkosti.** Plugin Update Checker mapuje
+`banner-772x250` na kľúč `high` a `banner-1544x500` na `low`, čo je oproti
+konvencii wordpress.org naopak (tam je 772 „low" a 1544 „high"). Keby si dodal
+obe, WordPress by na retina displeji ukázal menší obrázok a na bežnom väčší. Pri
+jedinom súbore `banner-1544x500.png` si WordPress chýbajúci kľúč doplní z toho
+druhého, takže sa v oboch prípadoch použije ostrá veľká verzia.
+
+Grafiku generuje `scripts/make-assets.php` (`php scripts/make-assets.php`) —
+zámerne jednoduchá, farby sú na začiatku súboru. Ak vznikne poriadne logo,
+súbory v `assets/` sa dajú nahradiť a skript zmazať. Do release zipu sa
+`scripts/` nebalí.
+
+Záložky v tom istom okne (Popis, Inštalácia, FAQ, Changelog) vznikajú zo sekcií
+`== Nadpis ==` v `readme.txt` — pridanie sekcie stačí na pridanie záložky.
+Sekcia `== Screenshots ==` zmysel nemá: WordPress obrázky k nej dohľadáva na
+serveroch wordpress.org, kde tento plugin nie je.
+
 ## Verzovanie
 
 Semver v duchu, nie doslova:

@@ -67,6 +67,7 @@ jobs:
             --exclude '.gitattributes' \
             --exclude 'CLAUDE.md' \
             --exclude 'RELEASING.md' \
+            --exclude 'scripts' \
             --exclude 'languages/build-translations.php'
 
           cd build && zip -rq "px-wc-requests-${VERSION}.zip" px-wc-requests
