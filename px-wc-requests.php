@@ -3,7 +3,7 @@
  * Plugin Name: Pixeler Woo Requests
  * Plugin URI: https://pixeler.sk
  * Description: Universal customer-request system for WooCommerce — withdrawal from contract and warranty claims. Requests stored as a CPT with custom statuses, configurable fields (including IBAN), emails and admin UI. Type/config driven and portable between eshops.
- * Version: 1.2.2
+ * Version: 1.2.3
  * Author: Roman Kraiger | Pixeler s. r. o.
  * Author URI: https://pixeler.sk
  * Requires Plugins: woocommerce
@@ -16,7 +16,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'PXER_VERSION', '1.2.2' );
+define( 'PXER_VERSION', '1.2.3' );
 define( 'PXER_FILE', __FILE__ );
 define( 'PXER_PATH', plugin_dir_path( __FILE__ ) );
 define( 'PXER_URL', plugin_dir_url( __FILE__ ) );

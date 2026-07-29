@@ -3,7 +3,7 @@ Contributors: pixeler
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 8.0
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,6 +23,7 @@ e-shopmi bez úpravy jadra.
 * Prílohy v privátnom úložisku — nie sú dostupné cez priamu URL
 * WooCommerce e-maily pre zákazníka aj administrátora, vrátane zmeny stavu
 * Šablóny prepísateľné v téme cez `yourtheme/px-wc-requests/`
+* Preložené do slovenčiny a češtiny
 
 Plugin nie je hostovaný na wordpress.org. Aktualizácie chodia priamo z
 verejného repozitára https://github.com/pixeler-sk/px-wc-requests a zobrazujú
@@ -82,6 +83,16 @@ REST API v namespace `px-wc-requests/v1` (kontrola lehoty, odoslanie žiadosti,
 zoznam a detail) pre headless frontendy; hostia sa autorizujú kľúčom objednávky.
 
 == Changelog ==
+
+= 1.2.3 =
+Autor, preklad popisu a čeština.
+
+* Autor pluginu je teraz Roman Kraiger | Pixeler s. r. o., odkazy smerujú na
+  https://pixeler.sk.
+* Popis pluginu na stránke Pluginy sa zobrazuje preložený.
+* Pridaný **český preklad** (cs_CZ) — 241 reťazcov vrátane množných čísel.
+* Oprava: generátor prekladov už neprehľadáva `vendor/`, takže sa do prekladov
+  nedostávajú reťazce cudzích knižníc.
 
 = 1.2.2 =
 Vzhľad karty pluginu. **Bez funkčných zmien — kód pluginu je zhodný s 1.2.1.**

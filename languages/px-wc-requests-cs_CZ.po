@@ -1,0 +1,748 @@
+# Czech translation for Pixeler Woo Requests.
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: cs_CZ\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+msgid "%1$s no. %2$d"
+msgstr "%1$s č. %2$d"
+
+msgid "A note has been added to your request %1$s no. %2$d:"
+msgstr "K vaší žádosti %1$s č. %2$d byla přidána poznámka:"
+
+msgid "A note has been added to your request {request_type} no. {request_number}"
+msgstr "K vaší žádosti {request_type} č. {request_number} byla přidána poznámka"
+
+msgid "A note regarding your request"
+msgstr "Poznámka k vaší žádosti"
+
+msgid "Account name / recipient"
+msgstr "Název účtu / jméno příjemce"
+
+msgid "Action button: %s"
+msgstr "Akční tlačítko: %s"
+
+msgid "Add"
+msgstr "Přidat"
+
+msgid "Add note"
+msgstr "Přidat poznámku"
+
+msgid "Add request"
+msgstr "Přidat žádost"
+
+msgid "Add “%s” link to e-mails"
+msgstr "Přidat odkaz „%s“ do e-mailů"
+
+msgid "Admin notification about a new customer request (withdrawal / claim)."
+msgstr "Upozornění administrátora na novou žádost zákazníka (odstoupení / reklamace)."
+
+msgid "All types"
+msgstr "Všechny typy"
+
+msgid "Already imported"
+msgstr "Již importováno"
+
+msgid "An error occurred while saving the request."
+msgstr "Při ukládání žádosti nastala chyba."
+
+msgid "Append a link to the request form at the end of the selected customer e-mails."
+msgstr "Na konec vybraných zákaznických e-mailů přidá odkaz na formulář žádosti."
+
+msgid "Assign the page that contains the shortcode of each request type."
+msgstr "Přiřaďte ke každému typu žádosti stránku s jeho shortcode."
+
+msgid "Available shortcodes"
+msgstr "Dostupné shortcodes"
+
+msgid "Back to my requests"
+msgstr "Zpět na moje žádosti"
+
+msgid "Block duplicate requests within (hours)"
+msgstr "Blokovat duplicitní žádosti po dobu (hodin)"
+
+msgid "Button texts"
+msgstr "Texty tlačítek"
+
+msgid "Change status to: %s"
+msgstr "Změnit stav na: %s"
+
+msgid "City"
+msgstr "Město"
+
+msgid "Claim form"
+msgstr "Reklamační formulář"
+
+msgid "Claims"
+msgstr "Reklamace"
+
+msgid "Comma-separated emails. Defaults to %s."
+msgstr "E-maily oddělené čárkou. Výchozí %s."
+
+msgid "Contact"
+msgstr "Kontakt"
+
+msgid "Continue"
+msgstr "Pokračovat"
+
+msgid "Could not create the form page."
+msgstr "Stránku formuláře se nepodařilo vytvořit."
+
+msgid "Create page for %s"
+msgstr "Vytvořit stránku pro %s"
+
+msgid "Created:"
+msgstr "Vytvořena:"
+
+msgid "Creating…"
+msgstr "Vytvářím…"
+
+msgid "Custom field deleted."
+msgstr "Vlastní pole smazáno."
+
+msgid "Custom field updated."
+msgstr "Vlastní pole aktualizováno."
+
+msgid "Customer notification when their request status changes."
+msgstr "Upozornění zákazníka při změně stavu jeho žádosti."
+
+msgid "Customer request created: %1$s no. %2$d"
+msgstr "Vytvořena žádost zákazníka: %1$s č. %2$d"
+
+msgid "Customer requests"
+msgstr "Žádosti zákazníků"
+
+msgid "Customise the request button labels."
+msgstr "Přizpůsobte texty tlačítek žádostí."
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "Date created:"
+msgstr "Datum vytvoření:"
+
+msgid "Deadline:"
+msgstr "Termín:"
+
+msgid "Delete"
+msgstr "Smazat"
+
+msgid "Delete this note?"
+msgstr "Smazat tuto poznámku?"
+
+msgid "Describe the defect"
+msgstr "Popis závady"
+
+msgid "Dry run"
+msgstr "Zkušební běh"
+
+msgid "Dry-run finished"
+msgstr "Zkušební běh dokončen"
+
+msgid "E-mail"
+msgstr "E-mail"
+
+msgid "E-mail:"
+msgstr "E-mail:"
+
+msgid "Edit page"
+msgstr "Upravit stránku"
+
+msgid "Edit request"
+msgstr "Upravit žádost"
+
+msgid "Email heading"
+msgstr "Nadpis e-mailu"
+
+msgid "Email type"
+msgstr "Typ e-mailu"
+
+msgid "Enable this email notification"
+msgstr "Povolit toto e-mailové upozornění"
+
+msgid "Enable/Disable"
+msgstr "Povolit/Zakázat"
+
+msgid "Endpoint for the customer requests page."
+msgstr "Koncový bod pro stránku zákaznických žádostí."
+
+msgid "Exclude from: %s"
+msgstr "Vyloučit z: %s"
+
+msgid "File a claim"
+msgstr "Reklamovat"
+
+msgid "File not found."
+msgstr "Soubor nenalezen."
+
+msgid "Filter requests list"
+msgstr "Filtrovat seznam žádostí"
+
+msgid "First name"
+msgstr "Jméno"
+
+msgid "Form links in e-mails"
+msgstr "Odkazy na formuláře v e-mailech"
+
+msgid "Form page created and selected."
+msgstr "Stránka formuláře byla vytvořena a předvybrána."
+
+msgid "Form pages"
+msgstr "Stránky formulářů"
+
+msgid "History & updates"
+msgstr "Historie a aktualizace"
+
+msgid "How long a request stays open, counted from the order completion date."
+msgstr "Jak dlouho zůstává žádost otevřená, počítáno od data dokončení objednávky."
+
+msgid "I agree with the %s."
+msgstr "Souhlasím se %s."
+
+msgid "I agree with the processing of personal data"
+msgstr "Souhlasím se zpracováním osobních údajů"
+
+msgid "IBAN"
+msgstr "IBAN"
+
+msgid "IBAN:"
+msgstr "IBAN:"
+
+msgid "Import"
+msgstr "Importovat"
+
+msgid "Import as status"
+msgstr "Importovat se stavem"
+
+msgid "Import finished"
+msgstr "Import dokončen"
+
+msgid "Import from WPify"
+msgstr "Import z WPify"
+
+msgid "Import requests from WPify"
+msgstr "Import žádostí z WPify"
+
+msgid "Imported from WPify (submitted %s)."
+msgstr "Importováno z WPify (podáno %s)."
+
+msgid "In progress"
+msgstr "Řeší se"
+
+msgid "Informational text shown on each request form (e.g. statutory withdrawal information). Have it reviewed by a lawyer."
+msgstr "Informační text zobrazený na každém formuláři žádosti (např. poučení o odstoupení). Nechte si jej zkontrolovat právníkem."
+
+msgid "Invalid file extension, allowed only: %s"
+msgstr "Neplatná přípona souboru, povoleno pouze: %s"
+
+msgid "Invalid file type. Upload JPG or PNG only."
+msgstr "Neplatný typ souboru. Nahrajte pouze JPG nebo PNG."
+
+msgid "Invalid request type."
+msgstr "Neplatný typ žádosti."
+
+msgid "Invalid request."
+msgstr "Neplatný požadavek."
+
+msgid "Item #%d"
+msgstr "Položka č. %d"
+
+msgid "Items"
+msgstr "Položky"
+
+msgid "Last name"
+msgstr "Příjmení"
+
+msgid "Leave empty to use the global period."
+msgstr "Ponechte prázdné pro použití globální lhůty."
+
+msgid "Legal notice on forms"
+msgstr "Právní poučení na formulářích"
+
+msgid "Max requests per order"
+msgstr "Max. počet žádostí na objednávku"
+
+msgid "Max:"
+msgstr "Max:"
+
+msgid "Maximum size per photo is 7 MB (JPG, PNG)"
+msgstr "Maximální velikost jedné fotografie je 7 MB (JPG, PNG)"
+
+msgid "Minimum form fill time (seconds)"
+msgstr "Minimální čas vyplnění formuláře (sekundy)"
+
+msgid "Missing source id."
+msgstr "Chybí zdrojové id."
+
+msgid "My requests"
+msgstr "Moje žádosti"
+
+msgid "Need to return or claim items from this order?"
+msgstr "Potřebujete vrátit zboží nebo reklamovat z této objednávky?"
+
+msgid "New request"
+msgstr "Nová žádost"
+
+msgid "New request (admin)"
+msgstr "Nová žádost (admin)"
+
+msgid "New request: {request_type} no. {request_number}"
+msgstr "Nová žádost: {request_type} č. {request_number}"
+
+msgid "No WPify data found (table %s does not exist)."
+msgstr "Nebyla nalezena žádná WPify data (tabulka %s neexistuje)."
+
+msgid "No order found with this e-mail and number."
+msgstr "Nebyla nalezena objednávka s tímto e-mailem a číslem."
+
+msgid "No photos"
+msgstr "Žádné fotografie"
+
+msgid "No requests found"
+msgstr "Žádné žádosti"
+
+msgid "No requests in trash"
+msgstr "Žádné žádosti v koši"
+
+msgid "No updates yet."
+msgstr "Zatím žádné aktualizace."
+
+msgid "Note"
+msgstr "Poznámka"
+
+msgid "Note to customer"
+msgstr "Poznámka pro zákazníka"
+
+msgid "Notice: %s"
+msgstr "Poučení: %s"
+
+msgid "One of the selected items is not eligible for this request."
+msgstr "Jedna z vybraných položek není pro tuto žádost oprávněná."
+
+msgid "Open importer"
+msgstr "Otevřít importér"
+
+msgid "Order"
+msgstr "Objednávka"
+
+msgid "Order no.:"
+msgstr "Objednávka č.:"
+
+msgid "Order not found or has no items."
+msgstr "Objednávka nebyla nalezena nebo neobsahuje položky."
+
+msgid "Order not found or not accessible."
+msgstr "Objednávka nebyla nalezena nebo není přístupná."
+
+msgid "Order not found."
+msgstr "Objednávka nebyla nalezena."
+
+msgid "Order number"
+msgstr "Číslo objednávky"
+
+msgid "Order number:"
+msgstr "Číslo objednávky:"
+
+msgid "Order statuses that start the clock."
+msgstr "Stavy objednávky, které spouštějí počítání lhůty."
+
+msgid "Order:"
+msgstr "Objednávka:"
+
+msgid "Page containing the shortcode %s"
+msgstr "Stránka se shortcode %s"
+
+msgid "Page: %s"
+msgstr "Stránka: %s"
+
+msgid "Period override (%1$s, in %2$s)"
+msgstr "Vlastní lhůta (%1$s, v %2$s)"
+
+msgid "Period: %1$s (in %2$s)"
+msgstr "Lhůta: %1$s (v %2$s)"
+
+msgid "Periods & deadlines"
+msgstr "Lhůty a termíny"
+
+msgid "Phone"
+msgstr "Telefon"
+
+msgid "Photos"
+msgstr "Fotografie"
+
+msgid "Pixeler Woo Requests requires the WooCommerce plugin to be active."
+msgstr "Pixeler Woo Requests vyžaduje aktivní plugin WooCommerce."
+
+msgid "Please enter a valid IBAN."
+msgstr "Zadejte platný IBAN."
+
+msgid "Please fill in the description for each selected item."
+msgstr "Vyplňte popis ke každé vybrané položce."
+
+msgid "Please fill in the field: %s"
+msgstr "Vyplňte pole: %s"
+
+msgid "Postcode"
+msgstr "PSČ"
+
+msgid "Previous requests for this order"
+msgstr "Předchozí žádosti k této objednávce"
+
+msgid "Private note"
+msgstr "Interní poznámka"
+
+msgid "Product"
+msgstr "Produkt"
+
+msgid "Protect the public form from bots and abuse. Set 0 to disable a limit."
+msgstr "Ochrana veřejného formuláře před boty a zneužitím. 0 = limit vypnutý."
+
+msgid "Quantity"
+msgstr "Množství"
+
+msgid "Quantity:"
+msgstr "Množství:"
+
+msgid "Rate limit per IP / hour"
+msgstr "Limit na IP / hodinu"
+
+msgid "Reason"
+msgstr "Důvod"
+
+msgid "Reason / description"
+msgstr "Důvod / popis"
+
+msgid "Reason:"
+msgstr "Důvod:"
+
+msgid "Received"
+msgstr "Přijatá"
+
+msgid "Recipient(s)"
+msgstr "Příjemce"
+
+msgid "Request"
+msgstr "Žádost"
+
+msgid "Request #%s"
+msgstr "Žádost č. %s"
+
+msgid "Request confirmation"
+msgstr "Potvrzení žádosti"
+
+msgid "Request created with status: %s"
+msgstr "Žádost vytvořena se stavem: %s"
+
+msgid "Request created."
+msgstr "Žádost vytvořena."
+
+msgid "Request details"
+msgstr "Údaje žádosti"
+
+msgid "Request draft updated."
+msgstr "Koncept žádosti aktualizován."
+
+msgid "Request failed."
+msgstr "Požadavek selhal."
+
+msgid "Request form: %s"
+msgstr "Formulář žádosti: %s"
+
+msgid "Request not found."
+msgstr "Žádost nebyla nalezena."
+
+msgid "Request note"
+msgstr "Poznámka k žádosti"
+
+msgid "Request notes"
+msgstr "Poznámky k žádosti"
+
+msgid "Request number"
+msgstr "Číslo žádosti"
+
+msgid "Request number:"
+msgstr "Číslo žádosti:"
+
+msgid "Request saved."
+msgstr "Žádost uložena."
+
+msgid "Request status change"
+msgstr "Změna stavu žádosti"
+
+msgid "Request submitted."
+msgstr "Žádost odeslána."
+
+msgid "Request updated."
+msgstr "Žádost aktualizována."
+
+msgid "Requests"
+msgstr "Žádosti"
+
+msgid "Requests list"
+msgstr "Seznam žádostí"
+
+msgid "Requests list navigation"
+msgstr "Navigace v seznamu žádostí"
+
+msgid "Resolved"
+msgstr "Vyřízená"
+
+msgid "Row #%1$s: %2$s"
+msgstr "Řádek č. %1$s: %2$s"
+
+msgid "Sample note text shown in the preview."
+msgstr "Ukázkový text poznámky v náhledu."
+
+msgid "Sample product"
+msgstr "Vzorový produkt"
+
+msgid "Save the request to apply the status. The customer is notified by e-mail."
+msgstr "Stav se uplatní uložením žádosti. Zákazník bude informován e-mailem."
+
+msgid "Search requests"
+msgstr "Hledat žádosti"
+
+msgid "Security & anti-spam"
+msgstr "Bezpečnost a anti-spam"
+
+msgid "Security check failed. Please reload the page and try again."
+msgstr "Bezpečnostní kontrola selhala. Obnovte stránku a zkuste to znovu."
+
+msgid "Select at least one item."
+msgstr "Vyberte alespoň jednu položku."
+
+msgid "Select items"
+msgstr "Vyberte zboží"
+
+msgid "Sent to the customer right after they submit a request."
+msgstr "Odešle se zákazníkovi hned po odeslání žádosti."
+
+msgid "Sent to the customer when you add a note addressed to them."
+msgstr "Odešle se zákazníkovi při přidání poznámky určené pro něj."
+
+msgid "Shown in My Account orders and e-mail links."
+msgstr "Zobrazeno v Mém účtu u objednávek a v odkazech v e-mailech."
+
+msgid "Start counting from order status: %s"
+msgstr "Začít počítat od stavu objednávky: %s"
+
+msgid "Status"
+msgstr "Stav"
+
+msgid "Status changed from %1$s to %2$s."
+msgstr "Stav změněn z %1$s na %2$s."
+
+msgid "Status of request {request_type} no. {request_number} has changed"
+msgstr "Stav žádosti {request_type} č. {request_number} byl změněn"
+
+msgid "Status:"
+msgstr "Stav:"
+
+msgid "Statutory refund deadline: %s."
+msgstr "Zákonná lhůta pro vrácení peněz: %s."
+
+msgid "Street and number"
+msgstr "Ulice a číslo"
+
+msgid "Subject"
+msgstr "Předmět"
+
+msgid "Submissions faster than this are treated as bots."
+msgstr "Rychlejší odeslání se považují za boty."
+
+msgid "Submit button: %s"
+msgstr "Odesílací tlačítko: %s"
+
+msgid "Submit request"
+msgstr "Odeslat žádost"
+
+msgid "System"
+msgstr "Systém"
+
+msgid "The deadline for this request has already passed (it ended on %s)."
+msgstr "Lhůta pro tuto žádost už uplynula (skončila %s)."
+
+msgid "The file must not be larger than %d MB."
+msgstr "Soubor nesmí být větší než %d MB."
+
+msgid "The maximum number of requests for this order has been reached."
+msgstr "Byl dosažen maximální počet žádostí pro tuto objednávku."
+
+msgid "The period has not started yet — the order is not completed."
+msgstr "Lhůta zatím nezačala — objednávka není dokončena."
+
+msgid "The status of your request %1$s no. %2$d has changed to:"
+msgstr "Stav vaší žádosti %1$s č. %2$d byl změněn na:"
+
+msgid "The status of your request %1$s no. %2$d has changed to: %3$s"
+msgstr "Stav vaší žádosti %1$s č. %2$d byl změněn na: %3$s"
+
+msgid "The statutory warranty applies for 24 months from receipt of the goods. Please describe the defect as precisely as possible and attach photos if available."
+msgstr "Zákonná záruka platí 24 měsíců od převzetí zboží. Závadu prosím popište co nejpřesněji a přiložte fotografie, pokud je máte."
+
+msgid "The uploaded file is not a valid image."
+msgstr "Nahraný soubor není platný obrázek."
+
+msgid "There are no eligible items for this request."
+msgstr "Pro tuto žádost nejsou žádné oprávněné položky."
+
+msgid "There are no notes yet."
+msgstr "Zatím žádné poznámky."
+
+msgid "This is a sample preview of the email."
+msgstr "Toto je ukázkový náhled e-mailu."
+
+msgid "This is non-destructive and can be run repeatedly — already imported requests are skipped. Customers are NOT e-mailed."
+msgstr "Operace je nedestruktivní a lze ji spustit opakovaně — již importované žádosti se přeskočí. Zákazníkům se NEodesílají e-maily."
+
+msgid "This product cannot be selected in this request type."
+msgstr "Tento produkt nelze v tomto typu žádosti vybrat."
+
+msgid "To continue, enter your e-mail and order number."
+msgstr "Pro pokračování zadejte e-mail a číslo objednávky."
+
+msgid "Too many attempts. Please try again later."
+msgstr "Příliš mnoho pokusů. Zkuste to později."
+
+msgid "Total requests in WPify"
+msgstr "Celkem žádostí ve WPify"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Type:"
+msgstr "Typ:"
+
+msgid "Universal customer-request system for WooCommerce — withdrawal from contract and warranty claims. Requests stored as a CPT with custom statuses, configurable fields (including IBAN), emails and admin UI. Type/config driven and portable between eshops."
+msgstr "Univerzální systém zákaznických žádostí pro WooCommerce — odstoupení od smlouvy a reklamace. Typy žádostí, jejich pole i stavy jsou konfigurovatelné, takže je plugin přenositelný mezi e-shopy bez úpravy jádra. Obsahuje formuláře, lhůty, přílohy, e-maily a správu žádostí v administraci."
+
+msgid "Unknown request type."
+msgstr "Neznámý typ žádosti."
+
+msgid "Unknown request type: %s"
+msgstr "Neznámý typ žádosti: %s"
+
+msgid "View"
+msgstr "Zobrazit"
+
+msgid "View request"
+msgstr "Zobrazit žádost"
+
+msgid "View requests"
+msgstr "Zobrazit žádosti"
+
+msgid "WPify Woo is active. Import its existing requests: %s"
+msgstr "WPify Woo je aktivní. Importujte jeho existující žádosti: %s"
+
+msgid "Warranty claim"
+msgstr "Reklamace"
+
+msgid "Warranty claims"
+msgstr "Reklamace"
+
+msgid "We have received your request"
+msgstr "Vaši žádost jsme přijali"
+
+msgid "We have received your request %1$s no. %2$d and will get back to you soon."
+msgstr "Přijali jsme vaši žádost %1$s č. %2$d. Brzy se vám ozveme."
+
+msgid "We have received your request {request_type} no. {request_number}"
+msgstr "Přijali jsme vaši žádost {request_type} č. {request_number}"
+
+msgid "Withdraw from contract"
+msgstr "Odstoupit od smlouvy"
+
+msgid "Withdrawal from contract"
+msgstr "Odstoupení od smlouvy"
+
+msgid "Withdrawals"
+msgstr "Odstoupení"
+
+msgid "Withdrawals from contract"
+msgstr "Odstoupení od smlouvy"
+
+msgid "You are not allowed to do this."
+msgstr "K této akci nemáte oprávnění."
+
+msgid "You are not allowed to view this file."
+msgstr "Nemáte oprávnění zobrazit tento soubor."
+
+msgid "You have already submitted an identical request recently."
+msgstr "Identickou žádost jste nedávno již odeslali."
+
+msgid "You have no requests yet."
+msgstr "Zatím nemáte žádné žádosti."
+
+msgid "You have the right to withdraw from this contract within 14 days without giving any reason. The withdrawal period starts on the day you take possession of the goods. You bear the direct cost of returning the goods. We will refund all payments within 14 days of being informed of your decision to withdraw."
+msgstr "Máte právo odstoupit od této smlouvy do 14 dnů bez udání důvodu. Lhůta pro odstoupení začíná běžet dnem převzetí zboží. Přímé náklady na vrácení zboží nesete vy. Všechny platby vám vrátíme do 14 dnů ode dne doručení vašeho rozhodnutí o odstoupení."
+
+msgid "Your request has been submitted successfully."
+msgstr "Vaše žádost byla úspěšně odeslána."
+
+msgid "added on %1$s at %2$s by %3$s"
+msgstr "přidáno %1$s v %2$s, %3$s"
+
+msgid "days"
+msgstr "dny"
+
+msgid "errors"
+msgstr "chyby"
+
+msgid "for a possible refund"
+msgstr "pro případné vrácení peněz"
+
+msgid "imported"
+msgstr "importováno"
+
+msgid "months"
+msgstr "měsíce"
+
+msgid "note to customer"
+msgstr "poznámka pro zákazníka"
+
+msgid "processing of personal data"
+msgstr "zpracováním osobních údajů"
+
+msgid "skipped"
+msgstr "přeskočeno"
+
+msgid "— Select a page —"
+msgstr "— Vyberte stránku —"
+
+msgid "%s request processed."
+msgid_plural "%s requests processed."
+msgstr[0] "Zpracována %s žádost."
+msgstr[1] "Zpracovány %s žádosti."
+msgstr[2] "Zpracováno %s žádostí."
+
+msgid "%s request updated."
+msgid_plural "%s requests updated."
+msgstr[0] "Aktualizována %s žádost."
+msgstr[1] "Aktualizovány %s žádosti."
+msgstr[2] "Aktualizováno %s žádostí."
+
+msgid "%s request not updated, somebody is editing it."
+msgid_plural "%s requests not updated, somebody is editing them."
+msgstr[0] "%s žádost nebyla aktualizována, někdo ji právě upravuje."
+msgstr[1] "%s žádosti nebyly aktualizovány, někdo je právě upravuje."
+msgstr[2] "%s žádostí nebylo aktualizováno, někdo je právě upravuje."
+
+msgid "%s request permanently deleted."
+msgid_plural "%s requests permanently deleted."
+msgstr[0] "%s žádost trvale smazána."
+msgstr[1] "%s žádosti trvale smazány."
+msgstr[2] "%s žádostí trvale smazáno."
+
+msgid "%s request moved to the Trash."
+msgid_plural "%s requests moved to the Trash."
+msgstr[0] "%s žádost přesunuta do koše."
+msgstr[1] "%s žádosti přesunuty do koše."
+msgstr[2] "%s žádostí přesunuto do koše."
+
+msgid "%s request restored from the Trash."
+msgid_plural "%s requests restored from the Trash."
+msgstr[0] "%s žádost obnovena z koše."
+msgstr[1] "%s žádosti obnoveny z koše."
+msgstr[2] "%s žádostí obnoveno z koše."
+
