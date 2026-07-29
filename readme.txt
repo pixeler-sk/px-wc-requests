@@ -3,7 +3,7 @@ Contributors: pixeler
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 8.0
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -82,6 +82,13 @@ REST API v namespace `px-wc-requests/v1` (kontrola lehoty, odoslanie žiadosti,
 zoznam a detail) pre headless frontendy; hostia sa autorizujú kľúčom objednávky.
 
 == Changelog ==
+
+= 1.2.2 =
+Vzhľad karty pluginu. **Bez funkčných zmien — kód pluginu je zhodný s 1.2.1.**
+
+* Pridaný banner a ikona pluginu. Banner sa zobrazuje v hlavičke okna
+  „Zobraziť podrobnosti", ikona v riadkoch aktualizácií.
+* `readme.txt` doplnený o záložky Inštalácia, Časté otázky a Ďalšie poznámky.
 
 = 1.2.1 =
 Prvá verzia distribuovaná cez GitHub releases.
