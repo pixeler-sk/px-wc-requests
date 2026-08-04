@@ -3,7 +3,7 @@ Contributors: pixeler
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 8.0
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -83,6 +83,14 @@ REST API v namespace `px-wc-requests/v1` (kontrola lehoty, odoslanie žiadosti,
 zoznam a detail) pre headless frontendy; hostia sa autorizujú kľúčom objednávky.
 
 == Changelog ==
+
+= 1.3.1 =
+Oprava tlačidla „Uložiť zmeny" pri WYSIWYG poliach.
+
+* Po napísaní textu do WYSIWYG poľa v nastaveniach (Texty v e-mailoch, Právne
+  poučenie na formulároch) zostávalo tlačidlo **Uložiť zmeny** vyblednuté a
+  zmenu sa nedalo uložiť. WooCommerce sleduje len bežné polia formulára a
+  editor píše do iframu, takže o zmene nevedelo.
 
 = 1.3.0 =
 Vlastný text v zákazníckych e-mailoch.

@@ -2,11 +2,54 @@
  * Customer requests settings tab: injects a "Create page" button right under
  * each form-page selector. Creating a page happens via AJAX and the newly
  * created page is added to the dropdown and auto-selected.
+ *
+ * Also keeps the WYSIWYG (`pxer_editor`) fields in sync with WooCommerce's
+ * change tracking — see wireEditorChangeTracking().
  */
 ( function ( $ ) {
 	'use strict';
 
 	var S = window.pxer_settings || {};
+
+	/**
+	 * WooCommerce keeps "Save changes" disabled until a `change`/`input` event
+	 * fires on an input, textarea or select (assets/js/admin/settings.js).
+	 * TinyMCE types into an iframe, so the textarea behind an editor never
+	 * fires one and the button would stay greyed out no matter what you write.
+	 * Mirror the editor content back into the textarea and announce it.
+	 */
+	function bindEditor( editor ) {
+		if ( ! editor || editor.pxerChangeTracked ) {
+			return;
+		}
+		if ( ! $( '#' + editor.id ).closest( '.forminp-pxer_editor' ).length ) {
+			return;
+		}
+		editor.pxerChangeTracked = true;
+
+		editor.on( 'change keyup SetContent Undo Redo', function () {
+			editor.save(); // Push the iframe content into the textarea.
+			$( '#' + editor.id ).trigger( 'change' );
+		} );
+	}
+
+	function wireEditorChangeTracking() {
+		// Editors initialised after this script runs.
+		$( document ).on( 'tinymce-editor-init', function ( event, editor ) {
+			bindEditor( editor );
+		} );
+
+		// …and any that were already up by the time we got here.
+		$( function () {
+			if ( window.tinymce && window.tinymce.editors ) {
+				$.each( window.tinymce.editors, function ( i, editor ) {
+					bindEditor( editor );
+				} );
+			}
+		} );
+	}
+
+	wireEditorChangeTracking();
 
 	$( function () {
 		$.each( S.types || {}, function ( type, info ) {
