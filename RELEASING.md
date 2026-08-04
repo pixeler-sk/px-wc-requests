@@ -192,8 +192,14 @@ Doplň pri každom nasadení, nech je vidno, kde čo beží:
 
 | Web | Verzia | Nasadené |
 |---|---|---|
+| libike.sk | ? | ✅ |
+| elbe.sk | ? | ✅ |
+| spimsi.sk | ? | ✅ |
 | pneuvosovic.pixeler.sk (staging) | 1.2.1 | — |
 | benab | 1.0.0 | čaká |
+
+Verzia so `?` = beží tam, ale ktorá verzia nie je overené. Zistíš to na stránke
+Pluginy daného webu, alebo cez `wp plugin list --name=px-wc-requests`.
 
 ## Grafika v okne „Zobraziť podrobnosti"
 
