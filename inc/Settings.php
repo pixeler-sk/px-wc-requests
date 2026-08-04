@@ -234,6 +234,42 @@ class Settings {
 		}
 		$settings[] = array( 'type' => 'sectionend', 'id' => 'pxer_section_legal' );
 
+		// Custom text appended to the plugin's own customer e-mails.
+		$settings[] = array(
+			'title' => __( 'E-mail texts', 'px-wc-requests' ),
+			'type'  => 'title',
+			'desc'  => sprintf(
+				/* translators: %s: list of available placeholders */
+				__( 'Extra text added to the customer e-mails — typically the address the goods should be returned to, or instructions for the next step. Leave empty to add nothing. Placeholders: %s', 'px-wc-requests' ),
+				'<code>{request_type}</code>, <code>{request_number}</code>, <code>{order_number}</code>, <code>{request_status}</code>'
+			),
+			'id'    => 'pxer_section_email_texts',
+		);
+
+		foreach ( RequestTypes::all() as $id => $type ) {
+			$settings[] = array(
+				/* translators: %s: type label */
+				'title'   => sprintf( __( 'Confirmation: %s', 'px-wc-requests' ), $type['label'] ),
+				'desc'    => __( 'Added to the e-mail sent right after the request is submitted.', 'px-wc-requests' ),
+				'id'      => self::email_text_option( $id ),
+				'type'    => 'pxer_editor',
+				'default' => '',
+			);
+
+			foreach ( $type['statuses'] as $slug => $label ) {
+				$settings[] = array(
+					/* translators: 1: type label, 2: status label */
+					'title'   => sprintf( __( '%1$s → status “%2$s”', 'px-wc-requests' ), $type['label'], $label ),
+					'desc'    => __( 'Added to the e-mail sent when the request changes to this status.', 'px-wc-requests' ),
+					'id'      => self::email_text_option( $id, $slug ),
+					'type'    => 'pxer_editor',
+					'default' => '',
+				);
+			}
+		}
+
+		$settings[] = array( 'type' => 'sectionend', 'id' => 'pxer_section_email_texts' );
+
 		// Form links in customer emails.
 		$email_options = $this->get_customer_email_options();
 		if ( $email_options ) {
@@ -515,6 +551,26 @@ class Settings {
 		$default = RequestTypes::get( $type )['legal_notice'] ?? '';
 
 		return (string) get_option( 'pxer_' . $type . '_legal_notice', $default );
+	}
+
+	/**
+	 * Option name holding the custom e-mail text of a type — either for the
+	 * confirmation e-mail (no status) or for one status-change e-mail.
+	 *
+	 * @param string $type   Request type id.
+	 * @param string $status Request status slug, empty for the confirmation mail.
+	 */
+	public static function email_text_option( string $type, string $status = '' ): string {
+		$name = 'pxer_' . sanitize_key( $type ) . '_email_text';
+
+		return $status ? $name . '_' . sanitize_key( $status ) : $name;
+	}
+
+	/**
+	 * Custom e-mail text configured for a type (and optionally a status).
+	 */
+	public static function get_email_text( string $type, string $status = '' ): string {
+		return (string) get_option( self::email_text_option( $type, $status ), '' );
 	}
 
 	/**

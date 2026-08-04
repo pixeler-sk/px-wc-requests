@@ -211,6 +211,29 @@ function pxer_upload_files( array $files, $post_id = null ): array {
 }
 
 /**
+ * Render the admin-configured extra e-mail text (Customer requests → E-mail
+ * texts). Placeholders are already resolved by the e-mail class; this only
+ * formats and escapes.
+ *
+ * @param string $content    Text to render (may be empty).
+ * @param bool   $plain_text Render for the plain-text e-mail template.
+ */
+function pxer_render_email_custom_content( string $content, bool $plain_text = false ): void {
+	$content = trim( $content );
+	if ( '' === $content ) {
+		return;
+	}
+
+	if ( $plain_text ) {
+		echo esc_html( wp_strip_all_tags( wptexturize( $content ) ) ) . "\n\n";
+
+		return;
+	}
+
+	echo '<div class="pxer-email-custom-content">' . wp_kses_post( wpautop( wptexturize( $content ) ) ) . '</div>';
+}
+
+/**
  * Render the read-only summary of a request (used in emails and history).
  * Schema-driven: prints the items table plus every field flagged for `email`.
  */

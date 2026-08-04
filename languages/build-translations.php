@@ -301,6 +301,13 @@ $sk = array(
 	'Form links in e-mails' => 'Odkazy na formuláre v e-mailoch',
 	'Append a link to the request form at the end of the selected customer e-mails.' => 'Na koniec vybraných zákazníckych e-mailov pridá odkaz na formulár žiadosti.',
 	'Add “%s” link to e-mails' => 'Pridať odkaz „%s“ do e-mailov',
+	// Custom e-mail texts
+	'E-mail texts' => 'Texty v e-mailoch',
+	'Extra text added to the customer e-mails — typically the address the goods should be returned to, or instructions for the next step. Leave empty to add nothing. Placeholders: %s' => 'Doplnkový text pridaný do zákazníckych e-mailov — typicky adresa, kam má zákazník vrátiť tovar, alebo pokyny k ďalšiemu kroku. Prázdne pole nepridá nič. Zástupné znaky: %s',
+	'Confirmation: %s' => 'Potvrdenie: %s',
+	'Added to the e-mail sent right after the request is submitted.' => 'Pridá sa do e-mailu odoslaného hneď po odoslaní žiadosti.',
+	'%1$s → status “%2$s”' => '%1$s → stav „%2$s“',
+	'Added to the e-mail sent when the request changes to this status.' => 'Pridá sa do e-mailu odoslaného pri zmene žiadosti na tento stav.',
 	// Private files
 	'Invalid request.' => 'Neplatná požiadavka.',
 	'You are not allowed to view this file.' => 'Nemáte oprávnenie zobraziť tento súbor.',
@@ -603,6 +610,13 @@ $cs = array(
 	'Form links in e-mails' => 'Odkazy na formuláře v e-mailech',
 	'Append a link to the request form at the end of the selected customer e-mails.' => 'Na konec vybraných zákaznických e-mailů přidá odkaz na formulář žádosti.',
 	'Add “%s” link to e-mails' => 'Přidat odkaz „%s“ do e-mailů',
+	// Custom e-mail texts
+	'E-mail texts' => 'Texty v e-mailech',
+	'Extra text added to the customer e-mails — typically the address the goods should be returned to, or instructions for the next step. Leave empty to add nothing. Placeholders: %s' => 'Doplňkový text přidaný do zákaznických e-mailů — typicky adresa, kam má zákazník vrátit zboží, nebo pokyny k dalšímu kroku. Prázdné pole nepřidá nic. Zástupné znaky: %s',
+	'Confirmation: %s' => 'Potvrzení: %s',
+	'Added to the e-mail sent right after the request is submitted.' => 'Přidá se do e-mailu odeslaného hned po odeslání žádosti.',
+	'%1$s → status “%2$s”' => '%1$s → stav „%2$s“',
+	'Added to the e-mail sent when the request changes to this status.' => 'Přidá se do e-mailu odeslaného při změně žádosti na tento stav.',
 	// Private files
 	'Invalid request.' => 'Neplatný požadavek.',
 	'You are not allowed to view this file.' => 'Nemáte oprávnění zobrazit tento soubor.',

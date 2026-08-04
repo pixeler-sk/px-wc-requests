@@ -4,6 +4,7 @@
  *
  * @var \Pixeler\Requests\Request $request
  * @var string $new_status_label
+ * @var string $custom_content
  * @var string $email_heading
  *
  * @package Pixeler\Requests
@@ -21,7 +22,9 @@ if ( $request && $request->exists() ) {
 		(int) $request->get_id(),
 		esc_html( $new_status_label )
 	);
-	echo "\n";
+	echo "\n\n";
+
+	pxer_render_email_custom_content( $custom_content ?? '', true );
 }
 
 echo "\n" . esc_html( apply_filters( 'woocommerce_email_footer_text', get_option( 'woocommerce_email_footer_text' ) ) );

@@ -157,6 +157,18 @@ Spúšťanie: admin + potvrdenie v `RequestController::after_success()`; status-
 `transition_post_status` (len medzi registrovanými stavmi, nie pri vytvorení). Zapnutie/texty:
 WooCommerce → Nastavenia → E-maily. Per-typ vypnutie cez `emails` kľúč v definícii typu.
 
+**Vlastný text v zákazníckych e-mailoch** — sekcia **Customer requests →
+E-mail texts**. WYSIWYG (`pxer_editor`) pole **per typ** pre potvrdenie
+(`pxer_{type}_email_text`) a **per typ + stav** pre zmenu stavu
+(`pxer_{type}_email_text_{status}`). Typické použitie: adresa, kam má zákazník
+poslať tovar. Gettery `Settings::get_email_text( $type, $status = '' )` /
+`Settings::email_text_option()`. Text sa načíta v `trigger()` do verejnej
+vlastnosti `$custom_content` e-mailovej triedy, placeholdery rieši
+`get_custom_content()` cez `WC_Email::format_string()`, vykresľuje
+`pxer_render_email_custom_content()` (HTML aj plain) hneď pod úvodným odsekom,
+nad súhrnom žiadosti. Prázdne pole nevykreslí nič. Náhľad e-mailu vo WC dopĺňa
+text v `Emails::prepare_preview`.
+
 **Odkaz na formulár v zákazníckych e-mailoch** (`Emails::inject_links`, hook
 `woocommerce_email_order_meta`): per typ sa dá vybrať, do ktorých WC zákazníckych
 e-mailov sa na koniec pridá odkaz na formulár (predvyplnený objednávkou cez

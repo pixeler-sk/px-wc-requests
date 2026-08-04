@@ -7,6 +7,9 @@ msgstr ""
 msgid "%1$s no. %2$d"
 msgstr ""
 
+msgid "%1$s → status “%2$s”"
+msgstr ""
+
 msgid "A note has been added to your request %1$s no. %2$d:"
 msgstr ""
 
@@ -32,6 +35,12 @@ msgid "Add request"
 msgstr ""
 
 msgid "Add “%s” link to e-mails"
+msgstr ""
+
+msgid "Added to the e-mail sent right after the request is submitted."
+msgstr ""
+
+msgid "Added to the e-mail sent when the request changes to this status."
 msgstr ""
 
 msgid "Admin notification about a new customer request (withdrawal / claim)."
@@ -77,6 +86,9 @@ msgid "Claims"
 msgstr ""
 
 msgid "Comma-separated emails. Defaults to %s."
+msgstr ""
+
+msgid "Confirmation: %s"
 msgstr ""
 
 msgid "Contact"
@@ -142,6 +154,9 @@ msgstr ""
 msgid "E-mail"
 msgstr ""
 
+msgid "E-mail texts"
+msgstr ""
+
 msgid "E-mail:"
 msgstr ""
 
@@ -167,6 +182,9 @@ msgid "Endpoint for the customer requests page."
 msgstr ""
 
 msgid "Exclude from: %s"
+msgstr ""
+
+msgid "Extra text added to the customer e-mails — typically the address the goods should be returned to, or instructions for the next step. Leave empty to add nothing. Placeholders: %s"
 msgstr ""
 
 msgid "File a claim"

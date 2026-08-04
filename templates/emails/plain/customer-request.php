@@ -3,6 +3,7 @@
  * Customer confirmation email (plain text).
  *
  * @var \Pixeler\Requests\Request $request
+ * @var string $custom_content
  * @var string $email_heading
  *
  * @package Pixeler\Requests
@@ -23,6 +24,8 @@ if ( $request && $request->exists() ) {
 		(int) $request->get_id()
 	);
 	echo "\n\n";
+
+	pxer_render_email_custom_content( $custom_content ?? '', true );
 
 	echo esc_html__( 'Type:', 'px-wc-requests' ) . ' ' . esc_html( $request->get_type_label() ) . "\n";
 	echo esc_html__( 'Status:', 'px-wc-requests' ) . ' ' . esc_html( $request->get_status_label() ) . "\n";

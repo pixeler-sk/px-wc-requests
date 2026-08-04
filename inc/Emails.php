@@ -147,6 +147,12 @@ class Emails {
 		if ( property_exists( $email, 'new_status_label' ) ) {
 			$email->new_status_label = $request->get_status_label();
 		}
+		if ( property_exists( $email, 'custom_content' ) ) {
+			$email->custom_content = Settings::get_email_text(
+				$request->get_type(),
+				'pxer_customer_status' === $email->id ? $request->get_status() : ''
+			);
+		}
 		if ( property_exists( $email, 'customer_note' ) ) {
 			$email->customer_note = __( 'Sample note text shown in the preview.', 'px-wc-requests' );
 		}

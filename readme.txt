@@ -3,7 +3,7 @@ Contributors: pixeler
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 8.0
-Stable tag: 1.2.3
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -83,6 +83,19 @@ REST API v namespace `px-wc-requests/v1` (kontrola lehoty, odoslanie žiadosti,
 zoznam a detail) pre headless frontendy; hostia sa autorizujú kľúčom objednávky.
 
 == Changelog ==
+
+= 1.3.0 =
+Vlastný text v zákazníckych e-mailoch.
+
+* Nová sekcia **WooCommerce → Nastavenia → Customer requests → Texty
+  v e-mailoch**: vlastný text (WYSIWYG) sa dá pridať do e-mailu s potvrdením
+  žiadosti — zvlášť pre každý typ žiadosti — a do e-mailu o zmene stavu —
+  zvlášť pre každý typ **a stav**. Typické použitie: adresa, kam má zákazník
+  poslať vrátený alebo reklamovaný tovar.
+* Text podporuje zástupné znaky `{request_type}`, `{request_number}`,
+  `{order_number}` a `{request_status}`, funguje v HTML aj textovej verzii
+  e-mailu a zobrazuje sa aj v natívnom náhľade e-mailov vo WooCommerce.
+* Prázdne pole nepridá nič — existujúce e-maily sa bez nastavenia nemenia.
 
 = 1.2.3 =
 Autor, preklad popisu a čeština.

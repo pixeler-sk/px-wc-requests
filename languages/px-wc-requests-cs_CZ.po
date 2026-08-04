@@ -8,6 +8,9 @@ msgstr ""
 msgid "%1$s no. %2$d"
 msgstr "%1$s č. %2$d"
 
+msgid "%1$s → status “%2$s”"
+msgstr "%1$s → stav „%2$s“"
+
 msgid "A note has been added to your request %1$s no. %2$d:"
 msgstr "K vaší žádosti %1$s č. %2$d byla přidána poznámka:"
 
@@ -34,6 +37,12 @@ msgstr "Přidat žádost"
 
 msgid "Add “%s” link to e-mails"
 msgstr "Přidat odkaz „%s“ do e-mailů"
+
+msgid "Added to the e-mail sent right after the request is submitted."
+msgstr "Přidá se do e-mailu odeslaného hned po odeslání žádosti."
+
+msgid "Added to the e-mail sent when the request changes to this status."
+msgstr "Přidá se do e-mailu odeslaného při změně žádosti na tento stav."
 
 msgid "Admin notification about a new customer request (withdrawal / claim)."
 msgstr "Upozornění administrátora na novou žádost zákazníka (odstoupení / reklamace)."
@@ -79,6 +88,9 @@ msgstr "Reklamace"
 
 msgid "Comma-separated emails. Defaults to %s."
 msgstr "E-maily oddělené čárkou. Výchozí %s."
+
+msgid "Confirmation: %s"
+msgstr "Potvrzení: %s"
 
 msgid "Contact"
 msgstr "Kontakt"
@@ -143,6 +155,9 @@ msgstr "Zkušební běh dokončen"
 msgid "E-mail"
 msgstr "E-mail"
 
+msgid "E-mail texts"
+msgstr "Texty v e-mailech"
+
 msgid "E-mail:"
 msgstr "E-mail:"
 
@@ -169,6 +184,9 @@ msgstr "Koncový bod pro stránku zákaznických žádostí."
 
 msgid "Exclude from: %s"
 msgstr "Vyloučit z: %s"
+
+msgid "Extra text added to the customer e-mails — typically the address the goods should be returned to, or instructions for the next step. Leave empty to add nothing. Placeholders: %s"
+msgstr "Doplňkový text přidaný do zákaznických e-mailů — typicky adresa, kam má zákazník vrátit zboží, nebo pokyny k dalšímu kroku. Prázdné pole nepřidá nic. Zástupné znaky: %s"
 
 msgid "File a claim"
 msgstr "Reklamovat"
