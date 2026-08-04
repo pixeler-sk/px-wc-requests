@@ -192,6 +192,7 @@ Doplň pri každom nasadení, nech je vidno, kde čo beží:
 
 | Web | Verzia | Nasadené |
 |---|---|---|
+| pneuvosovic.sk | ? | ✅ |
 | libike.sk | 1.2.3 | ✅ |
 | elbe.sk | 1.2.3 | ✅ |
 | spimsi.sk | 1.2.3 | ✅ |
