@@ -36,6 +36,7 @@ px-wc-requests/
 │   ├── emails/                  # WC_Email triedy (admin-new, customer-status)
 │   ├── Settings.php             # WC settings tab (page mapping per typ)
 │   ├── Shortcodes.php           # [pxer_request_form type="..."] + order-search 2FA
+│   ├── OrderList.php            # stĺpec „Žiadosti" v admin zozname objednávok (legacy + HPOS)
 │   └── TemplateLoader.php       # pxer_get_template(_html) – override v téme
 ├── templates/                   # request-form, order-search-form, emails/(plain/)
 └── assets/                      # ajax-form.js (AJAX + toggle dôvodov), ajax-form.css
@@ -255,6 +256,18 @@ má comment meta `is_customer_note` a spustí e‑mail zákazníkovi.
   `get_notes()`, `delete_note()`. Akcie: `pxer_request_note_added`,
   `pxer_request_customer_note_notification`.
 
+## Stĺpec „Žiadosti" v admin zozname objednávok
+`inc/OrderList.php` – úzky stĺpec (~70 px) hneď za stavom objednávky (legacy
+`manage_edit-shop_order_columns` aj HPOS `manage_woocommerce_page_wc-orders_*`).
+Za každú žiadosť naviazanú na objednávku vykreslí badge **`#ID`** s preklikom na
+edit žiadosti; **stav vyjadruje farba** (WC paleta: prijatá modrá, rieši sa
+oranžová, vybavená zelená, zamietnutá červená; trieda `status-{slug}`). Typ a
+stav slovne sú v `title` tooltipe. Custom stavy bez vlastného CSS padnú na
+generické aktívna oranžová / uzavretá sivá — uzavreté stavy =
+`pxer_resolved`/`pxer_rejected`, filter `pxer_order_list_closed_statuses`.
+Proti N+1: mapa `order_id → žiadosti` sa buduje **jedným** dotazom na všetky
+`pxer_request` pri prvom renderi bunky (`get_posts` primne meta cache).
+
 ## Môj účet (My Account)
 `inc/MyAccount.php`:
 - **Tlačidlá pri objednávkach** (Môj účet → Objednávky) per typ. Text je
@@ -341,6 +354,29 @@ vo formulári; kontroly v `RequestController::ajax_submit()`. Nastavenia v
 - **QR platba z IBAN** (Pay by Square) – navrhnuté, zatiaľ neimplementované.
 - **Gutenberg bloky** pre formulár – zatiaľ len shortcode + REST.
 - **PHPUnit testy** – zatiaľ len ad-hoc overenia.
+- **PDF žiadosti cez mPDF** – overené ako realizovateľné, zatiaľ neimplementované.
+  Integračné body už existujú: `pxer_render_request_summary()` (`inc/helpers.php`)
+  je HTML tabuľka s inline štýlmi, čiže priamy vstup pre `WriteHTML()`;
+  `PrivateFiles::serve()` je hotový vzor chráneného `admin-post.php` endpointu
+  (nonce + `current_user_can`); `Emails::attach_images()` prikladá prílohy cez
+  serverovú cestu, takže PDF sa pripojí rovnako. Odhad: jeden `inc/Pdf.php`
+  (~150 riadkov) + šablóna cez `TemplateLoader`.
+  - **Blokujúce rozhodnutie je balenie**, nie kód: `vendor/` sa commituje a
+    release zip sa skladá priamo z repa (`release.yml`), bez composer kroku v CI.
+    mPDF 8.3.1 = 45 MB zip / **94 MB rozbalené**, z toho 88 MB `ttfonts/`.
+    Orezané na `DejaVuSansCondensed` (2,5 MB, pokrýva SK diakritiku) + `src/`
+    + `data/` ≈ 8,5 MB; po orezaní `data/` (slovníky delenia slov pre thajčinu/
+    khmérčinu majú 1,5 MB) ≈ 7 MB. Všetkých 7 závislostí spolu len ~150 KB.
+    Cena: aktualizačný zip pre klientov z ~1 MB na ~7 MB + trvalý nárast git
+    histórie. Alternatíva Dompdf (~2 MB) má slabšiu podporu SK diakritiky a tabuliek.
+  - **Pasce:** mPDF potrebuje zapisovateľný `tempDir` nasmerovaný do `uploads/`
+    (default píše do `vendor/mpdf/tmp` → po aktualizácii pluginu spadne) a
+    vyžaduje `ext-gd` + `ext-mbstring` (patrí tam runtime kontrola s tichým
+    degradovaním). mPDF je PSR-4 naprieč 8 balíkmi, takže treba autoloader —
+    ten môže koexistovať s ručne vendorovaným `plugin-update-checker`.
+  - **Otvorené:** kde sa PDF sprístupní (admin / Môj účet / príloha admin aj
+    zákazníckeho e-mailu) a či to má byť len súhrn ako v e-maile, alebo formálny
+    dokument na podpis (údaje predávajúceho a kupujúceho, dátum, miesto na podpis).
 
 ## Build/Test
 Bez build pipeline. PHP lint: `php -l <súbor>`.

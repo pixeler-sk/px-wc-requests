@@ -3,7 +3,7 @@ Contributors: pixeler
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 8.0
-Stable tag: 1.3.1
+Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -83,6 +83,16 @@ REST API v namespace `px-wc-requests/v1` (kontrola lehoty, odoslanie žiadosti,
 zoznam a detail) pre headless frontendy; hostia sa autorizujú kľúčom objednávky.
 
 == Changelog ==
+
+= 1.4.0 =
+Stĺpec „Žiadosti" v admin zozname objednávok.
+
+* Zoznam objednávok (klasický aj HPOS) má nový úzky stĺpec hneď za stavom
+  objednávky: pre každú naviazanú žiadosť badge `#ID` s preklikom priamo na
+  žiadosť. Stav vyjadruje farba (prijatá modrá, rieši sa oranžová, vybavená
+  zelená, zamietnutá červená), typ a stav slovne ukáže tooltip.
+* Bez dopadu na rýchlosť zoznamu — žiadosti sa načítajú jedným dotazom pre celú
+  stránku, nie po riadkoch.
 
 = 1.3.1 =
 Oprava tlačidla „Uložiť zmeny" pri WYSIWYG poliach.
