@@ -3,7 +3,7 @@ Contributors: pixeler
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 8.0
-Stable tag: 1.4.0
+Stable tag: 1.4.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -83,6 +83,14 @@ REST API v namespace `px-wc-requests/v1` (kontrola lehoty, odoslanie žiadosti,
 zoznam a detail) pre headless frontendy; hostia sa autorizujú kľúčom objednávky.
 
 == Changelog ==
+
+= 1.4.1 =
+Farby stavov žiadostí zrkadlia stavy objednávok.
+
+* Badge žiadostí v zozname objednávok používajú rovnakú farebnú reč ako stavy
+  objednávok WooCommerce: prijatá oranžová (ako Čaká na vybavenie), rieši sa
+  zelená (ako Spracováva sa), vybavená modrá (ako Vybavená), zamietnutá červená
+  (ako Neúspešná).
 
 = 1.4.0 =
 Stĺpec „Žiadosti" v admin zozname objednávok.

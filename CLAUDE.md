@@ -260,8 +260,9 @@ má comment meta `is_customer_note` a spustí e‑mail zákazníkovi.
 `inc/OrderList.php` – úzky stĺpec (~70 px) hneď za stavom objednávky (legacy
 `manage_edit-shop_order_columns` aj HPOS `manage_woocommerce_page_wc-orders_*`).
 Za každú žiadosť naviazanú na objednávku vykreslí badge **`#ID`** s preklikom na
-edit žiadosti; **stav vyjadruje farba** (WC paleta: prijatá modrá, rieši sa
-oranžová, vybavená zelená, zamietnutá červená; trieda `status-{slug}`). Typ a
+edit žiadosti; **stav vyjadruje farba** zrkadliaca WC stavy objednávok (prijatá
+oranžová ~ on-hold, rieši sa zelená ~ processing, vybavená modrá ~ completed,
+zamietnutá červená ~ failed; trieda `status-{slug}`). Typ a
 stav slovne sú v `title` tooltipe. Custom stavy bez vlastného CSS padnú na
 generické aktívna oranžová / uzavretá sivá — uzavreté stavy =
 `pxer_resolved`/`pxer_rejected`, filter `pxer_order_list_closed_statuses`.

@@ -156,13 +156,15 @@ class OrderList {
 		<style>
 			.column-pxer_requests { width:70px; }
 			.pxer-order-request { display:inline-block; margin:1px 4px 3px 0; padding:2px 8px; border-radius:4px; font-size:12px; line-height:1.5; text-decoration:none; white-space:nowrap; }
-			/* Colour = status, WooCommerce order-status palette. Generic
-			   active/closed rules first as fallback for custom statuses. */
+			/* Colour = status, mirroring the WooCommerce order-status palette:
+			   received ~ on-hold, in progress ~ processing, resolved ~ completed,
+			   rejected ~ failed. Generic active/closed rules first as fallback
+			   for custom statuses. */
 			.pxer-order-request.is-active { background:#f8dda7; color:#94660c; }
 			.pxer-order-request.is-closed { background:#e5e5e5; color:#777; }
-			.pxer-order-request.status-pxer_received { background:#c8d7e1; color:#2e4453; }
-			.pxer-order-request.status-pxer_in_progress { background:#f8dda7; color:#94660c; }
-			.pxer-order-request.status-pxer_resolved { background:#c6e1c6; color:#5b841b; }
+			.pxer-order-request.status-pxer_received { background:#f8dda7; color:#94660c; }
+			.pxer-order-request.status-pxer_in_progress { background:#c6e1c6; color:#5b841b; }
+			.pxer-order-request.status-pxer_resolved { background:#c8d7e1; color:#2e4453; }
 			.pxer-order-request.status-pxer_rejected { background:#eba3a3; color:#761919; }
 			.pxer-order-request:hover { text-decoration:underline; }
 			.pxer-order-requests-none { color:#a0a5aa; }
