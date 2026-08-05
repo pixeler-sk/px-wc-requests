@@ -3,7 +3,7 @@ Contributors: pixeler
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 8.0
-Stable tag: 1.4.1
+Stable tag: 1.5.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,7 +32,7 @@ sa v administrácii ako pri každom inom plugine.
 == Installation ==
 
 1. Nahraj plugin do `wp-content/plugins/px-wc-requests/` a aktivuj ho.
-2. WooCommerce → Nastavenia → **Zákaznícke žiadosti** — pre každý typ žiadosti
+2. WooCommerce → Nastavenia → **Žiadosti** — pre každý typ žiadosti
    priraď stránku s formulárom (stránka sa dá vytvoriť jedným klikom).
 3. Do stránky vlož shortcode, ak si ju vytváral ručne:
    `[pxer_request_form type="withdrawal"]` alebo `type="claim"`.
@@ -83,6 +83,23 @@ REST API v namespace `px-wc-requests/v1` (kontrola lehoty, odoslanie žiadosti,
 zoznam a detail) pre headless frontendy; hostia sa autorizujú kľúčom objednávky.
 
 == Changelog ==
+
+= 1.5.0 =
+Automatické refundácie pri odstúpení od zmluvy.
+
+* Nová sekcia WooCommerce → Nastavenia → Žiadosti → **Automatické refundácie**:
+  keď žiadosť o odstúpenie prejde do zvoleného stavu (predvolene vypnuté), na
+  objednávke sa zaeviduje refundácia presne pre položky a množstvá zo žiadosti —
+  sumy po zľave, DPH, pri žiadosti na celú objednávku aj doprava a stav
+  Refundovaná.
+* Peniaze sa cez platobnú bránu neposielajú nikdy — reálny prevod ostáva
+  manuálny (napr. na IBAN zo žiadosti). Plugin pridá k objednávke aj žiadosti
+  poznámku, že refundácia je zaevidovaná a peniaze treba poslať ručne.
+* Každá žiadosť vytvorí najviac jednu refundáciu — prepínanie stavov tam a späť
+  druhú nevytvorí. Prípadné zlyhanie sa zapíše do poznámok žiadosti.
+* V zozname pluginov pribudol odkaz **Nastavenia** priamo na kartu nastavení.
+* Karta nastavení, admin menu a GDPR skupina sa premenovali zo „Žiadosti
+  zákazníkov" na kratšie „Žiadosti".
 
 = 1.4.1 =
 Farby stavov žiadostí zrkadlia stavy objednávok.

@@ -61,6 +61,12 @@ msgstr ""
 msgid "Assign the page that contains the shortcode of each request type."
 msgstr ""
 
+msgid "Automatic refund was not created: %s"
+msgstr ""
+
+msgid "Automatic refunds"
+msgstr ""
+
 msgid "Available shortcodes"
 msgstr ""
 
@@ -101,6 +107,9 @@ msgid "Could not create the form page."
 msgstr ""
 
 msgid "Create page for %s"
+msgstr ""
+
+msgid "Create refund: %s"
 msgstr ""
 
 msgid "Created:"
@@ -331,6 +340,9 @@ msgstr ""
 msgid "Note to customer"
 msgstr ""
 
+msgid "Nothing is left to refund for the requested items."
+msgstr ""
+
 msgid "Notice: %s"
 msgstr ""
 
@@ -439,6 +451,12 @@ msgstr ""
 msgid "Recipient(s)"
 msgstr ""
 
+msgid "Refund of %1$s recorded from customer request #%2$d. The money was NOT sent — transfer it manually."
+msgstr ""
+
+msgid "Refund of %1$s recorded on order #%2$s. The money was NOT sent — transfer it manually."
+msgstr ""
+
 msgid "Request"
 msgstr ""
 
@@ -485,6 +503,9 @@ msgid "Request saved."
 msgstr ""
 
 msgid "Request status change"
+msgstr ""
+
+msgid "Request status that records the refund. Each request creates at most one refund."
 msgstr ""
 
 msgid "Request submitted."
@@ -538,6 +559,9 @@ msgstr ""
 msgid "Sent to the customer when you add a note addressed to them."
 msgstr ""
 
+msgid "Settings"
+msgstr ""
+
 msgid "Shown in My Account orders and e-mail links."
 msgstr ""
 
@@ -577,16 +601,28 @@ msgstr ""
 msgid "System"
 msgstr ""
 
+msgid "The calculated refund amount is zero."
+msgstr ""
+
 msgid "The deadline for this request has already passed (it ended on %s)."
 msgstr ""
 
 msgid "The file must not be larger than %d MB."
 msgstr ""
 
+msgid "The linked order no longer exists."
+msgstr ""
+
 msgid "The maximum number of requests for this order has been reached."
 msgstr ""
 
+msgid "The order is already fully refunded."
+msgstr ""
+
 msgid "The period has not started yet — the order is not completed."
+msgstr ""
+
+msgid "The request has no items to refund."
 msgstr ""
 
 msgid "The status of your request %1$s no. %2$d has changed to:"
@@ -667,6 +703,9 @@ msgstr ""
 msgid "We have received your request {request_type} no. {request_number}"
 msgstr ""
 
+msgid "When a request reaches the selected status, a refund for the requested items is recorded on the order (amounts after discounts, tax, reports, order status). Money is never sent to the payment gateway — transfer it manually, e.g. to the IBAN from the request."
+msgstr ""
+
 msgid "Withdraw from contract"
 msgstr ""
 
@@ -722,6 +761,9 @@ msgid "processing of personal data"
 msgstr ""
 
 msgid "skipped"
+msgstr ""
+
+msgid "— Disabled —"
 msgstr ""
 
 msgid "— Select a page —"

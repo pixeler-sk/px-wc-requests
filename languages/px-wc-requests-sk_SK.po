@@ -62,6 +62,12 @@ msgstr "Na koniec vybraných zákazníckych e-mailov pridá odkaz na formulár �
 msgid "Assign the page that contains the shortcode of each request type."
 msgstr "Priraďte ku každému typu žiadosti stránku s jeho shortcode."
 
+msgid "Automatic refund was not created: %s"
+msgstr "Automatická refundácia nebola vytvorená: %s"
+
+msgid "Automatic refunds"
+msgstr "Automatické refundácie"
+
 msgid "Available shortcodes"
 msgstr "Dostupné shortcodes"
 
@@ -104,6 +110,9 @@ msgstr "Stránku formulára sa nepodarilo vytvoriť."
 msgid "Create page for %s"
 msgstr "Vytvoriť stránku pre %s"
 
+msgid "Create refund: %s"
+msgstr "Vytvoriť refundáciu: %s"
+
 msgid "Created:"
 msgstr "Vytvorená:"
 
@@ -123,7 +132,7 @@ msgid "Customer request created: %1$s no. %2$d"
 msgstr "Vytvorená žiadosť zákazníka: %1$s č. %2$d"
 
 msgid "Customer requests"
-msgstr "Žiadosti zákazníkov"
+msgstr "Žiadosti"
 
 msgid "Customise the request button labels."
 msgstr "Prispôsobte texty tlačidiel žiadostí."
@@ -332,6 +341,9 @@ msgstr "Poznámka"
 msgid "Note to customer"
 msgstr "Poznámka pre zákazníka"
 
+msgid "Nothing is left to refund for the requested items."
+msgstr "Z požadovaných položiek už nie je čo refundovať."
+
 msgid "Notice: %s"
 msgstr "Poučenie: %s"
 
@@ -440,6 +452,12 @@ msgstr "Prijatá"
 msgid "Recipient(s)"
 msgstr "Príjemca(ovia)"
 
+msgid "Refund of %1$s recorded from customer request #%2$d. The money was NOT sent — transfer it manually."
+msgstr "Zo zákazníckej žiadosti #%2$d bola zaevidovaná refundácia %1$s. Peniaze NEboli odoslané — pošlite ich ručne."
+
+msgid "Refund of %1$s recorded on order #%2$s. The money was NOT sent — transfer it manually."
+msgstr "Na objednávke č. %2$s bola zaevidovaná refundácia %1$s. Peniaze NEboli odoslané — pošlite ich ručne."
+
 msgid "Request"
 msgstr "Žiadosť"
 
@@ -487,6 +505,9 @@ msgstr "Žiadosť uložená."
 
 msgid "Request status change"
 msgstr "Zmena stavu žiadosti"
+
+msgid "Request status that records the refund. Each request creates at most one refund."
+msgstr "Stav žiadosti, pri ktorom sa refundácia zaeviduje. Každá žiadosť vytvorí najviac jednu refundáciu."
 
 msgid "Request submitted."
 msgstr "Žiadosť odoslaná."
@@ -539,6 +560,9 @@ msgstr "Odošle sa zákazníkovi hneď po odoslaní žiadosti."
 msgid "Sent to the customer when you add a note addressed to them."
 msgstr "Odošle sa zákazníkovi pri pridaní poznámky určenej preňho."
 
+msgid "Settings"
+msgstr "Nastavenia"
+
 msgid "Shown in My Account orders and e-mail links."
 msgstr "Zobrazené v Mojom účte pri objednávkach a v odkazoch v e-mailoch."
 
@@ -578,17 +602,29 @@ msgstr "Odoslať žiadosť"
 msgid "System"
 msgstr "Systém"
 
+msgid "The calculated refund amount is zero."
+msgstr "Vypočítaná suma refundácie je nulová."
+
 msgid "The deadline for this request has already passed (it ended on %s)."
 msgstr "Lehota na túto žiadosť už uplynula (skončila %s)."
 
 msgid "The file must not be larger than %d MB."
 msgstr "Súbor nesmie byť väčší ako %d MB."
 
+msgid "The linked order no longer exists."
+msgstr "Prepojená objednávka už neexistuje."
+
 msgid "The maximum number of requests for this order has been reached."
 msgstr "Bol dosiahnutý maximálny počet žiadostí pre túto objednávku."
 
+msgid "The order is already fully refunded."
+msgstr "Objednávka je už plne refundovaná."
+
 msgid "The period has not started yet — the order is not completed."
 msgstr "Lehota zatiaľ nezačala — objednávka nie je dokončená."
+
+msgid "The request has no items to refund."
+msgstr "Žiadosť neobsahuje položky na refundáciu."
 
 msgid "The status of your request %1$s no. %2$d has changed to:"
 msgstr "Stav vašej žiadosti %1$s č. %2$d bol zmenený na:"
@@ -668,6 +704,9 @@ msgstr "Prijali sme vašu žiadosť %1$s č. %2$d. Čoskoro sa vám ozveme."
 msgid "We have received your request {request_type} no. {request_number}"
 msgstr "Prijali sme vašu žiadosť {request_type} č. {request_number}"
 
+msgid "When a request reaches the selected status, a refund for the requested items is recorded on the order (amounts after discounts, tax, reports, order status). Money is never sent to the payment gateway — transfer it manually, e.g. to the IBAN from the request."
+msgstr "Keď žiadosť dosiahne zvolený stav, na objednávke sa zaeviduje refundácia požadovaných položiek (sumy po zľavách, DPH, reporty, stav objednávky). Peniaze sa nikdy neposielajú cez platobnú bránu — pošlite ich ručne, napr. na IBAN zo žiadosti."
+
 msgid "Withdraw from contract"
 msgstr "Odstúpiť od zmluvy"
 
@@ -724,6 +763,9 @@ msgstr "spracovaním osobných údajov"
 
 msgid "skipped"
 msgstr "preskočené"
+
+msgid "— Disabled —"
+msgstr "— Vypnuté —"
 
 msgid "— Select a page —"
 msgstr "— Vyberte stránku —"

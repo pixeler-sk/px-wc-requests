@@ -159,6 +159,7 @@ class RequestTypes {
 			'item_mode'       => 'multiple', // multiple|single
 			'refund_due_days' => 0,          // statutory refund deadline reminder (0 = off)
 			'legal_notice'    => '',         // info text shown on the form
+			'refund'          => array(),    // automatic refund record, see below
 		);
 
 		$type       = wp_parse_args( $type, $defaults );
@@ -172,6 +173,15 @@ class RequestTypes {
 		 * @param string $id       Request type id.
 		 */
 		$type['statuses'] = apply_filters( 'pxer_request_statuses', $type['statuses'], $id );
+
+		// Normalise the refund sub-array. `enabled` only makes the feature
+		// available for the type — it activates when the admin picks a trigger
+		// status in the settings (Settings::get_refund_status()).
+		$type['refund'] = wp_parse_args( $type['refund'], array(
+			'enabled'          => false,
+			'restock'          => false,     // restock refunded items
+			'include_shipping' => 'if_full', // never|if_full|always
+		) );
 
 		// Normalise the period sub-array.
 		$type['period'] = wp_parse_args( $type['period'], array(
@@ -218,6 +228,7 @@ class RequestTypes {
 			'statuses'        => self::default_statuses(),
 			'default_status'  => 'pxer_received',
 			'refund_due_days' => 14,
+			'refund'          => array( 'enabled' => true ),
 			'legal_notice'    => __( 'You have the right to withdraw from this contract within 14 days without giving any reason. The withdrawal period starts on the day you take possession of the goods. You bear the direct cost of returning the goods. We will refund all payments within 14 days of being informed of your decision to withdraw.', 'px-wc-requests' ),
 			'period'          => array(
 				'enabled'        => true,

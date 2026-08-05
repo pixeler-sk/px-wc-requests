@@ -33,6 +33,7 @@ final class Plugin {
 		( new RequestController() )->setup();
 		( new Emails() )->setup();
 		( new EmptyEmailsBridge() )->setup();
+		( new Refunds() )->setup();
 		( new Settings() )->setup();
 		( new ProductSettings() )->setup();
 		( new MyAccount() )->setup();

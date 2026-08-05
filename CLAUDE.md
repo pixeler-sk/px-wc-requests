@@ -34,7 +34,7 @@ px-wc-requests/
 │   ├── RequestController.php    # AJAX submit, sanitize/validate, create, after-success
 │   ├── Emails.php               # registrácia WC emailov + transition + attachments
 │   ├── emails/                  # WC_Email triedy (admin-new, customer-status)
-│   ├── Settings.php             # WC settings tab (page mapping per typ)
+│   ├── Settings.php             # WC settings tab (page mapping per typ) + odkaz „Nastavenia" v zozname pluginov
 │   ├── Shortcodes.php           # [pxer_request_form type="..."] + order-search 2FA
 │   ├── OrderList.php            # stĺpec „Žiadosti" v admin zozname objednávok (legacy + HPOS)
 │   └── TemplateLoader.php       # pxer_get_template(_html) – override v téme
@@ -242,6 +242,35 @@ dátumu dokončenia objednávky** (fallback: zaplatené → vytvorené).
   položky) aj `validate()` (server-side, aj keď je formulár zastaraný).
 - Filtre: `pxer_request_period_end`, `pxer_is_item_eligible`, `pxer_eligible_items`.
 
+## Automatické refundácie (`inc/Refunds.php`)
+Keď žiadosť prejde do stavu zvoleného v nastaveniach, zaeviduje sa vo WooCommerce
+refundácia požadovaných položiek cez `wc_create_refund()`. **Peniaze sa nikdy
+neposielajú cez platobnú bránu** (`refund_payment => false`) — reálny presun je
+manuálny (napr. na IBAN zo žiadosti). Hodnota je v správnom zaevidovaní: sumy po
+zľave, DPH, reporty a stav objednávky (`wc-refunded` pri plnom refunde) rieši
+WooCommerce, admin nič neprepisuje ručne. Návrh a rozhodnutia: `REFUNDS.md`.
+- **Konfigurácia typu** — blok `refund` v `RequestTypes::normalize()`:
+  `enabled` (withdrawal true, claim false — reklamácia môže znamenať opravu či
+  výmenu), `restock` (default false), `include_shipping`
+  (`never|if_full|always`, default `if_full` = doprava sa pridá len keď žiadosť
+  pokrýva všetky zostávajúce položky objednávky).
+- **Spúšťací stav** — **Customer requests → Automatic refunds**
+  (`pxer_{type}_refund_status`, getter `Settings::get_refund_status()`), default
+  prázdne = vypnuté. Sekcia sa zobrazí len pre typy s `refund.enabled`.
+- Beží v `transition_post_status` (rovnaký guard ako `Emails::on_transition`) —
+  len reálne prechody medzi registrovanými stavmi; vytvorenie žiadosti refund
+  nikdy nespustí.
+- **Poistky**: idempotencia `_pxer_refund_id` (nový refund sa povolí, len ak bol
+  starý v objednávke zmazaný); množstvá capnuté na nerefundovaný zvyšok
+  (`get_qty_refunded_for_item`); sumy proporčne z `get_total()` (po zľave!) a DPH
+  rozrátaná per rate, oboje capnuté cez `get_total_refunded_for_item` /
+  `get_tax_refunded_for_item`; celková suma capnutá na
+  `get_remaining_refund_amount()`.
+- **Audit**: poznámka k objednávke + interná poznámka k žiadosti („peniaze NEboli
+  odoslané“); zlyhanie sa zapíše ako interná poznámka žiadosti. IBAN sa do
+  poznámok nekopíruje (GDPR — `Privacy.php` by ho tam pri výmaze nenašiel).
+  Akcia `pxer_refund_created( $refund, $request )`.
+
 ## Poznámky k žiadosti (história)
 `inc/RequestNotes.php` – poznámky ako vo WooCommerce objednávkach. Uložené ako WP
 komentáre typu `pxer_request_note` na príspevku žiadosti; poznámka pre zákazníka
@@ -341,7 +370,8 @@ vo formulári; kontroly v `RequestController::ajax_submit()`. Nastavenia v
 
 ### Ďalšie meta kľúče
 `_pxer_email` (queryable e-mail pre GDPR), `_pxer_user_id` (vlastník pre Môj účet),
-`_pxer_private` (príznak privátnej prílohy).
+`_pxer_private` (príznak privátnej prílohy), `_pxer_refund_id` (ID vytvorenej
+WC refundácie — idempotencia automatických refundácií).
 
 ## Lokalizácia
 - **Zdrojový jazyk = EN.** Text domain `px-wc-requests`.
@@ -349,6 +379,9 @@ vo formulári; kontroly v `RequestController::ajax_submit()`. Nastavenia v
 - Regenerácia po zmene reťazcov: `php languages/build-translations.php`
   (extrahuje msgid zo zdroja, vypíše chýbajúce SK preklady, skompiluje `.mo`).
   SK slovník je priamo v tom skripte.
+- Msgid `Customer requests` (settings tab, admin menu, GDPR skupina, product
+  panel) sa v SK/CZ prekladá krátko ako „Žiadosti" / „Žádosti" — zámer, nie
+  chýbajúce slovo.
 
 ## Vedome NEimplementované (zatiaľ)
 - **Migrácia** zo starého `pixeler-eshop-addons` – zámerne žiadna.

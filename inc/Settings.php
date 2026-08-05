@@ -20,6 +20,7 @@ class Settings {
 
 	public function setup(): void {
 		add_filter( 'woocommerce_settings_tabs_array', array( $this, 'add_tab' ), 50 );
+		add_filter( 'plugin_action_links_' . plugin_basename( PXER_FILE ), array( $this, 'plugin_action_links' ) );
 		add_action( 'woocommerce_settings_tabs_' . self::TAB_ID, array( $this, 'render_tab' ) );
 		add_action( 'woocommerce_update_options_' . self::TAB_ID, array( $this, 'save' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_settings_assets' ) );
@@ -130,6 +131,20 @@ class Settings {
 		return $states;
 	}
 
+	/**
+	 * "Settings" link on the Plugins screen, pointing straight to the
+	 * WooCommerce → Settings → Requests tab.
+	 *
+	 * @param array $links Existing action links.
+	 * @return array
+	 */
+	public function plugin_action_links( array $links ): array {
+		$url = admin_url( 'admin.php?page=wc-settings&tab=' . self::TAB_ID );
+		array_unshift( $links, '<a href="' . esc_url( $url ) . '">' . esc_html__( 'Settings', 'px-wc-requests' ) . '</a>' );
+
+		return $links;
+	}
+
 	public function add_tab( array $tabs ): array {
 		$tabs[ self::TAB_ID ] = __( 'Customer requests', 'px-wc-requests' );
 
@@ -214,6 +229,33 @@ class Settings {
 			}
 
 			$settings[] = array( 'type' => 'sectionend', 'id' => 'pxer_section_periods' );
+		}
+
+		// Automatic refund record on request status (never touches the gateway).
+		$refund_types = array_filter( RequestTypes::all(), static fn( $t ) => ! empty( $t['refund']['enabled'] ) );
+
+		if ( $refund_types ) {
+			$settings[] = array(
+				'title' => __( 'Automatic refunds', 'px-wc-requests' ),
+				'type'  => 'title',
+				'desc'  => __( 'When a request reaches the selected status, a refund for the requested items is recorded on the order (amounts after discounts, tax, reports, order status). Money is never sent to the payment gateway — transfer it manually, e.g. to the IBAN from the request.', 'px-wc-requests' ),
+				'id'    => 'pxer_section_refunds',
+			);
+
+			foreach ( $refund_types as $id => $type ) {
+				$settings[] = array(
+					/* translators: %s: type label */
+					'title'    => sprintf( __( 'Create refund: %s', 'px-wc-requests' ), $type['label'] ),
+					'desc'     => __( 'Request status that records the refund. Each request creates at most one refund.', 'px-wc-requests' ),
+					'id'       => 'pxer_' . $id . '_refund_status',
+					'type'     => 'select',
+					'options'  => array( '' => __( '— Disabled —', 'px-wc-requests' ) ) + $type['statuses'],
+					'default'  => '',
+					'desc_tip' => true,
+				);
+			}
+
+			$settings[] = array( 'type' => 'sectionend', 'id' => 'pxer_section_refunds' );
 		}
 
 		// Legal notice shown on each form.
@@ -551,6 +593,14 @@ class Settings {
 		$default = RequestTypes::get( $type )['legal_notice'] ?? '';
 
 		return (string) get_option( 'pxer_' . $type . '_legal_notice', $default );
+	}
+
+	/**
+	 * Request status that triggers the automatic refund record for a type.
+	 * Empty string = the feature is off.
+	 */
+	public static function get_refund_status( string $type ): string {
+		return (string) get_option( 'pxer_' . $type . '_refund_status', '' );
 	}
 
 	/**
