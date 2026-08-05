@@ -188,14 +188,13 @@ kontrola môže občas nepodariť. Nie je to porucha — nabudúce prejde.
 
 ### Prehľad webov
 
-Doplň pri každom nasadení, nech je vidno, kde čo beží:
+Plugin beží na: **pneuvosovic.sk, libike.sk, elbe.sk, spimsi.sk**.
 
-| Web | Verzia | Nasadené |
-|---|---|---|
-| pneuvosovic.sk | ? | ✅ |
-| libike.sk | 1.2.3 | ✅ |
-| elbe.sk | 1.2.3 | ✅ |
-| spimsi.sk | 1.2.3 | ✅ |
+Verzie sa tu od zavedenia updatera zámerne neevidujú — všetky weby sa
+aktualizujú samy cez WordPress aktualizácie a aktuálnu verziu vidno v ich
+administrácii (Pluginy). Zoznam slúži už len ako inventár: keď vyjde zmena
+vyžadujúca ručný zásah (major verzia, premenované šablóny), toto sú weby,
+ktoré treba obehnúť. Nový web s pluginom sem pridaj.
 
 ## Grafika v okne „Zobraziť podrobnosti"
 
