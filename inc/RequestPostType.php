@@ -30,6 +30,10 @@ class RequestPostType {
 		add_action( 'restrict_manage_posts', array( $this, 'type_filter_dropdown' ) );
 		add_action( 'pre_get_posts', array( $this, 'apply_type_filter' ) );
 
+		// Status badge colours + request statuses in the quick/bulk edit dropdown.
+		add_action( 'admin_head', array( $this, 'print_list_styles' ) );
+		add_action( 'admin_footer-edit.php', array( $this, 'quick_edit_status_options' ) );
+
 		// Metaboxes.
 		add_action( 'add_meta_boxes', array( $this, 'register_metaboxes' ) );
 		add_action( 'save_post_' . self::POST_TYPE, array( $this, 'save' ) );
@@ -55,9 +59,11 @@ class RequestPostType {
 	 */
 	public function register_status_objects(): void {
 		foreach ( RequestTypes::all_statuses() as $slug => $label ) {
+			// No post state next to the title (`_show_in_state`) — the Status
+			// column badge already shows it.
 			new CustomPostStatus(
 				$slug,
-				self::status_args( $label ) + array( '_show_in_state' => true, '_submitbox' => false ),
+				self::status_args( $label ) + array( '_submitbox' => false ),
 				array( self::POST_TYPE )
 			);
 		}
@@ -219,7 +225,17 @@ class RequestPostType {
 				}
 				break;
 			case 'pxer_status':
-				echo esc_html( $request->get_status_label() );
+				// Same closed-status set (and filter) as the badges in the orders
+				// list, so both screens mute the same statuses.
+				$closed = apply_filters( 'pxer_order_list_closed_statuses', array( 'pxer_resolved', 'pxer_rejected' ) );
+				$status = get_post_status( $post_id );
+				$class  = in_array( $status, $closed, true ) ? 'is-closed' : 'is-active';
+				$class .= ' status-' . sanitize_html_class( (string) $status );
+				printf(
+					'<mark class="pxer-request-status %1$s"><span>%2$s</span></mark>',
+					esc_attr( $class ),
+					esc_html( $request->get_status_label() )
+				);
 				break;
 			case 'pxer_contact':
 				$lines = array_filter( array(
@@ -290,6 +306,61 @@ class RequestPostType {
 			);
 		}
 		echo '</select>';
+	}
+
+	/**
+	 * Status badge in the list table, styled like the WooCommerce order-status
+	 * mark and using the same colour palette as the "Requests" column in the
+	 * orders list (OrderList::print_styles). Generic active/closed rules first
+	 * as fallback for custom statuses without their own CSS.
+	 */
+	public function print_list_styles(): void {
+		$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+		if ( ! $screen || 'edit-' . self::POST_TYPE !== $screen->id ) {
+			return;
+		}
+		?>
+		<style>
+			.pxer-request-status { display:inline-flex; max-width:100%; margin:-.25em 0; line-height:2.5em; white-space:nowrap; border-radius:4px; border-bottom:1px solid rgba(0,0,0,.05); cursor:inherit !important; }
+			.pxer-request-status > span { margin:0 1em; overflow:hidden; text-overflow:ellipsis; }
+			.pxer-request-status.is-active { background:#f8dda7; color:#94660c; }
+			.pxer-request-status.is-closed { background:#e5e5e5; color:#777; }
+			.pxer-request-status.status-pxer_received { background:#f8dda7; color:#94660c; }
+			.pxer-request-status.status-pxer_in_progress { background:#c6e1c6; color:#5b841b; }
+			.pxer-request-status.status-pxer_resolved { background:#c8d7e1; color:#2e4453; }
+			.pxer-request-status.status-pxer_rejected { background:#eba3a3; color:#761919; }
+		</style>
+		<?php
+	}
+
+	/**
+	 * Offer the request statuses in the quick-edit and bulk-edit status dropdown
+	 * instead of the default publish/pending/draft. The templates are cloned per
+	 * row when quick edit opens, so patching them once on DOM ready is enough;
+	 * core inline-save/bulk-save persists whatever `_status` holds, and the save
+	 * goes through wp_update_post, so the status transition (customer e-mail +
+	 * history note) fires the same way as the bulk actions.
+	 */
+	public function quick_edit_status_options(): void {
+		global $typenow;
+		if ( self::POST_TYPE !== $typenow ) {
+			return;
+		}
+		?>
+		<script>
+			jQuery( function ( $ ) {
+				var statuses = <?php echo wp_json_encode( RequestTypes::all_statuses() ); ?>;
+				$( '#inline-edit, #bulk-edit' ).find( 'select[name="_status"]' ).each( function () {
+					var $select = $( this );
+					// Keep the bulk-edit "— No Change —" option (value -1).
+					$select.find( 'option' ).not( '[value="-1"]' ).remove();
+					$.each( statuses, function ( slug, label ) {
+						$select.append( $( '<option>' ).val( slug ).text( label ) );
+					} );
+				} );
+			} );
+		</script>
+		<?php
 	}
 
 	public function apply_type_filter( \WP_Query $query ): void {

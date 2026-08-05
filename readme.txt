@@ -3,7 +3,7 @@ Contributors: pixeler
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 8.0
-Stable tag: 1.5.0
+Stable tag: 1.6.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -83,6 +83,17 @@ REST API v namespace `px-wc-requests/v1` (kontrola lehoty, odoslanie žiadosti,
 zoznam a detail) pre headless frontendy; hostia sa autorizujú kľúčom objednávky.
 
 == Changelog ==
+
+= 1.6.0 =
+Rýchlejšia práca so stavmi v zozname žiadostí.
+
+* Stĺpec **Stav** v zozname žiadostí zobrazuje farebný badge v štýle stavov
+  WooCommerce objednávok (prijatá oranžová, rieši sa zelená, vybavená modrá,
+  zamietnutá červená) — rovnaká paleta ako stĺpec „Žiadosti" v objednávkach.
+* **Rýchle úpravy** a hromadné úpravy ponúkajú v poli Stav priamo stavy
+  žiadostí — zmena stavu už nevyžaduje otvárať detail. E-mail zákazníkovi
+  a zápis do histórie prebehnú rovnako ako pri zmene v detaile.
+* Textový stav pri názve žiadosti sa už nezobrazuje — nahradil ho badge.
 
 = 1.5.0 =
 Automatické refundácie pri odstúpení od zmluvy.

@@ -74,6 +74,13 @@ metabox „Status" (`render_status_metabox`) so selectom; uloží sa cez filter
 transition (e-mail zákazníkovi + log poznámka) prebehne raz. WP publish-box
 dropdown je pre tento CPT **vypnutý** (`CustomPostStatus` arg `_submitbox=false`),
 aby bol jediný ovládač. Bulk zmena stavu v zozname ostáva (`CustomPostStatus`).
+V admin zozname žiadostí je stav vykreslený ako **badge** v štýle WC
+`order-status` (rovnaká paleta ako stĺpec „Žiadosti" v objednávkach;
+`print_list_styles`, fallback active/closed cez filter
+`pxer_order_list_closed_statuses`). **Quick edit / bulk edit** ponúka v selecte
+„Stav" stavy žiadostí namiesto publish/draft (`quick_edit_status_options` —
+JS patch šablón `#inline-edit`/`#bulk-edit`; uloženie ide cez `wp_update_post`,
+takže transition e-mail + log prebehnú rovnako ako pri bulk akciách).
 **Dôležité príznaky stavov** (`status_args`):
 - `protected => true` + `show_in_admin_all_list => true` — aby boli v admin „Všetky".
 - `exclude_from_search => false` — **nutné**, inak `post_status => 'any'` (používa
