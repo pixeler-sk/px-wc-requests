@@ -39,7 +39,8 @@ class RequestController {
 			return wc_print_notice( $gate->get_error_message(), 'error', array(), true );
 		}
 
-		$eligible_ids = array_map( 'intval', array_keys( Eligibility::eligible_items( $order, $type ) ) );
+		$eligible_qty = Eligibility::eligible_quantities( $order, $type );
+		$eligible_ids = array_keys( $eligible_qty );
 
 		$fields = RequestTypes::get_fields( $type );
 		$values = array();
@@ -55,6 +56,7 @@ class RequestController {
 			'fields'       => $fields,
 			'values'       => $values,
 			'eligible_ids' => $eligible_ids,
+			'eligible_qty' => $eligible_qty,
 			'deadline'     => Eligibility::period_end( $order, $type ),
 			'past'         => pxer_get_requests_by_order_id( $order_id, $type ),
 		) );
@@ -217,6 +219,18 @@ class RequestController {
 				foreach ( $data['items'] as $item_id => $item ) {
 					if ( ! isset( $eligible[ $item_id ] ) ) {
 						return new \WP_Error( 'items', __( 'One of the selected items is not eligible for this request.', 'px-wc-requests' ) );
+					}
+					$available = Eligibility::available_qty( $eligible[ $item_id ], $order, $type );
+					if ( (int) ( $item['quantity'] ?? 1 ) > $available ) {
+						return new \WP_Error(
+							'items',
+							sprintf(
+								/* translators: 1: item name, 2: number of units */
+								__( 'Only %2$d unit(s) of "%1$s" can still be requested — the rest is already part of another request.', 'px-wc-requests' ),
+								$eligible[ $item_id ]->get_name(),
+								$available
+							)
+						);
 					}
 					if ( $field['item_reason_required'] && empty( $item['reason'] ) ) {
 						return new \WP_Error( 'items', __( 'Please fill in the description for each selected item.', 'px-wc-requests' ) );

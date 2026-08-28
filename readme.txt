@@ -3,7 +3,7 @@ Contributors: pixeler
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 8.0
-Stable tag: 1.6.0
+Stable tag: 1.7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -83,6 +83,25 @@ REST API v namespace `px-wc-requests/v1` (kontrola lehoty, odoslanie žiadosti,
 zoznam a detail) pre headless frontendy; hostia sa autorizujú kľúčom objednávky.
 
 == Changelog ==
+
+= 1.7.0 =
+Jeden kus tovaru môže byť naraz len v jednej žiadosti.
+
+* Formulár aj server sledujú **dostupné kusy** každej položky: objednané mínus
+  kusy v otvorených žiadostiach (odstúpenie aj reklamácia) mínus kusy už
+  refundované vo WooCommerce. Položka bez voľných kusov sa vo formulári
+  nezobrazí; pri viacerých kusoch je množstvo obmedzené na voľný zvyšok
+  a formulár to pri položke vypíše.
+* Vybavená alebo zamietnutá **reklamácia** kusy uvoľní — opravený tovar je
+  možné reklamovať znova. Vybavené **odstúpenie** kusy spotrebuje natrvalo
+  (tovar bol vrátený), nezávisle od toho, či je zapnutá automatická refundácia.
+* Ak sú všetky položky objednávky už v inej žiadosti, formulár to povie
+  namiesto všeobecného „žiadne oprávnené položky".
+* REST `GET /eligibility` vracia pri položke aj `available`.
+* Vylúčenie produktu z typu žiadosti (nastavenie produktu) platí aj pri
+  vypnutej lehote.
+* Nové filtre `pxer_item_available_qty` a `pxer_closed_statuses`; nový kľúč
+  typu `consumes_items`.
 
 = 1.6.0 =
 Rýchlejšia práca so stavmi v zozname žiadostí.

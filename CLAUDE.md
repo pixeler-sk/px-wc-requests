@@ -249,6 +249,26 @@ dátumu dokončenia objednávky** (fallback: zaplatené → vytvorené).
   položky) aj `validate()` (server-side, aj keď je formulár zastaraný).
 - Filtre: `pxer_request_period_end`, `pxer_is_item_eligible`, `pxer_eligible_items`.
 
+### Rezervácia kusov (jeden kus = max. jedna živá žiadosť)
+`Eligibility::available_qty( $item, $order, $type )` =
+`objednané − kusy v otvorených žiadostiach (ľubovoľný typ) − max( refundované vo WC,
+kusy vo vybavených žiadostiach typu s `consumes_items` )`. `max()` preto, aby sa
+automatický refund pri vybavenom odstúpení nepočítal dvakrát. Otvorené = stav mimo
+`Eligibility::closed_statuses()` (default `pxer_resolved`/`pxer_rejected`, filter
+`pxer_closed_statuses`; `pxer_order_list_closed_statuses` z neho vychádza).
+- `consumes_items` v definícii typu: withdrawal `true` (tovar sa vrátil, kus je
+  preč), claim `false` (opravený kus sa smie reklamovať znova). Zamietnutá
+  žiadosť kusy uvoľní vždy.
+- Položka s 0 dostupnými kusmi nie je `is_item_eligible` → nezobrazí sa vo
+  formulári, `validate()` ju odmietne; pri čiastočnej rezervácii je `max`
+  množstva capnuté (`eligible_quantities()` → kontext `eligible_qty` v
+  `FieldSchema::render_order_items`) a `validate()` kontroluje prekročenie.
+  REST `/eligibility` vracia `available` per položka.
+- `gate()` rozlišuje `items_reserved` (všetko je už v inej žiadosti) od
+  `no_eligible_items`. Kontrola položiek a vylúčenie produktu platia aj pri
+  vypnutej lehote (`period.enabled=false` vypína len časové pravidlá).
+- Filter `pxer_item_available_qty( $qty, $item, $order, $type )` pre výnimky.
+
 ## Automatické refundácie (`inc/Refunds.php`)
 Keď žiadosť prejde do stavu zvoleného v nastaveniach, zaeviduje sa vo WooCommerce
 refundácia požadovaných položiek cez `wc_create_refund()`. **Peniaze sa nikdy

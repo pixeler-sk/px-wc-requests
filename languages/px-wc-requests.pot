@@ -10,6 +10,9 @@ msgstr ""
 msgid "%1$s → status “%2$s”"
 msgstr ""
 
+msgid "(%d still available — the rest is already part of another request)"
+msgstr ""
+
 msgid "A note has been added to your request %1$s no. %2$d:"
 msgstr ""
 
@@ -44,6 +47,9 @@ msgid "Added to the e-mail sent when the request changes to this status."
 msgstr ""
 
 msgid "Admin notification about a new customer request (withdrawal / claim)."
+msgstr ""
+
+msgid "All items of this order are already covered by an existing request."
 msgstr ""
 
 msgid "All types"
@@ -347,6 +353,9 @@ msgid "Notice: %s"
 msgstr ""
 
 msgid "One of the selected items is not eligible for this request."
+msgstr ""
+
+msgid "Only %2$d unit(s) of \"%1$s\" can still be requested — the rest is already part of another request."
 msgstr ""
 
 msgid "Open importer"

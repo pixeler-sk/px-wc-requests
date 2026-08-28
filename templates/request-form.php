@@ -10,6 +10,7 @@
  * @var array    $fields
  * @var array    $values
  * @var int[]    $eligible_ids
+ * @var int[]    $eligible_qty item_id => units still available for a request
  * @var DateTimeImmutable|null $deadline
  * @var WP_Post[] $past
  *
@@ -66,7 +67,10 @@ use Pixeler\Requests\FieldSchema;
 					$field,
 					$values[ $field['key'] ] ?? '',
 					$order,
-					array( 'eligible_ids' => $eligible_ids )
+					array(
+						'eligible_ids' => $eligible_ids,
+						'eligible_qty' => $eligible_qty ?? array(),
+					)
 				);
 			}
 

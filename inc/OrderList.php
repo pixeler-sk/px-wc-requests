@@ -88,7 +88,7 @@ class OrderList {
 		 *
 		 * @param string[] $statuses Post status slugs.
 		 */
-		$closed = apply_filters( 'pxer_order_list_closed_statuses', array( 'pxer_resolved', 'pxer_rejected' ) );
+		$closed = apply_filters( 'pxer_order_list_closed_statuses', Eligibility::closed_statuses() );
 
 		foreach ( $requests as $post ) {
 			$request = pxer_get_request( $post->ID );

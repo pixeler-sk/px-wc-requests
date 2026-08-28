@@ -11,6 +11,9 @@ msgstr "%1$s č. %2$d"
 msgid "%1$s → status “%2$s”"
 msgstr "%1$s → stav „%2$s“"
 
+msgid "(%d still available — the rest is already part of another request)"
+msgstr "(k dispozícii ešte %d ks — zvyšok je súčasťou inej žiadosti)"
+
 msgid "A note has been added to your request %1$s no. %2$d:"
 msgstr "K vašej žiadosti %1$s č. %2$d bola pridaná poznámka:"
 
@@ -46,6 +49,9 @@ msgstr "Pridá sa do e-mailu odoslaného pri zmene žiadosti na tento stav."
 
 msgid "Admin notification about a new customer request (withdrawal / claim)."
 msgstr "Notifikácia administrátorovi o novej žiadosti zákazníka (odstúpenie / reklamácia)."
+
+msgid "All items of this order are already covered by an existing request."
+msgstr "Všetky položky tejto objednávky už sú súčasťou inej žiadosti."
 
 msgid "All types"
 msgstr "Všetky typy"
@@ -349,6 +355,9 @@ msgstr "Poučenie: %s"
 
 msgid "One of the selected items is not eligible for this request."
 msgstr "Jedna z vybraných položiek nie je oprávnená pre túto žiadosť."
+
+msgid "Only %2$d unit(s) of \"%1$s\" can still be requested — the rest is already part of another request."
+msgstr "Z položky „%1$s“ je možné požadovať už len %2$d ks — zvyšok je súčasťou inej žiadosti."
 
 msgid "Open importer"
 msgstr "Otvoriť importér"

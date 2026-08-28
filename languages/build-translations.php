@@ -178,6 +178,9 @@ $sk = array(
 	'The period has not started yet — the order is not completed.' => 'Lehota zatiaľ nezačala — objednávka nie je dokončená.',
 	'The deadline for this request has already passed (it ended on %s).' => 'Lehota na túto žiadosť už uplynula (skončila %s).',
 	'There are no eligible items for this request.' => 'Pre túto žiadosť nie sú žiadne oprávnené položky.',
+	'All items of this order are already covered by an existing request.' => 'Všetky položky tejto objednávky už sú súčasťou inej žiadosti.',
+	'Only %2$d unit(s) of "%1$s" can still be requested — the rest is already part of another request.' => 'Z položky „%1$s“ je možné požadovať už len %2$d ks — zvyšok je súčasťou inej žiadosti.',
+	'(%d still available — the rest is already part of another request)' => '(k dispozícii ešte %d ks — zvyšok je súčasťou inej žiadosti)',
 	// Product settings
 	'months' => 'mesiace',
 	'days' => 'dni',
@@ -502,6 +505,9 @@ $cs = array(
 	'The period has not started yet — the order is not completed.' => 'Lhůta zatím nezačala — objednávka není dokončena.',
 	'The deadline for this request has already passed (it ended on %s).' => 'Lhůta pro tuto žádost už uplynula (skončila %s).',
 	'There are no eligible items for this request.' => 'Pro tuto žádost nejsou žádné oprávněné položky.',
+	'All items of this order are already covered by an existing request.' => 'Všechny položky této objednávky už jsou součástí jiné žádosti.',
+	'Only %2$d unit(s) of "%1$s" can still be requested — the rest is already part of another request.' => 'Z položky „%1$s“ lze požadovat už jen %2$d ks — zbytek je součástí jiné žádosti.',
+	'(%d still available — the rest is already part of another request)' => '(k dispozici ještě %d ks — zbytek je součástí jiné žádosti)',
 	// Product settings
 	'months' => 'měsíce',
 	'days' => 'dny',

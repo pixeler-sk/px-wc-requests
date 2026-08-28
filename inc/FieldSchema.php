@@ -301,7 +301,8 @@ class FieldSchema {
 	}
 
 	/**
-	 * @param array    $context May contain 'eligible_ids' => int[] to filter rows.
+	 * @param array    $context May contain 'eligible_ids' => int[] to filter rows
+	 *                          and 'eligible_qty' => int[] item_id => units still free.
 	 */
 	private static function render_order_items( array $field, array $value, ?\WC_Order $order, array $context = array() ): void {
 		if ( ! $order ) {
@@ -309,6 +310,7 @@ class FieldSchema {
 		}
 		$single       = 'single' === $field['item_mode'];
 		$eligible_ids = $context['eligible_ids'] ?? null; // null = no filtering
+		$eligible_qty = $context['eligible_qty'] ?? array();
 		?>
 		<div class="pxer-field pxer-field-full pxer-order-items" data-mode="<?php echo esc_attr( $field['item_mode'] ); ?>">
 			<h3><?php echo esc_html( $field['label'] ); ?> <?php if ( $field['required'] ) : ?><span class="required">*</span><?php endif; ?></h3>
@@ -319,7 +321,8 @@ class FieldSchema {
 					}
 					$product   = $item->get_product();
 					$selected  = isset( $value[ $item_id ] );
-					$qty_value = $selected ? ( $value[ $item_id ]['quantity'] ?? 1 ) : 1;
+					$max_qty   = isset( $eligible_qty[ $item_id ] ) ? (int) $eligible_qty[ $item_id ] : (int) $item->get_quantity();
+					$qty_value = $selected ? min( $max_qty, (int) ( $value[ $item_id ]['quantity'] ?? 1 ) ) : 1;
 					$reason    = $selected ? ( $value[ $item_id ]['reason'] ?? '' ) : '';
 					?>
 					<tr class="pxer-item-row">
@@ -338,12 +341,20 @@ class FieldSchema {
 						<td class="pxer-item-name">
 							<label for="pxer-item-<?php echo esc_attr( $item_id ); ?>">
 								<?php echo esc_html( $item->get_name() ); ?><br>
-								<small><?php esc_html_e( 'Quantity:', 'px-wc-requests' ); ?> <?php echo esc_html( $item->get_quantity() ); ?></small>
+								<small>
+									<?php esc_html_e( 'Quantity:', 'px-wc-requests' ); ?> <?php echo esc_html( $item->get_quantity() ); ?>
+									<?php if ( $max_qty < (int) $item->get_quantity() ) : ?>
+										<?php
+										/* translators: %d: number of units not yet part of another request */
+										echo esc_html( sprintf( __( '(%d still available — the rest is already part of another request)', 'px-wc-requests' ), $max_qty ) );
+										?>
+									<?php endif; ?>
+								</small>
 							</label>
 						</td>
 						<?php if ( ! $single ) : ?>
 							<td class="pxer-item-qty">
-								<input type="number" min="1" max="<?php echo esc_attr( $item->get_quantity() ); ?>"
+								<input type="number" min="1" max="<?php echo esc_attr( $max_qty ); ?>"
 								       name="items[<?php echo esc_attr( $item_id ); ?>][quantity]" value="<?php echo esc_attr( $qty_value ); ?>">
 							</td>
 						<?php endif; ?>

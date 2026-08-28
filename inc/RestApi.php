@@ -131,6 +131,7 @@ class RestApi {
 				'line_item_id' => (int) $item_id,
 				'name'         => $item->get_name(),
 				'quantity'     => (int) $item->get_quantity(),
+				'available'    => Eligibility::available_qty( $item, $order, $type ),
 			);
 		}
 		$deadline = Eligibility::period_end( $order, $type );

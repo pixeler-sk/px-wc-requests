@@ -227,7 +227,7 @@ class RequestPostType {
 			case 'pxer_status':
 				// Same closed-status set (and filter) as the badges in the orders
 				// list, so both screens mute the same statuses.
-				$closed = apply_filters( 'pxer_order_list_closed_statuses', array( 'pxer_resolved', 'pxer_rejected' ) );
+				$closed = apply_filters( 'pxer_order_list_closed_statuses', Eligibility::closed_statuses() );
 				$status = get_post_status( $post_id );
 				$class  = in_array( $status, $closed, true ) ? 'is-closed' : 'is-active';
 				$class .= ' status-' . sanitize_html_class( (string) $status );

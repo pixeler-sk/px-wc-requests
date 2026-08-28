@@ -25,8 +25,10 @@ function pxer_get_requests_by_order_id( int $order_id, string $type = '', int $l
 		return array();
 	}
 
+	// Per-process cache, invalidated whenever a request is saved or deleted
+	// (availability checks must see a request created moments ago).
 	static $cache = array();
-	$cache_key = $order_id . ':' . $type;
+	$cache_key = $order_id . ':' . $type . ':' . did_action( 'save_post_' . \Pixeler\Requests\RequestPostType::POST_TYPE ) . ':' . did_action( 'deleted_post' );
 	if ( isset( $cache[ $cache_key ] ) ) {
 		return $cache[ $cache_key ];
 	}

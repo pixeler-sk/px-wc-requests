@@ -107,6 +107,17 @@ class RequestTypes {
 	}
 
 	/**
+	 * Do resolved requests of this type consume their units for good?
+	 * True for withdrawal (goods go back), false for claims (a repaired item
+	 * may be claimed again).
+	 */
+	public static function consumes_items( string $id ): bool {
+		$type = self::get( $id );
+
+		return ! empty( $type['consumes_items'] );
+	}
+
+	/**
 	 * Map a status slug to its human label across all types.
 	 */
 	public static function status_label( string $status ): string {
@@ -160,6 +171,7 @@ class RequestTypes {
 			'refund_due_days' => 0,          // statutory refund deadline reminder (0 = off)
 			'legal_notice'    => '',         // info text shown on the form
 			'refund'          => array(),    // automatic refund record, see below
+			'consumes_items'  => false,      // resolved requests keep their units reserved (goods returned)
 		);
 
 		$type       = wp_parse_args( $type, $defaults );
@@ -229,6 +241,7 @@ class RequestTypes {
 			'default_status'  => 'pxer_received',
 			'refund_due_days' => 14,
 			'refund'          => array( 'enabled' => true ),
+			'consumes_items'  => true,
 			'legal_notice'    => __( 'You have the right to withdraw from this contract within 14 days without giving any reason. The withdrawal period starts on the day you take possession of the goods. You bear the direct cost of returning the goods. We will refund all payments within 14 days of being informed of your decision to withdraw.', 'px-wc-requests' ),
 			'period'          => array(
 				'enabled'        => true,
