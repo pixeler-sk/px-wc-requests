@@ -3,7 +3,7 @@ Contributors: pixeler
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 8.0
-Stable tag: 1.7.0
+Stable tag: 1.8.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -83,6 +83,16 @@ REST API v namespace `px-wc-requests/v1` (kontrola lehoty, odoslanie žiadosti,
 zoznam a detail) pre headless frontendy; hostia sa autorizujú kľúčom objednávky.
 
 == Changelog ==
+
+= 1.8.0 =
+História odoslaných e-mailov je pri žiadosti, nie v objednávke.
+
+* Každý odoslaný (alebo neúspešný) e-mail žiadosti — potvrdenie, zmena stavu,
+  poznámka pre zákazníka, upozornenie adminovi — sa zapíše ako interná poznámka
+  do histórie žiadosti spolu s adresátom.
+* WooCommerce 10.9+ už tieto e-maily nezapisuje do histórie objednávky; tam
+  ostáva len poznámka o vytvorení žiadosti a o refundácii. Log WooCommerce
+  (Stav → Logy) sa nemení.
 
 = 1.7.0 =
 Jeden kus tovaru môže byť naraz len v jednej žiadosti.

@@ -169,6 +169,12 @@ msgstr ""
 msgid "E-mail"
 msgstr ""
 
+msgid "E-mail \"%1$s\" sent to %2$s."
+msgstr ""
+
+msgid "E-mail \"%1$s\" to %2$s failed to send."
+msgstr ""
+
 msgid "E-mail texts"
 msgstr ""
 

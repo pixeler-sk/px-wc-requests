@@ -170,6 +170,12 @@ msgstr "Suchý beh dokončený"
 msgid "E-mail"
 msgstr "E-mail"
 
+msgid "E-mail \"%1$s\" sent to %2$s."
+msgstr "E-mail „%1$s“ odoslaný na %2$s."
+
+msgid "E-mail \"%1$s\" to %2$s failed to send."
+msgstr "E-mail „%1$s“ na %2$s sa nepodarilo odoslať."
+
 msgid "E-mail texts"
 msgstr "Texty v e-mailoch"
 

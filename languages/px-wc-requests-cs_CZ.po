@@ -170,6 +170,12 @@ msgstr "Zkušební běh dokončen"
 msgid "E-mail"
 msgstr "E-mail"
 
+msgid "E-mail \"%1$s\" sent to %2$s."
+msgstr "E-mail „%1$s“ odeslán na %2$s."
+
+msgid "E-mail \"%1$s\" to %2$s failed to send."
+msgstr "E-mail „%1$s“ na %2$s se nepodařilo odeslat."
+
 msgid "E-mail texts"
 msgstr "Texty v e-mailech"
 

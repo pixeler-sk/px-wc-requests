@@ -165,6 +165,15 @@ Spúšťanie: admin + potvrdenie v `RequestController::after_success()`; status-
 `transition_post_status` (len medzi registrovanými stavmi, nie pri vytvorení). Zapnutie/texty:
 WooCommerce → Nastavenia → E-maily. Per-typ vypnutie cez `emails` kľúč v definícii typu.
 
+**Log odoslania patrí žiadosti, nie objednávke.** `Emails::log_sent_email`
+(hook `woocommerce_email_sent`) zapíše každý pokus o odoslanie `pxer_*` e-mailu
+ako internú poznámku žiadosti (názov e-mailu + adresát, aj neúspech). WooCommerce
+10.9+ (`EmailLogger`) by ten istý e-mail zapísal aj do histórie objednávky, lebo
+naše triedy nastavujú `$this->object = $order` — to potláča
+`Emails::suppress_order_note` (filter `woocommerce_email_log_add_order_note`,
+len pre naše ID). Log v Stav → Logy ostáva. V objednávke zostáva iba poznámka
+o vytvorení žiadosti (`after_success`) a o refundácii (`Refunds`).
+
 **Vlastný text v zákazníckych e-mailoch** — sekcia **Customer requests →
 E-mail texts**. WYSIWYG (`pxer_editor`) pole **per typ** pre potvrdenie
 (`pxer_{type}_email_text`) a **per typ + stav** pre zmenu stavu

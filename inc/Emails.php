@@ -35,6 +35,63 @@ class Emails {
 
 		// Populate our emails with the latest real request for the WC preview.
 		add_filter( 'woocommerce_prepare_email_for_preview', array( $this, 'prepare_preview' ) );
+
+		// E-mail delivery log belongs to the request, not to the order: record
+		// every send attempt as an internal request note and keep WooCommerce
+		// (10.9+ EmailLogger) from adding the same note to the order history.
+		add_action( 'woocommerce_email_sent', array( $this, 'log_sent_email' ), 10, 3 );
+		add_filter( 'woocommerce_email_log_add_order_note', array( $this, 'suppress_order_note' ), 10, 2 );
+	}
+
+	/**
+	 * Record a sent/failed request e-mail as an internal note on the request.
+	 *
+	 * @param bool      $success
+	 * @param string    $email_id
+	 * @param \WC_Email $email
+	 */
+	public function log_sent_email( $success, $email_id, $email ): void {
+		if ( ! in_array( (string) $email_id, self::EMAIL_IDS, true ) ) {
+			return;
+		}
+
+		$request = $email->request ?? null;
+		if ( ! $request instanceof Request || ! $request->exists() ) {
+			return;
+		}
+
+		$recipient = (string) $email->get_recipient();
+		$title     = (string) $email->get_title();
+
+		if ( $success ) {
+			$note = sprintf(
+				/* translators: 1: e-mail title, 2: recipient address */
+				__( 'E-mail "%1$s" sent to %2$s.', 'px-wc-requests' ),
+				$title,
+				$recipient
+			);
+		} else {
+			$note = sprintf(
+				/* translators: 1: e-mail title, 2: recipient address */
+				__( 'E-mail "%1$s" to %2$s failed to send.', 'px-wc-requests' ),
+				$title,
+				$recipient
+			);
+		}
+
+		RequestNotes::add_note( $request->get_id(), $note, false );
+	}
+
+	/**
+	 * Keep WooCommerce from logging our e-mails into the order notes; the
+	 * request history (see log_sent_email) is the single place for them.
+	 *
+	 * @param bool   $enabled
+	 * @param string $email_id
+	 * @return bool
+	 */
+	public function suppress_order_note( $enabled, $email_id ) {
+		return in_array( (string) $email_id, self::EMAIL_IDS, true ) ? false : $enabled;
 	}
 
 	/**

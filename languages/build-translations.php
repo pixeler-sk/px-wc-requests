@@ -283,6 +283,8 @@ $sk = array(
 	'Sample note text shown in the preview.' => 'Ukážkový text poznámky v náhľade.',
 	// EU mechanics + REST
 	'Statutory refund deadline: %s.' => 'Zákonná lehota na vrátenie peňazí: %s.',
+	'E-mail "%1$s" sent to %2$s.' => 'E-mail „%1$s“ odoslaný na %2$s.',
+	'E-mail "%1$s" to %2$s failed to send.' => 'E-mail „%1$s“ na %2$s sa nepodarilo odoslať.',
 	'You have the right to withdraw from this contract within 14 days without giving any reason. The withdrawal period starts on the day you take possession of the goods. You bear the direct cost of returning the goods. We will refund all payments within 14 days of being informed of your decision to withdraw.' => 'Máte právo odstúpiť od tejto zmluvy do 14 dní bez uvedenia dôvodu. Lehota na odstúpenie začína plynúť dňom prevzatia tovaru. Priame náklady na vrátenie tovaru znášate vy. Všetky platby vám vrátime do 14 dní odo dňa doručenia vášho rozhodnutia o odstúpení.',
 	'The statutory warranty applies for 24 months from receipt of the goods. Please describe the defect as precisely as possible and attach photos if available.' => 'Zákonná záruka platí 24 mesiacov od prevzatia tovaru. Závadu prosím opíšte čo najpresnejšie a priložte fotografie, ak ich máte.',
 	'Legal notice on forms' => 'Právne poučenie na formulároch',
@@ -610,6 +612,8 @@ $cs = array(
 	'Sample note text shown in the preview.' => 'Ukázkový text poznámky v náhledu.',
 	// EU mechanics + REST
 	'Statutory refund deadline: %s.' => 'Zákonná lhůta pro vrácení peněz: %s.',
+	'E-mail "%1$s" sent to %2$s.' => 'E-mail „%1$s“ odeslán na %2$s.',
+	'E-mail "%1$s" to %2$s failed to send.' => 'E-mail „%1$s“ na %2$s se nepodařilo odeslat.',
 	'You have the right to withdraw from this contract within 14 days without giving any reason. The withdrawal period starts on the day you take possession of the goods. You bear the direct cost of returning the goods. We will refund all payments within 14 days of being informed of your decision to withdraw.' => 'Máte právo odstoupit od této smlouvy do 14 dnů bez udání důvodu. Lhůta pro odstoupení začíná běžet dnem převzetí zboží. Přímé náklady na vrácení zboží nesete vy. Všechny platby vám vrátíme do 14 dnů ode dne doručení vašeho rozhodnutí o odstoupení.',
 	'The statutory warranty applies for 24 months from receipt of the goods. Please describe the defect as precisely as possible and attach photos if available.' => 'Zákonná záruka platí 24 měsíců od převzetí zboží. Závadu prosím popište co nejpřesněji a přiložte fotografie, pokud je máte.',
 	'Legal notice on forms' => 'Právní poučení na formulářích',
