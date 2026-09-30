@@ -33,6 +33,11 @@ if ( $request && $request->exists() ) {
 	if ( ! empty( $data['iban'] ) ) {
 		echo esc_html__( 'IBAN:', 'px-wc-requests' ) . ' ' . esc_html( pxer_format_iban( $data['iban'] ) ) . "\n";
 	}
+
+	$pxer_resolution = pxer_get_resolution_notice( $request );
+	if ( '' !== $pxer_resolution ) {
+		echo "\n" . esc_html( $pxer_resolution ) . "\n";
+	}
 }
 
 echo "\n" . esc_html( apply_filters( 'woocommerce_email_footer_text', get_option( 'woocommerce_email_footer_text' ) ) );

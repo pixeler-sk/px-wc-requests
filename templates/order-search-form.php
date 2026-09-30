@@ -24,6 +24,8 @@ defined( 'ABSPATH' ) || exit;
 	}
 	?>
 
+	<?php pxer_render_legal_notice( $type ); ?>
+
 	<p><?php esc_html_e( 'To continue, enter your e-mail and order number.', 'px-wc-requests' ); ?></p>
 
 	<form class="pxer-search-form" action="" method="get">

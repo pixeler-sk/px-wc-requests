@@ -47,6 +47,28 @@ final class Plugin {
 		add_action( 'init', array( $this, 'load_textdomain' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'register_assets' ) );
 		add_action( 'admin_init', array( $this, 'maybe_upgrade' ) );
+		// After load_textdomain (priority 10): RequestTypes memoises translated labels.
+		add_action( 'init', array( $this, 'maybe_migrate_defaults' ), 20 );
+	}
+
+	/**
+	 * Settings-defaults version. Bump together with a new entry in
+	 * Settings::migrate_legacy_defaults().
+	 */
+	private const DEFAULTS_SCHEMA = '1.9.0';
+
+	/**
+	 * One-time cleanup of options still holding an outdated plugin default
+	 * (runs on front end too, so the new labels apply before an admin visit;
+	 * afterwards it is a single autoloaded option check).
+	 */
+	public function maybe_migrate_defaults(): void {
+		if ( get_option( 'pxer_defaults_version' ) === self::DEFAULTS_SCHEMA ) {
+			return;
+		}
+
+		Settings::migrate_legacy_defaults();
+		update_option( 'pxer_defaults_version', self::DEFAULTS_SCHEMA );
 	}
 
 	/**

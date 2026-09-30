@@ -19,8 +19,14 @@ konfigurovateľné a rozšíriteľné cez filtre.
   jedna alebo viac položiek.
 - Nahrávanie príloh (fotky k reklamácii) do privátneho úložiska — súbory nie sú
   verejne prístupné cez priamu URL.
-- Právne poučenie na formulári — editovateľné vo WYSIWYG editore v nastaveniach,
-  samostatne pre každý typ žiadosti.
+- Právne poučenie na formulári aj na kroku vyhľadania objednávky — editovateľné
+  vo WYSIWYG editore v nastaveniach, samostatne pre každý typ žiadosti.
+  Predvolené poučenie pri odstúpení obsahuje vetu z prílohy č. 3 bod 3a
+  zákona č. 108/2024 Z. z.; zástupný text `{url}` sa nahradí adresou stránky
+  formulára (bez priradenej stránky sa odsek s ním vynechá).
+- Predvolené texty podľa § 20a zákona č. 108/2024 Z. z.: tlačidlo odoslania
+  **Potvrdiť odstúpenie od zmluvy**, odkaz **Odstúpiť od zmluvy tu**
+  (reklamácia: **Odoslať reklamáciu**, **Reklamovať tovar**).
 - Anti-spam ochrana: honeypot, časová pasca, limit na IP, limit počtu žiadostí
   na objednávku a detekcia duplicitného obsahu.
 
@@ -31,6 +37,9 @@ konfigurovateľné a rozšíriteľné cez filtre.
   vlastnú lehotu (v karte produktu, záložka Všeobecné).
 - Zobrazenie termínu (deadline) priamo na formulári; po lehote sa formulár
   nezobrazí.
+- Lehota vybavenia reklamácie (§ 622 ods. 3 OZ, predvolene a najviac 30 dní) —
+  uloží sa k žiadosti pri vytvorení a potvrdenie zákazníkovi ju uvádza aj
+  s dátumom („Vadu odstránime najneskôr do 30 dní od vytknutia vady, t. j. do …").
 
 ### Môj účet
 - Tlačidlá **Odstúpiť od zmluvy / Reklamovať** pri objednávkach v Mojom účte
@@ -65,7 +74,12 @@ konfigurovateľné a rozšíriteľné cez filtre.
   jedným klikom, stránky označené v zozname stránok).
 - Právne poučenia (WYSIWYG editor, základné formátovanie bez obrázkov).
 - Výber emailov, do ktorých sa vkladajú odkazy na formuláre.
-- Texty akčných tlačidiel per typ.
+- Texty tlačidiel per typ: akčné tlačidlo (Môj účet + text odkazu v e-mailoch,
+  `pxer_{typ}_button_label`) a odosielacie tlačidlo formulára
+  (`pxer_{typ}_submit_label`). Prázdne pole = predvolený text typu (kľúče
+  `button_label` / `submit_label` v konfigurácii typu).
+- Lehota vybavenia reklamácie v dňoch (`pxer_claim_resolution_days`,
+  predvolene 30, rozsah 1–30; kľúč typu `resolution_days`, 0 = vypnuté).
 
 ### Integrácie a rozšíriteľnosť
 - REST API (`px-wc-requests/v1`): kontrola lehoty, odoslanie žiadosti, zoznam

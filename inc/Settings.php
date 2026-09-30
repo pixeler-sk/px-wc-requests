@@ -226,6 +226,20 @@ class Settings {
 					'default'  => $type['period']['start_statuses'],
 					'desc_tip' => true,
 				);
+
+				if ( ! empty( $type['resolution_days'] ) ) {
+					$settings[] = array(
+						/* translators: %s: type label */
+						'title'             => sprintf( __( 'Resolution deadline: %s (in days)', 'px-wc-requests' ), $type['label'] ),
+						/* translators: %d: maximum number of days */
+						'desc'              => sprintf( __( 'Deadline for remedying the defect, counted from the day the request is submitted. It is stated in the confirmation e-mail to the customer. Maximum %d days.', 'px-wc-requests' ), self::RESOLUTION_DAYS_MAX ),
+						'id'                => self::resolution_days_option( $id ),
+						'type'              => 'number',
+						'default'           => min( (int) $type['resolution_days'], self::RESOLUTION_DAYS_MAX ),
+						'custom_attributes' => array( 'min' => '1', 'max' => (string) self::RESOLUTION_DAYS_MAX, 'step' => '1' ),
+						'desc_tip'          => true,
+					);
+				}
 			}
 
 			$settings[] = array( 'type' => 'sectionend', 'id' => 'pxer_section_periods' );
@@ -262,7 +276,12 @@ class Settings {
 		$settings[] = array(
 			'title' => __( 'Legal notice on forms', 'px-wc-requests' ),
 			'type'  => 'title',
-			'desc'  => __( 'Informational text shown on each request form (e.g. statutory withdrawal information). Have it reviewed by a lawyer.', 'px-wc-requests' ),
+			'desc'  => __( 'Informational text shown on each request form (e.g. statutory withdrawal information). Have it reviewed by a lawyer.', 'px-wc-requests' )
+				. ' ' . sprintf(
+					/* translators: %s: placeholder */
+					__( 'Placeholder %s is replaced by the address of the form page; a paragraph containing it is left out while no form page is assigned.', 'px-wc-requests' ),
+					'<code>{url}</code>'
+				),
 			'id'    => 'pxer_section_legal',
 		);
 		foreach ( RequestTypes::all() as $id => $type ) {
@@ -343,23 +362,27 @@ class Settings {
 			'id'    => 'pxer_section_buttons',
 		);
 		foreach ( RequestTypes::all() as $id => $type ) {
+			// Empty default: an untouched field stays empty and follows the
+			// default of the type (placeholder), so new plugin defaults apply.
 			$settings[] = array(
 				/* translators: %s: type label */
 				'title'       => sprintf( __( 'Action button: %s', 'px-wc-requests' ), $type['label'] ),
-				'desc'        => __( 'Shown in My Account orders and e-mail links.', 'px-wc-requests' ),
+				'desc'        => __( 'Shown in My Account orders and as the form link text in e-mails. Leave empty to use the default shown in the field.', 'px-wc-requests' ),
 				'desc_tip'    => true,
 				'id'          => 'pxer_' . $id . '_button_label',
 				'type'        => 'text',
-				'placeholder' => $type['button_label'] ?: $type['label'],
-				'default'     => $type['button_label'] ?: $type['label'],
+				'placeholder' => self::default_button_label( $id ),
+				'default'     => '',
 			);
 			$settings[] = array(
 				/* translators: %s: type label */
 				'title'       => sprintf( __( 'Submit button: %s', 'px-wc-requests' ), $type['label'] ),
+				'desc'        => __( 'Leave empty to use the default shown in the field.', 'px-wc-requests' ),
+				'desc_tip'    => true,
 				'id'          => 'pxer_' . $id . '_submit_label',
 				'type'        => 'text',
-				'placeholder' => __( 'Submit request', 'px-wc-requests' ),
-				'default'     => __( 'Submit request', 'px-wc-requests' ),
+				'placeholder' => self::default_submit_label( $id ),
+				'default'     => '',
 			);
 		}
 		$settings[] = array( 'type' => 'sectionend', 'id' => 'pxer_section_buttons' );
@@ -566,33 +589,157 @@ class Settings {
 	}
 
 	/**
-	 * Action button label (My Account orders + e-mail links).
+	 * Default action button label of a type (config `button_label`, else label).
+	 */
+	public static function default_button_label( string $type ): string {
+		$def = RequestTypes::get( $type );
+
+		return $def ? (string) ( $def['button_label'] ?: $def['label'] ) : $type;
+	}
+
+	/**
+	 * Action button label (My Account orders + e-mail links). A saved admin
+	 * value wins; an empty option falls back to the type default.
 	 */
 	public static function get_button_label( string $type ): string {
-		$def     = RequestTypes::get( $type );
-		$default = $def ? ( $def['button_label'] ?: $def['label'] ) : $type;
-		$value   = (string) get_option( 'pxer_' . $type . '_button_label', $default );
+		$value = trim( (string) get_option( 'pxer_' . $type . '_button_label', '' ) );
 
-		return $value !== '' ? $value : $default;
+		return '' !== $value ? $value : self::default_button_label( $type );
 	}
 
 	/**
-	 * Form submit button label.
+	 * Default submit button label of a type (config `submit_label`, else generic).
+	 */
+	public static function default_submit_label( string $type ): string {
+		$def = RequestTypes::get( $type );
+
+		return ! empty( $def['submit_label'] ) ? (string) $def['submit_label'] : __( 'Submit request', 'px-wc-requests' );
+	}
+
+	/**
+	 * Form submit button label. A saved admin value wins; an empty option falls
+	 * back to the type default.
 	 */
 	public static function get_submit_label( string $type ): string {
-		$default = __( 'Submit request', 'px-wc-requests' );
-		$value   = (string) get_option( 'pxer_' . $type . '_submit_label', $default );
+		$value = trim( (string) get_option( 'pxer_' . $type . '_submit_label', '' ) );
 
-		return $value !== '' ? $value : $default;
+		return '' !== $value ? $value : self::default_submit_label( $type );
 	}
 
 	/**
-	 * Legal/info notice text for a type (admin override or type default).
+	 * Legal/info notice text for a type (admin override or type default), with
+	 * the {url} placeholder resolved — see resolve_url_placeholder().
 	 */
 	public static function get_legal_notice( string $type ): string {
 		$default = RequestTypes::get( $type )['legal_notice'] ?? '';
+		$text    = (string) get_option( 'pxer_' . $type . '_legal_notice', $default );
 
-		return (string) get_option( 'pxer_' . $type . '_legal_notice', $default );
+		return self::resolve_url_placeholder( $text, self::get_page_url( $type ) );
+	}
+
+	/**
+	 * Permalink of the form page of a type, or '' when none is assigned or the
+	 * page is not published.
+	 */
+	public static function get_page_url( string $type ): string {
+		$page_id = self::get_page_id( $type );
+		if ( ! $page_id || 'publish' !== get_post_status( $page_id ) ) {
+			return '';
+		}
+
+		return (string) get_permalink( $page_id );
+	}
+
+	/**
+	 * Replace {url} with a link to the form page. Without a URL, every paragraph
+	 * containing the placeholder is dropped (both `<p>` blocks and blank-line
+	 * separated paragraphs), so the notice never shows a dangling "{url}".
+	 */
+	public static function resolve_url_placeholder( string $text, string $url ): string {
+		if ( false === strpos( $text, '{url}' ) ) {
+			return $text;
+		}
+
+		if ( '' !== $url ) {
+			return str_replace( '{url}', '<a href="' . esc_url( $url ) . '">' . esc_html( $url ) . '</a>', $text );
+		}
+
+		$text  = (string) preg_replace( '#<p\b[^>]*>(?:(?!</p>).)*?\{url\}.*?</p>#is', '', $text );
+		$parts = preg_split( '/\R\s*\R/', $text ) ?: array();
+		$parts = array_filter( $parts, static fn( $part ) => false === strpos( $part, '{url}' ) );
+
+		return trim( implode( "\n\n", $parts ) );
+	}
+
+	/** Statutory ceiling for the claim resolution deadline (§ 622 (3) OZ). */
+	public const RESOLUTION_DAYS_MAX = 30;
+
+	public static function resolution_days_option( string $type ): string {
+		return 'pxer_' . sanitize_key( $type ) . '_resolution_days';
+	}
+
+	/**
+	 * Resolution deadline (days) stated in the confirmation of a type.
+	 * 0 = the type does not state one (config `resolution_days` empty).
+	 * Clamped to 1..RESOLUTION_DAYS_MAX.
+	 */
+	public static function get_resolution_days( string $type ): int {
+		$default = (int) ( RequestTypes::get( $type )['resolution_days'] ?? 0 );
+		if ( $default <= 0 ) {
+			return 0;
+		}
+
+		$value = (int) get_option( self::resolution_days_option( $type ), $default );
+		if ( $value <= 0 ) {
+			$value = $default;
+		}
+
+		return min( $value, self::RESOLUTION_DAYS_MAX );
+	}
+
+	/**
+	 * One-time migration for 1.9.0: options that still hold a previous plugin
+	 * default (because WooCommerce saved the pre-filled field) are deleted, so
+	 * the new statutory defaults apply (§ 20a z. 108/2024 Z. z.). Values the
+	 * admin actually changed are left untouched. Old defaults are listed in
+	 * every shipped locale, as the option stores the translated text.
+	 */
+	public static function migrate_legacy_defaults(): void {
+		$legacy = array(
+			'submit_label' => array(
+				'*' => array( 'Submit request', 'Odoslať žiadosť', 'Odeslat žádost' ),
+			),
+			'button_label' => array(
+				'withdrawal' => array( 'Withdraw from contract', 'Odstúpiť od zmluvy', 'Odstoupit od smlouvy' ),
+				'claim'      => array( 'File a claim', 'Reklamovať', 'Reklamovat' ),
+			),
+			'legal_notice' => array(
+				'withdrawal' => array(
+					'You have the right to withdraw from this contract within 14 days without giving any reason. The withdrawal period starts on the day you take possession of the goods. You bear the direct cost of returning the goods. We will refund all payments within 14 days of being informed of your decision to withdraw.',
+					'Máte právo odstúpiť od tejto zmluvy do 14 dní bez uvedenia dôvodu. Lehota na odstúpenie začína plynúť dňom prevzatia tovaru. Priame náklady na vrátenie tovaru znášate vy. Všetky platby vám vrátime do 14 dní odo dňa doručenia vášho rozhodnutia o odstúpení.',
+					'Máte právo odstoupit od této smlouvy do 14 dnů bez udání důvodu. Lhůta pro odstoupení začíná běžet dnem převzetí zboží. Přímé náklady na vrácení zboží nesete vy. Všechny platby vám vrátíme do 14 dnů ode dne doručení vašeho rozhodnutí o odstoupení.',
+				),
+			),
+		);
+
+		$normalize = static fn( $v ) => trim( (string) preg_replace( '/\s+/u', ' ', html_entity_decode( wp_strip_all_tags( (string) $v ), ENT_QUOTES, 'UTF-8' ) ) );
+
+		foreach ( RequestTypes::ids() as $type ) {
+			foreach ( $legacy as $key => $per_type ) {
+				$old = $per_type[ $type ] ?? $per_type['*'] ?? array();
+				if ( ! $old ) {
+					continue;
+				}
+				$option = 'pxer_' . $type . '_' . $key;
+				$value  = get_option( $option, null );
+				if ( null === $value ) {
+					continue;
+				}
+				if ( in_array( $normalize( $value ), array_map( $normalize, $old ), true ) ) {
+					delete_option( $option );
+				}
+			}
+		}
 	}
 
 	/**

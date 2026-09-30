@@ -157,7 +157,8 @@ class RequestTypes {
 			'label'          => ucfirst( $id ),
 			'label_plural'   => ucfirst( $id ),
 			'menu_label'     => ucfirst( $id ),
-			'button_label'   => '', // My Account orders action button; falls back to label
+			'button_label'   => '', // My Account orders action button + e-mail links; falls back to label
+			'submit_label'   => '', // form submit button; falls back to a generic "Submit request"
 			'statuses'       => array(),
 			'default_status' => '',
 			'fields'         => array(),
@@ -169,7 +170,8 @@ class RequestTypes {
 			),
 			'item_mode'       => 'multiple', // multiple|single
 			'refund_due_days' => 0,          // statutory refund deadline reminder (0 = off)
-			'legal_notice'    => '',         // info text shown on the form
+			'legal_notice'    => '',         // info text shown on the form; {url} = form page URL
+			'resolution_days' => 0,          // deadline stated in the confirmation (claims, max 30; 0 = off)
 			'refund'          => array(),    // automatic refund record, see below
 			'consumes_items'  => false,      // resolved requests keep their units reserved (goods returned)
 		);
@@ -235,14 +237,22 @@ class RequestTypes {
 			'label'          => __( 'Withdrawal from contract', 'px-wc-requests' ),
 			'label_plural'   => __( 'Withdrawals from contract', 'px-wc-requests' ),
 			'menu_label'     => __( 'Withdrawals', 'px-wc-requests' ),
-			'button_label'    => __( 'Withdraw from contract', 'px-wc-requests' ),
+			// § 20a (2) z. 108/2024 Z. z.: the function must be labelled "withdraw from contract here".
+			'button_label'    => __( 'Withdraw from contract here', 'px-wc-requests' ),
+			// § 20a (4): the submit button must read "confirm withdrawal from contract".
+			'submit_label'    => __( 'Confirm withdrawal from contract', 'px-wc-requests' ),
 			'item_mode'       => 'multiple',
 			'statuses'        => self::default_statuses(),
 			'default_status'  => 'pxer_received',
 			'refund_due_days' => 14,
 			'refund'          => array( 'enabled' => true ),
 			'consumes_items'  => true,
-			'legal_notice'    => __( 'You have the right to withdraw from this contract within 14 days without giving any reason. The withdrawal period starts on the day you take possession of the goods. You bear the direct cost of returning the goods. We will refund all payments within 14 days of being informed of your decision to withdraw.', 'px-wc-requests' ),
+			// Second paragraph = annex 3, point 3a of z. 108/2024 Z. z. {url} is
+			// replaced by the form page URL; the paragraph is dropped when no page
+			// is assigned (Settings::get_legal_notice()).
+			'legal_notice'    => __( 'You have the right to withdraw from this contract within 14 days without giving any reason. The withdrawal period starts on the day you take possession of the goods. You bear the direct cost of returning the goods. We will refund all payments within 14 days of being informed of your decision to withdraw.', 'px-wc-requests' )
+				. "\n\n"
+				. __( 'You can also exercise your right to withdraw from the contract online at {url}. If you use this option, we will provide you without undue delay with a confirmation of receipt of the withdrawal, including its content and the date and time of its submission, on a durable medium (for example by e-mail).', 'px-wc-requests' ),
 			'period'          => array(
 				'enabled'        => true,
 				'unit'           => 'days',
@@ -263,7 +273,10 @@ class RequestTypes {
 			'label'          => __( 'Warranty claim', 'px-wc-requests' ),
 			'label_plural'   => __( 'Warranty claims', 'px-wc-requests' ),
 			'menu_label'     => __( 'Claims', 'px-wc-requests' ),
-			'button_label'   => __( 'File a claim', 'px-wc-requests' ),
+			'button_label'   => __( 'Submit a claim', 'px-wc-requests' ),
+			'submit_label'   => __( 'Submit claim', 'px-wc-requests' ),
+			// § 622 (3) OZ: the confirmation states the remedy deadline, max. 30 days.
+			'resolution_days' => 30,
 			'item_mode'      => 'single',
 			'statuses'       => self::default_statuses(),
 			'default_status' => 'pxer_received',

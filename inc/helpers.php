@@ -236,8 +236,61 @@ function pxer_render_email_custom_content( string $content, bool $plain_text = f
 }
 
 /**
+ * Statement of the defect remedy deadline for a request (§ 622 (3) OZ), e.g.
+ * "We will remedy the defect within 30 days … i.e. by 30. 10. 2026." Read from
+ * the values frozen on the request at submission (`_pxer_resolution_days`,
+ * `_pxer_resolution_due`); empty for types without a deadline, legacy requests
+ * and closed (resolved/rejected) requests.
+ */
+function pxer_get_resolution_notice( \Pixeler\Requests\Request $request ): string {
+	$days = (int) $request->get_meta( '_pxer_resolution_days' );
+	$due  = (string) $request->get_meta( '_pxer_resolution_due' );
+	if ( $days <= 0 || '' === $due ) {
+		return '';
+	}
+	if ( in_array( $request->get_status(), \Pixeler\Requests\Eligibility::closed_statuses(), true ) ) {
+		return '';
+	}
+
+	$date = \DateTimeImmutable::createFromFormat( '!Y-m-d', $due, wp_timezone() );
+	if ( ! $date ) {
+		return '';
+	}
+
+	$text = sprintf(
+		/* translators: 1: number of days, 2: date */
+		_n( 'We will remedy the defect within %1$d day of the defect being reported at the latest, i.e. by %2$s.', 'We will remedy the defect within %1$d days of the defect being reported at the latest, i.e. by %2$s.', $days, 'px-wc-requests' ),
+		$days,
+		wp_date( get_option( 'date_format' ), $date->getTimestamp() )
+	);
+
+	/**
+	 * Filter the remedy deadline statement shown in the request summary.
+	 *
+	 * @param string                    $text
+	 * @param \Pixeler\Requests\Request $request
+	 */
+	return (string) apply_filters( 'pxer_resolution_notice', $text, $request );
+}
+
+/**
+ * Render the legal/info notice of a type (with {url} resolved). Shared by the
+ * order-search step and the request form, so the customer sees it first.
+ */
+function pxer_render_legal_notice( string $type ): void {
+	$notice = \Pixeler\Requests\Settings::get_legal_notice( $type );
+	if ( '' === trim( $notice ) ) {
+		return;
+	}
+
+	echo '<div class="pxer-legal-notice">' . wp_kses_post( wpautop( $notice ) ) . '</div>';
+}
+
+/**
  * Render the read-only summary of a request (used in emails and history).
  * Schema-driven: prints the items table plus every field flagged for `email`.
+ * Ends with the remedy deadline statement for claims (pxer_get_resolution_notice),
+ * so it also reaches e-mail templates overridden in a theme.
  */
 function pxer_render_request_summary( \Pixeler\Requests\Request $request ): void {
 	$data         = $request->get_data();
@@ -324,6 +377,10 @@ function pxer_render_request_summary( \Pixeler\Requests\Request $request ): void
 			<?php endforeach; ?>
 			</tbody>
 		</table>
+	<?php endif; ?>
+	<?php $pxer_resolution = pxer_get_resolution_notice( $request ); ?>
+	<?php if ( '' !== $pxer_resolution ) : ?>
+		<p class="pxer-resolution-notice" style="margin-top:20px"><strong><?php echo esc_html( $pxer_resolution ); ?></strong></p>
 	<?php endif; ?>
 	<?php
 }

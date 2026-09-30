@@ -100,6 +100,9 @@ msgstr ""
 msgid "Comma-separated emails. Defaults to %s."
 msgstr ""
 
+msgid "Confirm withdrawal from contract"
+msgstr ""
+
 msgid "Confirmation: %s"
 msgstr ""
 
@@ -148,7 +151,13 @@ msgstr ""
 msgid "Date created:"
 msgstr ""
 
+msgid "Deadline for remedying the defect, counted from the day the request is submitted. It is stated in the confirmation e-mail to the customer. Maximum %d days."
+msgstr ""
+
 msgid "Deadline:"
+msgstr ""
+
+msgid "Defect remedy deadline stated to the customer: %s."
 msgstr ""
 
 msgid "Delete"
@@ -206,9 +215,6 @@ msgid "Exclude from: %s"
 msgstr ""
 
 msgid "Extra text added to the customer e-mails — typically the address the goods should be returned to, or instructions for the next step. Leave empty to add nothing. Placeholders: %s"
-msgstr ""
-
-msgid "File a claim"
 msgstr ""
 
 msgid "File not found."
@@ -290,6 +296,9 @@ msgid "Items"
 msgstr ""
 
 msgid "Last name"
+msgstr ""
+
+msgid "Leave empty to use the default shown in the field."
 msgstr ""
 
 msgid "Leave empty to use the global period."
@@ -418,6 +427,9 @@ msgstr ""
 msgid "Pixeler Woo Requests requires the WooCommerce plugin to be active."
 msgstr ""
 
+msgid "Placeholder %s is replaced by the address of the form page; a paragraph containing it is left out while no form page is assigned."
+msgstr ""
+
 msgid "Please enter a valid IBAN."
 msgstr ""
 
@@ -538,6 +550,9 @@ msgstr ""
 msgid "Requests list navigation"
 msgstr ""
 
+msgid "Resolution deadline: %s (in days)"
+msgstr ""
+
 msgid "Resolved"
 msgstr ""
 
@@ -577,7 +592,7 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-msgid "Shown in My Account orders and e-mail links."
+msgid "Shown in My Account orders and as the form link text in e-mails. Leave empty to use the default shown in the field."
 msgstr ""
 
 msgid "Start counting from order status: %s"
@@ -607,7 +622,13 @@ msgstr ""
 msgid "Submissions faster than this are treated as bots."
 msgstr ""
 
+msgid "Submit a claim"
+msgstr ""
+
 msgid "Submit button: %s"
+msgstr ""
+
+msgid "Submit claim"
 msgstr ""
 
 msgid "Submit request"
@@ -721,7 +742,7 @@ msgstr ""
 msgid "When a request reaches the selected status, a refund for the requested items is recorded on the order (amounts after discounts, tax, reports, order status). Money is never sent to the payment gateway — transfer it manually, e.g. to the IBAN from the request."
 msgstr ""
 
-msgid "Withdraw from contract"
+msgid "Withdraw from contract here"
 msgstr ""
 
 msgid "Withdrawal from contract"
@@ -737,6 +758,9 @@ msgid "You are not allowed to do this."
 msgstr ""
 
 msgid "You are not allowed to view this file."
+msgstr ""
+
+msgid "You can also exercise your right to withdraw from the contract online at {url}. If you use this option, we will provide you without undue delay with a confirmation of receipt of the withdrawal, including its content and the date and time of its submission, on a durable medium (for example by e-mail)."
 msgstr ""
 
 msgid "You have already submitted an identical request recently."
@@ -811,6 +835,11 @@ msgstr[1] ""
 
 msgid "%s request restored from the Trash."
 msgid_plural "%s requests restored from the Trash."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "We will remedy the defect within %1$d day of the defect being reported at the latest, i.e. by %2$s."
+msgid_plural "We will remedy the defect within %1$d days of the defect being reported at the latest, i.e. by %2$s."
 msgstr[0] ""
 msgstr[1] ""
 

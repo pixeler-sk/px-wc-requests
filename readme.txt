@@ -3,7 +3,7 @@ Contributors: pixeler
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 8.0
-Stable tag: 1.8.0
+Stable tag: 1.9.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -83,6 +83,26 @@ REST API v namespace `px-wc-requests/v1` (kontrola lehoty, odoslanie žiadosti,
 zoznam a detail) pre headless frontendy; hostia sa autorizujú kľúčom objednávky.
 
 == Changelog ==
+
+= 1.9.0 =
+Predvolené texty podľa § 20a zákona č. 108/2024 Z. z. (funkcia na odstúpenie
+od zmluvy) a § 622 ods. 3 Občianskeho zákonníka (potvrdenie o vytknutí vady).
+
+* Tlačidlo formulára má predvolený text podľa typu: **„Potvrdiť odstúpenie od
+  zmluvy"** (§ 20a ods. 4) a **„Odoslať reklamáciu"**. Nový kľúč typu
+  `submit_label`.
+* Odkaz na formulár v Mojom účte a v e-mailoch má predvolene text
+  **„Odstúpiť od zmluvy tu"** (§ 20a ods. 2) a **„Reklamovať tovar"**.
+* Predvolené poučenie pri odstúpení obsahuje vetu z prílohy č. 3 bod 3a
+  s adresou stránky formulára. Zástupný text `{url}` funguje aj vo vlastnom
+  poučení; bez priradenej stránky sa odsek vynechá. Poučenie sa zobrazuje už
+  pri vyhľadaní objednávky, nielen na formulári.
+* Reklamácia: nové nastavenie **Lehota vybavenia (dni)** (predvolene 30,
+  najviac 30). Potvrdenie zákazníkovi uvádza lehotu aj dátum odstránenia vady;
+  lehota sa uloží k žiadosti pri jej vytvorení.
+* Uložené texty, ktoré sa zhodujú s pôvodnými predvolenými textmi pluginu, sa
+  pri aktualizácii raz vymažú, aby sa uplatnili nové predvolené texty. Vlastné
+  texty zostávajú. Prázdne pole v nastaveniach = predvolený text.
 
 = 1.8.0 =
 História odoslaných e-mailov je pri žiadosti, nie v objednávke.

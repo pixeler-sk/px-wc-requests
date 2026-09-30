@@ -372,6 +372,26 @@ class RequestController {
 		$type_def = RequestTypes::get( $type );
 		$emails   = WC()->mailer()->get_emails();
 
+		// § 622 (3) OZ: the confirmation of a claim states the remedy deadline.
+		// Stored before the e-mails go out (they render it) and frozen on the
+		// request, so a later settings change does not rewrite past promises.
+		$resolution_days = Settings::get_resolution_days( $type );
+		if ( $resolution_days > 0 ) {
+			$created = get_post_datetime( $request_id ) ?: current_datetime();
+			$due     = $created->modify( '+' . $resolution_days . ' days' );
+			update_post_meta( $request_id, '_pxer_resolution_days', $resolution_days );
+			update_post_meta( $request_id, '_pxer_resolution_due', $due->format( 'Y-m-d' ) );
+			RequestNotes::add_note(
+				$request_id,
+				sprintf(
+					/* translators: %s: date */
+					__( 'Defect remedy deadline stated to the customer: %s.', 'px-wc-requests' ),
+					wp_date( get_option( 'date_format' ), $due->getTimestamp() )
+				),
+				false
+			);
+		}
+
 		if ( ! empty( $type_def['emails']['admin_new'] ) && isset( $emails['Pxer_Admin_Request_Email'] ) ) {
 			$emails['Pxer_Admin_Request_Email']->trigger( $request_id );
 		}

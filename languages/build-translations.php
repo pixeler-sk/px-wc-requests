@@ -287,6 +287,18 @@ $sk = array(
 	'E-mail "%1$s" to %2$s failed to send.' => 'E-mail „%1$s“ na %2$s sa nepodarilo odoslať.',
 	'You have the right to withdraw from this contract within 14 days without giving any reason. The withdrawal period starts on the day you take possession of the goods. You bear the direct cost of returning the goods. We will refund all payments within 14 days of being informed of your decision to withdraw.' => 'Máte právo odstúpiť od tejto zmluvy do 14 dní bez uvedenia dôvodu. Lehota na odstúpenie začína plynúť dňom prevzatia tovaru. Priame náklady na vrátenie tovaru znášate vy. Všetky platby vám vrátime do 14 dní odo dňa doručenia vášho rozhodnutia o odstúpení.',
 	'The statutory warranty applies for 24 months from receipt of the goods. Please describe the defect as precisely as possible and attach photos if available.' => 'Zákonná záruka platí 24 mesiacov od prevzatia tovaru. Závadu prosím opíšte čo najpresnejšie a priložte fotografie, ak ich máte.',
+	// 1.9.0 — § 20a z. 108/2024 Z. z. (labels, annex 3 point 3a) + § 622 (3) OZ
+	'Withdraw from contract here' => 'Odstúpiť od zmluvy tu',
+	'Confirm withdrawal from contract' => 'Potvrdiť odstúpenie od zmluvy',
+	'Submit a claim' => 'Reklamovať tovar',
+	'Submit claim' => 'Odoslať reklamáciu',
+	'You can also exercise your right to withdraw from the contract online at {url}. If you use this option, we will provide you without undue delay with a confirmation of receipt of the withdrawal, including its content and the date and time of its submission, on a durable medium (for example by e-mail).' => 'Právo na odstúpenie od zmluvy môžete uplatniť aj online na adrese {url}. Ak využijete túto možnosť, potvrdenie o doručení odstúpenia od zmluvy vrátane jeho obsahu, dátumu a času jeho odoslania Vám bezodkladne poskytneme na trvanlivom médiu (napríklad e-mailom).',
+	'Placeholder %s is replaced by the address of the form page; a paragraph containing it is left out while no form page is assigned.' => 'Zástupný text %s sa nahradí adresou stránky formulára; odsek, ktorý ho obsahuje, sa vynechá, kým stránka formulára nie je priradená.',
+	'Shown in My Account orders and as the form link text in e-mails. Leave empty to use the default shown in the field.' => 'Zobrazí sa pri objednávkach v Mojom účte a ako text odkazu na formulár v e-mailoch. Nechajte prázdne pre predvolený text zobrazený v poli.',
+	'Leave empty to use the default shown in the field.' => 'Nechajte prázdne pre predvolený text zobrazený v poli.',
+	'Resolution deadline: %s (in days)' => 'Lehota vybavenia: %s (v dňoch)',
+	'Deadline for remedying the defect, counted from the day the request is submitted. It is stated in the confirmation e-mail to the customer. Maximum %d days.' => 'Lehota na odstránenie vady počítaná odo dňa odoslania žiadosti. Uvádza sa v potvrdzovacom e-maile zákazníkovi. Najviac %d dní.',
+	'Defect remedy deadline stated to the customer: %s.' => 'Lehota na odstránenie vady oznámená zákazníkovi: %s.',
 	'Legal notice on forms' => 'Právne poučenie na formulároch',
 	'Informational text shown on each request form (e.g. statutory withdrawal information). Have it reviewed by a lawyer.' => 'Informačný text zobrazený na každom formulári žiadosti (napr. poučenie o odstúpení). Nechajte si ho skontrolovať právnikom.',
 	'Notice: %s' => 'Poučenie: %s',
@@ -377,6 +389,11 @@ $sk = array(
 
 // Slovak plural forms (3): n==1 / 2..4 / other
 $sk_plurals = array(
+	'We will remedy the defect within %1$d day of the defect being reported at the latest, i.e. by %2$s.' => array(
+		'Vadu odstránime najneskôr do %1$d dňa od vytknutia vady, t. j. do %2$s.',
+		'Vadu odstránime najneskôr do %1$d dní od vytknutia vady, t. j. do %2$s.',
+		'Vadu odstránime najneskôr do %1$d dní od vytknutia vady, t. j. do %2$s.',
+	),
 	'%s request processed.' => array(
 		'Spracovaná %s žiadosť.',
 		'Spracované %s žiadosti.',
@@ -616,6 +633,18 @@ $cs = array(
 	'E-mail "%1$s" to %2$s failed to send.' => 'E-mail „%1$s“ na %2$s se nepodařilo odeslat.',
 	'You have the right to withdraw from this contract within 14 days without giving any reason. The withdrawal period starts on the day you take possession of the goods. You bear the direct cost of returning the goods. We will refund all payments within 14 days of being informed of your decision to withdraw.' => 'Máte právo odstoupit od této smlouvy do 14 dnů bez udání důvodu. Lhůta pro odstoupení začíná běžet dnem převzetí zboží. Přímé náklady na vrácení zboží nesete vy. Všechny platby vám vrátíme do 14 dnů ode dne doručení vašeho rozhodnutí o odstoupení.',
 	'The statutory warranty applies for 24 months from receipt of the goods. Please describe the defect as precisely as possible and attach photos if available.' => 'Zákonná záruka platí 24 měsíců od převzetí zboží. Závadu prosím popište co nejpřesněji a přiložte fotografie, pokud je máte.',
+	// 1.9.0 — § 20a z. 108/2024 Z. z. (labels, annex 3 point 3a) + § 622 (3) OZ
+	'Withdraw from contract here' => 'Odstoupit od smlouvy zde',
+	'Confirm withdrawal from contract' => 'Potvrdit odstoupení od smlouvy',
+	'Submit a claim' => 'Reklamovat zboží',
+	'Submit claim' => 'Odeslat reklamaci',
+	'You can also exercise your right to withdraw from the contract online at {url}. If you use this option, we will provide you without undue delay with a confirmation of receipt of the withdrawal, including its content and the date and time of its submission, on a durable medium (for example by e-mail).' => 'Právo na odstoupení od smlouvy můžete uplatnit také online na adrese {url}. Pokud využijete tuto možnost, potvrzení o doručení odstoupení od smlouvy včetně jeho obsahu, data a času jeho odeslání Vám bez zbytečného odkladu poskytneme na trvalém nosiči dat (například e-mailem).',
+	'Placeholder %s is replaced by the address of the form page; a paragraph containing it is left out while no form page is assigned.' => 'Zástupný text %s se nahradí adresou stránky formuláře; odstavec, který ho obsahuje, se vynechá, dokud stránka formuláře není přiřazena.',
+	'Shown in My Account orders and as the form link text in e-mails. Leave empty to use the default shown in the field.' => 'Zobrazí se u objednávek v Mém účtu a jako text odkazu na formulář v e-mailech. Ponechte prázdné pro výchozí text zobrazený v poli.',
+	'Leave empty to use the default shown in the field.' => 'Ponechte prázdné pro výchozí text zobrazený v poli.',
+	'Resolution deadline: %s (in days)' => 'Lhůta vyřízení: %s (ve dnech)',
+	'Deadline for remedying the defect, counted from the day the request is submitted. It is stated in the confirmation e-mail to the customer. Maximum %d days.' => 'Lhůta pro odstranění vady počítaná ode dne odeslání žádosti. Uvádí se v potvrzovacím e-mailu zákazníkovi. Nejvýše %d dní.',
+	'Defect remedy deadline stated to the customer: %s.' => 'Lhůta pro odstranění vady sdělená zákazníkovi: %s.',
 	'Legal notice on forms' => 'Právní poučení na formulářích',
 	'Informational text shown on each request form (e.g. statutory withdrawal information). Have it reviewed by a lawyer.' => 'Informační text zobrazený na každém formuláři žádosti (např. poučení o odstoupení). Nechte si jej zkontrolovat právníkem.',
 	'Notice: %s' => 'Poučení: %s',
@@ -706,6 +735,11 @@ $cs = array(
 
 // Czech plural forms (3): n==1 / 2..4 / other
 $cs_plurals = array(
+	'We will remedy the defect within %1$d day of the defect being reported at the latest, i.e. by %2$s.' => array(
+		'Vadu odstraníme nejpozději do %1$d dne od vytknutí vady, tj. do %2$s.',
+		'Vadu odstraníme nejpozději do %1$d dnů od vytknutí vady, tj. do %2$s.',
+		'Vadu odstraníme nejpozději do %1$d dnů od vytknutí vady, tj. do %2$s.',
+	),
 	'%s request processed.' => array(
 		'Zpracována %s žádost.',
 		'Zpracovány %s žádosti.',

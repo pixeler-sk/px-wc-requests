@@ -236,10 +236,22 @@ volá AJAX aj REST (žiadna duplicita).
 - **Lehota na vrátenie peňazí**: typ má `refund_due_days` (withdrawal = 14). Pri
   vytvorení sa uloží `_pxer_refund_due` a pridá interná poznámka so zákonným
   termínom refundu.
+- **Lehota vybavenia reklamácie** (§ 622 ods. 3 OZ): typ má `resolution_days`
+  (claim = 30, 0 = vypnuté), nastavenie `pxer_{type}_resolution_days`
+  (`Settings::get_resolution_days`, clamp 1–30). Pri vytvorení (`after_success`,
+  **pred** odoslaním e-mailov) sa zmrazí `_pxer_resolution_days` +
+  `_pxer_resolution_due` a pridá interná poznámka. Vetu „Vadu odstránime
+  najneskôr do …" vracia `pxer_get_resolution_notice()` (filter
+  `pxer_resolution_notice`); vykresľuje ju koniec `pxer_render_request_summary()`
+  (prežije prepis e-mailovej šablóny v téme) + plain `customer-request.php`.
+  Pri uzavretých stavoch a starých žiadostiach bez meta sa nezobrazí.
 - **Právne poučenie na formulári**: typ má `legal_notice` (default text pre
-  withdrawal/claim), konfigurovateľné v nastaveniach (`pxer_{type}_legal_notice`,
-  `Settings::get_legal_notice`). Vykreslené na formulári + vrátené v REST
-  `/eligibility`.
+  withdrawal/claim; withdrawal obsahuje odsek podľa prílohy č. 3 bod 3a
+  z. 108/2024), konfigurovateľné v nastaveniach (`pxer_{type}_legal_notice`,
+  `Settings::get_legal_notice`). Zástupný text `{url}` → odkaz na stránku
+  formulára (`Settings::resolve_url_placeholder`); bez publikovanej stránky sa
+  odsek s `{url}` vynechá. Vykreslené cez `pxer_render_legal_notice()` na
+  kroku vyhľadania objednávky aj na formulári + vrátené v REST `/eligibility`.
 - **Výnimky z práva na odstúpenie**: per-produkt `_pxer_{type}_excluded` (už existuje).
 - ⚠️ Texty a logiku **musí odobriť právnik** — plugin dodáva nástroje, nie právnu istotu.
 
@@ -339,8 +351,13 @@ Proti N+1: mapa `order_id → žiadosti` sa buduje **jedným** dotazom na všetk
 - **Tlačidlá pri objednávkach** (Môj účet → Objednávky) per typ. Text je
   konfigurovateľný v nastaveniach (sekcia „Button texts": `pxer_{type}_button_label`
   akčné tlačidlo, `pxer_{type}_submit_label` odosielacie; gettery
-  `Settings::get_button_label/get_submit_label`). Default „Odstúpiť od zmluvy"
-  (withdrawal) / „Reklamovať" (claim).
+  `Settings::get_button_label/get_submit_label`). Defaulty z kľúčov typu
+  `button_label` / `submit_label` (§ 20a z. 108/2024): withdrawal „Odstúpiť od
+  zmluvy tu" / „Potvrdiť odstúpenie od zmluvy", claim „Reklamovať tovar" /
+  „Odoslať reklamáciu". Polia v nastaveniach majú `default => ''` (default je
+  placeholder), prázdna opcia = default typu. Jednorazová migrácia 1.9.0
+  (`Settings::migrate_legacy_defaults`, guard `pxer_defaults_version`) zmaže
+  opcie, ktoré ešte držia pôvodný default pluginu (EN/SK/CS).
   Akčný text sa použije aj v odkazoch v e-mailoch. Zobrazia sa **iba ak** má typ nastavenú
   stránku formulára **a** `Eligibility::gate()` prejde. Odkaz vedie na formulár s
   `?key={order_key}`. Filter: `pxer_my_account_action`.

@@ -101,6 +101,9 @@ msgstr "Reklamace"
 msgid "Comma-separated emails. Defaults to %s."
 msgstr "E-maily oddělené čárkou. Výchozí %s."
 
+msgid "Confirm withdrawal from contract"
+msgstr "Potvrdit odstoupení od smlouvy"
+
 msgid "Confirmation: %s"
 msgstr "Potvrzení: %s"
 
@@ -149,8 +152,14 @@ msgstr "Datum"
 msgid "Date created:"
 msgstr "Datum vytvoření:"
 
+msgid "Deadline for remedying the defect, counted from the day the request is submitted. It is stated in the confirmation e-mail to the customer. Maximum %d days."
+msgstr "Lhůta pro odstranění vady počítaná ode dne odeslání žádosti. Uvádí se v potvrzovacím e-mailu zákazníkovi. Nejvýše %d dní."
+
 msgid "Deadline:"
 msgstr "Termín:"
+
+msgid "Defect remedy deadline stated to the customer: %s."
+msgstr "Lhůta pro odstranění vady sdělená zákazníkovi: %s."
 
 msgid "Delete"
 msgstr "Smazat"
@@ -208,9 +217,6 @@ msgstr "Vyloučit z: %s"
 
 msgid "Extra text added to the customer e-mails — typically the address the goods should be returned to, or instructions for the next step. Leave empty to add nothing. Placeholders: %s"
 msgstr "Doplňkový text přidaný do zákaznických e-mailů — typicky adresa, kam má zákazník vrátit zboží, nebo pokyny k dalšímu kroku. Prázdné pole nepřidá nic. Zástupné znaky: %s"
-
-msgid "File a claim"
-msgstr "Reklamovat"
 
 msgid "File not found."
 msgstr "Soubor nenalezen."
@@ -292,6 +298,9 @@ msgstr "Položky"
 
 msgid "Last name"
 msgstr "Příjmení"
+
+msgid "Leave empty to use the default shown in the field."
+msgstr "Ponechte prázdné pro výchozí text zobrazený v poli."
 
 msgid "Leave empty to use the global period."
 msgstr "Ponechte prázdné pro použití globální lhůty."
@@ -419,6 +428,9 @@ msgstr "Fotografie"
 msgid "Pixeler Woo Requests requires the WooCommerce plugin to be active."
 msgstr "Pixeler Woo Requests vyžaduje aktivní plugin WooCommerce."
 
+msgid "Placeholder %s is replaced by the address of the form page; a paragraph containing it is left out while no form page is assigned."
+msgstr "Zástupný text %s se nahradí adresou stránky formuláře; odstavec, který ho obsahuje, se vynechá, dokud stránka formuláře není přiřazena."
+
 msgid "Please enter a valid IBAN."
 msgstr "Zadejte platný IBAN."
 
@@ -539,6 +551,9 @@ msgstr "Seznam žádostí"
 msgid "Requests list navigation"
 msgstr "Navigace v seznamu žádostí"
 
+msgid "Resolution deadline: %s (in days)"
+msgstr "Lhůta vyřízení: %s (ve dnech)"
+
 msgid "Resolved"
 msgstr "Vyřízená"
 
@@ -578,8 +593,8 @@ msgstr "Odešle se zákazníkovi při přidání poznámky určené pro něj."
 msgid "Settings"
 msgstr "Nastavení"
 
-msgid "Shown in My Account orders and e-mail links."
-msgstr "Zobrazeno v Mém účtu u objednávek a v odkazech v e-mailech."
+msgid "Shown in My Account orders and as the form link text in e-mails. Leave empty to use the default shown in the field."
+msgstr "Zobrazí se u objednávek v Mém účtu a jako text odkazu na formulář v e-mailech. Ponechte prázdné pro výchozí text zobrazený v poli."
 
 msgid "Start counting from order status: %s"
 msgstr "Začít počítat od stavu objednávky: %s"
@@ -608,8 +623,14 @@ msgstr "Předmět"
 msgid "Submissions faster than this are treated as bots."
 msgstr "Rychlejší odeslání se považují za boty."
 
+msgid "Submit a claim"
+msgstr "Reklamovat zboží"
+
 msgid "Submit button: %s"
 msgstr "Odesílací tlačítko: %s"
+
+msgid "Submit claim"
+msgstr "Odeslat reklamaci"
 
 msgid "Submit request"
 msgstr "Odeslat žádost"
@@ -722,8 +743,8 @@ msgstr "Přijali jsme vaši žádost {request_type} č. {request_number}"
 msgid "When a request reaches the selected status, a refund for the requested items is recorded on the order (amounts after discounts, tax, reports, order status). Money is never sent to the payment gateway — transfer it manually, e.g. to the IBAN from the request."
 msgstr "Když žádost dosáhne zvoleného stavu, na objednávce se zaeviduje refundace požadovaných položek (částky po slevách, DPH, reporty, stav objednávky). Peníze se nikdy neposílají přes platební bránu — pošlete je ručně, např. na IBAN ze žádosti."
 
-msgid "Withdraw from contract"
-msgstr "Odstoupit od smlouvy"
+msgid "Withdraw from contract here"
+msgstr "Odstoupit od smlouvy zde"
 
 msgid "Withdrawal from contract"
 msgstr "Odstoupení od smlouvy"
@@ -739,6 +760,9 @@ msgstr "K této akci nemáte oprávnění."
 
 msgid "You are not allowed to view this file."
 msgstr "Nemáte oprávnění zobrazit tento soubor."
+
+msgid "You can also exercise your right to withdraw from the contract online at {url}. If you use this option, we will provide you without undue delay with a confirmation of receipt of the withdrawal, including its content and the date and time of its submission, on a durable medium (for example by e-mail)."
+msgstr "Právo na odstoupení od smlouvy můžete uplatnit také online na adrese {url}. Pokud využijete tuto možnost, potvrzení o doručení odstoupení od smlouvy včetně jeho obsahu, data a času jeho odeslání Vám bez zbytečného odkladu poskytneme na trvalém nosiči dat (například e-mailem)."
 
 msgid "You have already submitted an identical request recently."
 msgstr "Identickou žádost jste nedávno již odeslali."
@@ -820,4 +844,10 @@ msgid_plural "%s requests restored from the Trash."
 msgstr[0] "%s žádost obnovena z koše."
 msgstr[1] "%s žádosti obnoveny z koše."
 msgstr[2] "%s žádostí obnoveno z koše."
+
+msgid "We will remedy the defect within %1$d day of the defect being reported at the latest, i.e. by %2$s."
+msgid_plural "We will remedy the defect within %1$d days of the defect being reported at the latest, i.e. by %2$s."
+msgstr[0] "Vadu odstraníme nejpozději do %1$d dne od vytknutí vady, tj. do %2$s."
+msgstr[1] "Vadu odstraníme nejpozději do %1$d dnů od vytknutí vady, tj. do %2$s."
+msgstr[2] "Vadu odstraníme nejpozději do %1$d dnů od vytknutí vady, tj. do %2$s."
 

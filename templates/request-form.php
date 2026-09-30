@@ -37,10 +37,7 @@ use Pixeler\Requests\FieldSchema;
 		<?php endif; ?>
 	</p>
 
-	<?php $pxer_notice = \Pixeler\Requests\Settings::get_legal_notice( $type ); ?>
-	<?php if ( $pxer_notice ) : ?>
-		<div class="pxer-legal-notice"><?php echo wp_kses_post( wpautop( $pxer_notice ) ); ?></div>
-	<?php endif; ?>
+	<?php pxer_render_legal_notice( $type ); ?>
 
 	<form class="ajax-form pxer-form" method="post" enctype="multipart/form-data"
 	      action="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>?action=pxer_submit_request">
