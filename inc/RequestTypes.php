@@ -240,9 +240,10 @@ class RequestTypes {
 			'menu_label'     => __( 'Withdrawals', 'px-wc-requests' ),
 			// § 20a (2) z. 108/2024 Z. z.: the function must be labelled "withdraw from contract here".
 			'button_label'    => __( 'Withdraw from contract here', 'px-wc-requests' ),
-			// My Account uses the same statutory wording as e-mails and the footer
-			// (§ 20a (2)) - empty falls back to button_label.
-			'account_label'   => '',
+			// Orders list in My Account: the button sits next to the order it acts on,
+			// "here" adds nothing there (still an unambiguous wording under ods. 2).
+			// E-mails and the footer keep the statutory "... here".
+			'account_label'   => __( 'Withdraw from contract', 'px-wc-requests' ),
 			// § 20a (4): the submit button must read "confirm withdrawal from contract".
 			'submit_label'    => __( 'Confirm withdrawal from contract', 'px-wc-requests' ),
 			'item_mode'       => 'multiple',

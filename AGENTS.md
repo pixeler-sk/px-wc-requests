@@ -323,9 +323,10 @@ Proti N+1: mapa `order_id → žiadosti` sa buduje **jedným** dotazom na všetk
   akčné tlačidlo, `pxer_{type}_submit_label` odosielacie; gettery
   `Settings::get_button_label/get_submit_label`). Default „Odstúpiť od zmluvy tu"
   (withdrawal, zákonné znenie § 20a ods. 2) / „Reklamovať" (claim).
-  Akčný text sa použije aj v odkazoch v e-mailoch. Kľúč typu `account_label`
-  môže dať Mojmu účtu iný text; withdrawal ho nechá prázdny (rovnaké zákonné
-  znenie všade). Zobrazia sa **iba ak** má typ nastavenú
+  Akčný text sa použije aj v odkazoch v e-mailoch. V Mojom účte sa bez
+  uloženej hodnoty použije kratší `account_label` typu (withdrawal:
+  „Odstúpiť od zmluvy" — tlačidlo stojí pri objednávke, rozhodnutie
+  2026-10-03). Zobrazia sa **iba ak** má typ nastavenú
   stránku formulára **a** `Eligibility::gate()` prejde. Odkaz vedie na formulár s
   `?key={order_key}`. Filter: `pxer_my_account_action`.
 - **Záložka „Moje žiadosti"** – WC account endpoint. Slug je konfigurovateľný

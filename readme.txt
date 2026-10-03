@@ -99,9 +99,9 @@ Zrušená, neúspešná alebo plne refundovaná objednávka neponúka odstúpeni
 ani reklamáciu (Môj účet, odkazy v e-mailoch, formulár, REST); filtre
 `pxer_closed_order_statuses`, `pxer_is_closed_order`.
 
-Tlačidlo pri objednávkach v Mojom účte aj odkazy v e-mailoch: zákonné
-„Odstúpiť od zmluvy tu" (§ 20a ods. 2); kľúč typu `account_label` umožní
-iný text len pre Môj účet. Text uložený v nastaveniach platí všade.
+Tlačidlo pri objednávkach v Mojom účte: „Odstúpiť od zmluvy" (kľúč typu
+`account_label`); odkazy v e-mailoch a pätka ostávajú zákonné „Odstúpiť od
+zmluvy tu" (§ 20a ods. 2). Text uložený v nastaveniach platí všade.
 
 Prístupnosť formulárov: vlastná inline validácia v slovenčine namiesto
 bublín prehliadača (`novalidate`, serverová validácia ostáva) — chyba pri
