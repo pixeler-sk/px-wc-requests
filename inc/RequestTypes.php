@@ -157,7 +157,8 @@ class RequestTypes {
 			'label'          => ucfirst( $id ),
 			'label_plural'   => ucfirst( $id ),
 			'menu_label'     => ucfirst( $id ),
-			'button_label'   => '', // My Account orders action button + e-mail links; falls back to label
+			'button_label'   => '', // e-mail links + My Account fallback; falls back to label
+			'account_label'   => '', // short My Account orders button; falls back to button_label
 			'submit_label'   => '', // form submit button; falls back to a generic "Submit request"
 			'statuses'       => array(),
 			'default_status' => '',
@@ -239,6 +240,9 @@ class RequestTypes {
 			'menu_label'     => __( 'Withdrawals', 'px-wc-requests' ),
 			// § 20a (2) z. 108/2024 Z. z.: the function must be labelled "withdraw from contract here".
 			'button_label'    => __( 'Withdraw from contract here', 'px-wc-requests' ),
+			// My Account uses the same statutory wording as e-mails and the footer
+			// (§ 20a (2)) - empty falls back to button_label.
+			'account_label'   => '',
 			// § 20a (4): the submit button must read "confirm withdrawal from contract".
 			'submit_label'    => __( 'Confirm withdrawal from contract', 'px-wc-requests' ),
 			'item_mode'       => 'multiple',

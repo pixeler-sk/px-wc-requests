@@ -39,7 +39,7 @@ use Pixeler\Requests\FieldSchema;
 
 	<?php pxer_render_legal_notice( $type ); ?>
 
-	<form class="ajax-form pxer-form" method="post" enctype="multipart/form-data"
+	<form class="ajax-form pxer-form" method="post" enctype="multipart/form-data" novalidate
 	      action="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>?action=pxer_submit_request">
 
 		<?php wp_nonce_field( 'pxer_submit_request', '_wpnonce' ); ?>
@@ -82,7 +82,7 @@ use Pixeler\Requests\FieldSchema;
 			?>
 		</div>
 
-		<div class="ajax-response"></div>
+		<div class="ajax-response" role="alert" tabindex="-1"></div>
 
 		<button type="submit" class="button pxer-submit"><?php echo esc_html( \Pixeler\Requests\Settings::get_submit_label( $type ) ); ?></button>
 	</form>

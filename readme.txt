@@ -84,6 +84,37 @@ zoznam a detail) pre headless frontendy; hostia sa autorizujú kľúčom objedn�
 
 == Changelog ==
 
+= Nevydané =
+Filter `pxer_submit_check` (ďalšia kontrola odoslania z formulára, napr.
+Turnstile / reCAPTCHA z px-shop-core) a jQuery udalosť `pxer:failed` po
+neúspešnom AJAX odoslaní.
+
+Príliš rýchle odoslanie formulára (časová pasca `pxer_min_fill_seconds`)
+už neukáže falošné „úspešne odoslaná", ale viditeľnú chybu s výzvou skúsiť
+to znova; formulár otvorený viac ako 3 hodiny tiež. Prihlásený zákazník pri
+vlastnej objednávke časovú kontrolu nemá. Ticho sa zahodí už len vyplnený
+honeypot alebo podvrhnutý časový token.
+
+Zrušená, neúspešná alebo plne refundovaná objednávka neponúka odstúpenie
+ani reklamáciu (Môj účet, odkazy v e-mailoch, formulár, REST); filtre
+`pxer_closed_order_statuses`, `pxer_is_closed_order`.
+
+Tlačidlo pri objednávkach v Mojom účte aj odkazy v e-mailoch: zákonné
+„Odstúpiť od zmluvy tu" (§ 20a ods. 2); kľúč typu `account_label` umožní
+iný text len pre Môj účet. Text uložený v nastaveniach platí všade.
+
+Prístupnosť formulárov: vlastná inline validácia v slovenčine namiesto
+bublín prehliadača (`novalidate`, serverová validácia ostáva) — chyba pri
+poli s `aria-invalid` a `aria-describedby`, súhrn s odkazmi na polia
+v živej oblasti `role="alert"`, fokus na prvé chybné pole; chyba zo servera
+sa priradí k poľu. Polia majú `autocomplete` (meno, e-mail, telefón,
+adresa, PSČ, mesto, majiteľ účtu), IBAN bez automatického dopĺňania
+a opráv, číslo objednávky `inputmode="numeric"`. Množstvo pri položke
+a dôvod majú prístupný názov s názvom produktu, skupina položiek
+`role="group"`, pomocný text poľa (napr. pri IBAN) sa zobrazuje
+a je naviazaný cez `aria-describedby`. Typ poľa `textarea` sa vykreslí
+ako textarea.
+
 = 1.9.0 =
 Predvolené texty podľa § 20a zákona č. 108/2024 Z. z. (funkcia na odstúpenie
 od zmluvy) a § 622 ods. 3 Občianskeho zákonníka (potvrdenie o vytknutí vady).

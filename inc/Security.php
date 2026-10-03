@@ -31,34 +31,71 @@ class Security {
 	}
 
 	// =====================================================================
-	// Bot checks (silent rejection)
+	// Bot checks
 	// =====================================================================
 
 	/**
-	 * Returns true when the submission looks like a bot (honeypot filled or the
-	 * form was submitted impossibly fast / with a tampered time token).
+	 * Returns true when the submission is certainly a bot: the honeypot is
+	 * filled, or the time token is missing / tampered with. A person cannot
+	 * get here, so the caller drops it silently.
+	 *
+	 * Timing (too fast, stale form) is NOT part of this check - a real
+	 * customer can hit it (autofill, a form pre-filled from the order, a tab
+	 * left open), so it gets a visible error, see check_fill_time().
 	 */
 	public static function is_bot( array $post ): bool {
 		if ( ! empty( $post[ self::HONEYPOT ] ) ) {
 			return true;
 		}
 
+		return null === self::token_time( $post );
+	}
+
+	/**
+	 * Time-trap: the form must be open at least `pxer_min_fill_seconds` and
+	 * at most 3 hours. Skipped for a logged-in owner of the order - the form
+	 * is pre-filled from the order there and the nonce is bound to the user.
+	 *
+	 * @return true|\WP_Error Visible error, never a fake success: a dropped
+	 *                        withdrawal would be a statutory function that
+	 *                        silently failed (§ 20a z. 108/2024 Z. z.).
+	 */
+	public static function check_fill_time( array $post, ?\WC_Order $order = null ) {
+		if ( $order && is_user_logged_in() && (int) $order->get_customer_id() === get_current_user_id() ) {
+			return true;
+		}
+
+		$ts = self::token_time( $post );
+		if ( null === $ts ) {
+			return true; // Handled by is_bot().
+		}
+
+		$elapsed = time() - $ts;
+		$min     = max( 0, (int) get_option( 'pxer_min_fill_seconds', 4 ) );
+
+		if ( $elapsed < $min ) {
+			return new \WP_Error( 'too_fast', __( 'The form was submitted too quickly. Please try again in a moment.', 'px-wc-requests' ) );
+		}
+		if ( $elapsed > 3 * HOUR_IN_SECONDS ) {
+			return new \WP_Error( 'form_expired', __( 'The form has expired. Please reload the page and submit it again.', 'px-wc-requests' ) );
+		}
+
+		return true;
+	}
+
+	/**
+	 * Timestamp of a valid (HMAC-signed) time token, null when missing or forged.
+	 */
+	private static function token_time( array $post ): ?int {
 		$token = isset( $post[ self::TIMETRAP ] ) ? (string) wp_unslash( $post[ self::TIMETRAP ] ) : '';
 		if ( ! str_contains( $token, '.' ) ) {
-			return true;
+			return null;
 		}
 
 		list( $ts, $hmac ) = explode( '.', $token, 2 );
 		$expected          = hash_hmac( 'sha256', $ts, wp_salt( 'auth' ) );
-		if ( ! hash_equals( $expected, $hmac ) ) {
-			return true;
-		}
 
-		$elapsed = time() - (int) $ts;
-		$min     = max( 0, (int) get_option( 'pxer_min_fill_seconds', 4 ) );
-
-		// Too fast, or a stale token (> 3 hours old).
-		return $elapsed < $min || $elapsed > 3 * HOUR_IN_SECONDS;
+		return hash_equals( $expected, $hmac ) ? (int) $ts : null;
 	}
 
 	// =====================================================================

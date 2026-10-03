@@ -367,7 +367,7 @@ class Settings {
 			$settings[] = array(
 				/* translators: %s: type label */
 				'title'       => sprintf( __( 'Action button: %s', 'px-wc-requests' ), $type['label'] ),
-				'desc'        => __( 'Shown in My Account orders and as the form link text in e-mails. Leave empty to use the default shown in the field.', 'px-wc-requests' ),
+				'desc'        => __( 'Form link text in e-mails and the My Account orders button. Leave empty to use the default shown in the field (My Account then uses a shorter text, e.g. without "here").', 'px-wc-requests' ),
 				'desc_tip'    => true,
 				'id'          => 'pxer_' . $id . '_button_label',
 				'type'        => 'text',
@@ -403,7 +403,7 @@ class Settings {
 		);
 		$settings[] = array(
 			'title'             => __( 'Minimum form fill time (seconds)', 'px-wc-requests' ),
-			'desc'              => __( 'Submissions faster than this are treated as bots.', 'px-wc-requests' ),
+			'desc'              => __( 'A faster submission gets an error asking the customer to try again. Not applied to a logged-in customer submitting their own order.', 'px-wc-requests' ),
 			'id'                => 'pxer_min_fill_seconds',
 			'type'              => 'number',
 			'default'           => 4,
@@ -605,6 +605,21 @@ class Settings {
 		$value = trim( (string) get_option( 'pxer_' . $type . '_button_label', '' ) );
 
 		return '' !== $value ? $value : self::default_button_label( $type );
+	}
+
+	/**
+	 * Label of the My Account orders button. A saved admin value of the
+	 * action button wins (one text everywhere); otherwise the short
+	 * `account_label` of the type, else the action button default.
+	 */
+	public static function get_account_label( string $type ): string {
+		$value = trim( (string) get_option( 'pxer_' . $type . '_button_label', '' ) );
+		if ( '' !== $value ) {
+			return $value;
+		}
+		$def = RequestTypes::get( $type );
+
+		return $def && '' !== (string) $def['account_label'] ? (string) $def['account_label'] : self::default_button_label( $type );
 	}
 
 	/**

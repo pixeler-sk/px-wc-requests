@@ -93,3 +93,9 @@ konfigurovateľné a rozšíriteľné cez filtre.
 - Filtre pre vlastné typy, stavy, polia a lehoty (`pxer_request_types`,
   `pxer_request_statuses`, `pxer_request_period_end`, …) — site-specific
   úpravy bez zásahu do jadra (vzor: glue v plugine spimsi-eshop).
+- Ochrana formulára: okrem vlastného honeypotu, časovej pasce a limitov
+  filter `pxer_submit_check` (`true|WP_Error`, `$params`, `$type`) — beží len
+  pri odoslaní z formulára, nie cez REST. Po chybe AJAXu sa na `document`
+  spustí jQuery udalosť `pxer:failed` (`[form]`). Používa ich modul
+  `antispam` z px-shop-core (Turnstile / reCAPTCHA, widget cez
+  `pxer_request_form_after_fields`).

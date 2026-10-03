@@ -13,6 +13,9 @@ msgstr ""
 msgid "(%d still available — the rest is already part of another request)"
 msgstr ""
 
+msgid "A faster submission gets an error asking the customer to try again. Not applied to a logged-in customer submitting their own order."
+msgstr ""
+
 msgid "A note has been added to your request %1$s no. %2$d:"
 msgstr ""
 
@@ -211,6 +214,15 @@ msgstr ""
 msgid "Endpoint for the customer requests page."
 msgstr ""
 
+msgid "Enter a number from %1$d to %2$d."
+msgstr ""
+
+msgid "Enter a valid e-mail address, e.g. name@example.com."
+msgstr ""
+
+msgid "Enter a whole number."
+msgstr ""
+
 msgid "Exclude from: %s"
 msgstr ""
 
@@ -224,6 +236,9 @@ msgid "Filter requests list"
 msgstr ""
 
 msgid "First name"
+msgstr ""
+
+msgid "Form link text in e-mails and the My Account orders button. Leave empty to use the default shown in the field (My Account then uses a shorter text, e.g. without \"here\")."
 msgstr ""
 
 msgid "Form links in e-mails"
@@ -367,6 +382,9 @@ msgstr ""
 msgid "Notice: %s"
 msgstr ""
 
+msgid "Number of units: %s"
+msgstr ""
+
 msgid "One of the selected items is not eligible for this request."
 msgstr ""
 
@@ -430,6 +448,15 @@ msgstr ""
 msgid "Placeholder %s is replaced by the address of the form page; a paragraph containing it is left out while no form page is assigned."
 msgstr ""
 
+msgid "Please check this box to continue."
+msgstr ""
+
+msgid "Please choose one of the options."
+msgstr ""
+
+msgid "Please correct the highlighted fields (%d):"
+msgstr ""
+
 msgid "Please enter a valid IBAN."
 msgstr ""
 
@@ -437,6 +464,9 @@ msgid "Please fill in the description for each selected item."
 msgstr ""
 
 msgid "Please fill in the field: %s"
+msgstr ""
+
+msgid "Please fill in this field."
 msgstr ""
 
 msgid "Postcode"
@@ -592,9 +622,6 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-msgid "Shown in My Account orders and as the form link text in e-mails. Leave empty to use the default shown in the field."
-msgstr ""
-
 msgid "Start counting from order status: %s"
 msgstr ""
 
@@ -619,9 +646,6 @@ msgstr ""
 msgid "Subject"
 msgstr ""
 
-msgid "Submissions faster than this are treated as bots."
-msgstr ""
-
 msgid "Submit a claim"
 msgstr ""
 
@@ -644,6 +668,15 @@ msgid "The deadline for this request has already passed (it ended on %s)."
 msgstr ""
 
 msgid "The file must not be larger than %d MB."
+msgstr ""
+
+msgid "The form could not be sent. Check your connection and try again."
+msgstr ""
+
+msgid "The form has expired. Please reload the page and submit it again."
+msgstr ""
+
+msgid "The form was submitted too quickly. Please try again in a moment."
 msgstr ""
 
 msgid "The linked order no longer exists."
@@ -683,6 +716,9 @@ msgid "This is a sample preview of the email."
 msgstr ""
 
 msgid "This is non-destructive and can be run repeatedly — already imported requests are skipped. Customers are NOT e-mailed."
+msgstr ""
+
+msgid "This order has been cancelled or fully refunded, so no request can be submitted for it."
 msgstr ""
 
 msgid "This product cannot be selected in this request type."
@@ -740,6 +776,9 @@ msgid "We have received your request {request_type} no. {request_number}"
 msgstr ""
 
 msgid "When a request reaches the selected status, a refund for the requested items is recorded on the order (amounts after discounts, tax, reports, order status). Money is never sent to the payment gateway — transfer it manually, e.g. to the IBAN from the request."
+msgstr ""
+
+msgid "Withdraw from contract"
 msgstr ""
 
 msgid "Withdraw from contract here"

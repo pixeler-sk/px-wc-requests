@@ -73,8 +73,10 @@ class RequestController {
 	 * @param string $type       Request type id.
 	 * @param bool   $check_bot  Run honeypot/time-trap (UI flows only).
 	 *
-	 * @return int|\WP_Error  Request id, or WP_Error. Code `silent_bot` means
-	 *                        the caller should pretend success and drop it.
+	 * @return int|\WP_Error  Request id, or WP_Error. Code `silent_bot` (only a
+	 *                        filled honeypot or a forged time token) means the
+	 *                        caller should pretend success and drop it; every
+	 *                        other error is shown to the customer.
 	 */
 	public function submit( array $params, string $type, bool $check_bot = true ) {
 		if ( ! RequestTypes::exists( $type ) ) {
@@ -83,6 +85,28 @@ class RequestController {
 
 		if ( $check_bot && Security::is_bot( $params ) ) {
 			return new \WP_Error( 'silent_bot', 'silent' );
+		}
+
+		if ( $check_bot ) {
+			// Before the captcha check, so a too fast retry does not burn its token.
+			$timing = Security::check_fill_time( $params, wc_get_order( isset( $params['order_id'] ) ? absint( $params['order_id'] ) : 0 ) ?: null );
+			if ( is_wp_error( $timing ) ) {
+				return $timing;
+			}
+
+			/**
+			 * Extra check of a submission from the form (not REST) - e.g. the
+			 * Turnstile / reCAPTCHA answer of the px-shop-core antispam module,
+			 * whose widget hooks `pxer_request_form_after_fields`.
+			 *
+			 * @param true|\WP_Error $ok     True to go on, WP_Error to refuse.
+			 * @param array          $params Submitted fields (slashed).
+			 * @param string         $type   Request type id.
+			 */
+			$ok = apply_filters( 'pxer_submit_check', true, $params, $type );
+			if ( is_wp_error( $ok ) ) {
+				return $ok;
+			}
 		}
 
 		$data       = $this->sanitize( $params, $type );
@@ -130,8 +154,30 @@ class RequestController {
 	private function fail( string $code, string $message ): void {
 		wp_send_json_error( array(
 			'error_code' => $code,
+			// Field the error belongs to (the form marks it and moves focus there).
+			'field'      => self::error_field( $code ),
+			'text'       => wp_strip_all_tags( $message ),
 			'message'    => wc_print_notice( $message, 'error', array(), true ),
 		) );
+	}
+
+	/**
+	 * Map an error code to the form field it belongs to ('' = form-level error).
+	 * Validation errors use the field key as the code; `items` is the item group.
+	 */
+	private static function error_field( string $code ): string {
+		if ( '' === $code ) {
+			return '';
+		}
+		foreach ( RequestTypes::all() as $type ) {
+			foreach ( $type['fields'] as $field ) {
+				if ( $field['key'] === $code ) {
+					return $code;
+				}
+			}
+		}
+
+		return '';
 	}
 
 	// =====================================================================

@@ -385,6 +385,21 @@ $sk = array(
 	'Row #%1$s: %2$s' => 'Riadok #%1$s: %2$s',
 	'Missing source id.' => 'Chýba zdrojové id.',
 	'Imported from WPify (submitted %s).' => 'Importované z WPify (podané %s).',
+	// Unreleased: visible time-trap error, closed orders, inline validation
+	'The form was submitted too quickly. Please try again in a moment.' => 'Formulár ste odoslali príliš rýchlo. Skúste ho, prosím, odoslať znova o chvíľu.',
+	'The form has expired. Please reload the page and submit it again.' => 'Platnosť formulára vypršala. Obnovte, prosím, stránku a odošlite ho znova.',
+	'This order has been cancelled or fully refunded, so no request can be submitted for it.' => 'Táto objednávka bola zrušená alebo plne refundovaná, preto k nej nie je možné podať žiadosť.',
+	'Form link text in e-mails and the My Account orders button. Leave empty to use the default shown in the field (My Account then uses a shorter text, e.g. without "here").' => 'Text odkazu na formulár v e-mailoch a tlačidla pri objednávkach v Mojom účte. Nechajte prázdne pre predvolený text zobrazený v poli (Môj účet potom použije kratší text, napr. bez „tu“).',
+	'A faster submission gets an error asking the customer to try again. Not applied to a logged-in customer submitting their own order.' => 'Rýchlejšie odoslanie dostane chybovú hlášku s výzvou skúsiť to znova. Neplatí pre prihláseného zákazníka pri jeho vlastnej objednávke.',
+	'Number of units: %s' => 'Počet kusov: %s',
+	'Please fill in this field.' => 'Vyplňte, prosím, toto pole.',
+	'Please check this box to continue.' => 'Pre pokračovanie označte toto políčko.',
+	'Please choose one of the options.' => 'Vyberte, prosím, jednu z možností.',
+	'Enter a valid e-mail address, e.g. name@example.com.' => 'Zadajte platnú e-mailovú adresu, napr. meno@example.com.',
+	'Enter a number from %1$d to %2$d.' => 'Zadajte číslo od %1$d do %2$d.',
+	'Enter a whole number.' => 'Zadajte celé číslo.',
+	'Please correct the highlighted fields (%d):' => 'Opravte, prosím, označené polia (%d):',
+	'The form could not be sent. Check your connection and try again.' => 'Formulár sa nepodarilo odoslať. Skontrolujte pripojenie a skúste to znova.',
 );
 
 // Slovak plural forms (3): n==1 / 2..4 / other
@@ -731,6 +746,21 @@ $cs = array(
 	'Row #%1$s: %2$s' => 'Řádek č. %1$s: %2$s',
 	'Missing source id.' => 'Chybí zdrojové id.',
 	'Imported from WPify (submitted %s).' => 'Importováno z WPify (podáno %s).',
+	// Unreleased: visible time-trap error, closed orders, inline validation
+	'The form was submitted too quickly. Please try again in a moment.' => 'Formulář jste odeslali příliš rychle. Zkuste jej prosím odeslat znovu za chvíli.',
+	'The form has expired. Please reload the page and submit it again.' => 'Platnost formuláře vypršela. Obnovte prosím stránku a odešlete jej znovu.',
+	'This order has been cancelled or fully refunded, so no request can be submitted for it.' => 'Tato objednávka byla zrušena nebo plně refundována, proto k ní nelze podat žádost.',
+	'Form link text in e-mails and the My Account orders button. Leave empty to use the default shown in the field (My Account then uses a shorter text, e.g. without "here").' => 'Text odkazu na formulář v e-mailech a tlačítka u objednávek v Mém účtu. Ponechte prázdné pro výchozí text zobrazený v poli (Můj účet pak použije kratší text, např. bez „zde“).',
+	'A faster submission gets an error asking the customer to try again. Not applied to a logged-in customer submitting their own order.' => 'Rychlejší odeslání dostane chybovou hlášku s výzvou zkusit to znovu. Neplatí pro přihlášeného zákazníka u jeho vlastní objednávky.',
+	'Number of units: %s' => 'Počet kusů: %s',
+	'Please fill in this field.' => 'Vyplňte prosím toto pole.',
+	'Please check this box to continue.' => 'Pro pokračování zaškrtněte toto políčko.',
+	'Please choose one of the options.' => 'Vyberte prosím jednu z možností.',
+	'Enter a valid e-mail address, e.g. name@example.com.' => 'Zadejte platnou e-mailovou adresu, např. jmeno@example.com.',
+	'Enter a number from %1$d to %2$d.' => 'Zadejte číslo od %1$d do %2$d.',
+	'Enter a whole number.' => 'Zadejte celé číslo.',
+	'Please correct the highlighted fields (%d):' => 'Opravte prosím označená pole (%d):',
+	'The form could not be sent. Check your connection and try again.' => 'Formulář se nepodařilo odeslat. Zkontrolujte připojení a zkuste to znovu.',
 );
 
 // Czech plural forms (3): n==1 / 2..4 / other

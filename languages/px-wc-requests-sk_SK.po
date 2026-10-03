@@ -14,6 +14,9 @@ msgstr "%1$s → stav „%2$s“"
 msgid "(%d still available — the rest is already part of another request)"
 msgstr "(k dispozícii ešte %d ks — zvyšok je súčasťou inej žiadosti)"
 
+msgid "A faster submission gets an error asking the customer to try again. Not applied to a logged-in customer submitting their own order."
+msgstr "Rýchlejšie odoslanie dostane chybovú hlášku s výzvou skúsiť to znova. Neplatí pre prihláseného zákazníka pri jeho vlastnej objednávke."
+
 msgid "A note has been added to your request %1$s no. %2$d:"
 msgstr "K vašej žiadosti %1$s č. %2$d bola pridaná poznámka:"
 
@@ -212,6 +215,15 @@ msgstr "Povoliť/Zakázať"
 msgid "Endpoint for the customer requests page."
 msgstr "Koncový bod pre stránku zákazníckych žiadostí."
 
+msgid "Enter a number from %1$d to %2$d."
+msgstr "Zadajte číslo od %1$d do %2$d."
+
+msgid "Enter a valid e-mail address, e.g. name@example.com."
+msgstr "Zadajte platnú e-mailovú adresu, napr. meno@example.com."
+
+msgid "Enter a whole number."
+msgstr "Zadajte celé číslo."
+
 msgid "Exclude from: %s"
 msgstr "Vylúčiť z: %s"
 
@@ -226,6 +238,9 @@ msgstr "Filtrovať zoznam žiadostí"
 
 msgid "First name"
 msgstr "Meno"
+
+msgid "Form link text in e-mails and the My Account orders button. Leave empty to use the default shown in the field (My Account then uses a shorter text, e.g. without \"here\")."
+msgstr "Text odkazu na formulár v e-mailoch a tlačidla pri objednávkach v Mojom účte. Nechajte prázdne pre predvolený text zobrazený v poli (Môj účet potom použije kratší text, napr. bez „tu“)."
 
 msgid "Form links in e-mails"
 msgstr "Odkazy na formuláre v e-mailoch"
@@ -368,6 +383,9 @@ msgstr "Z požadovaných položiek už nie je čo refundovať."
 msgid "Notice: %s"
 msgstr "Poučenie: %s"
 
+msgid "Number of units: %s"
+msgstr "Počet kusov: %s"
+
 msgid "One of the selected items is not eligible for this request."
 msgstr "Jedna z vybraných položiek nie je oprávnená pre túto žiadosť."
 
@@ -431,6 +449,15 @@ msgstr "Pixeler Woo Requests vyžaduje aktívny plugin WooCommerce."
 msgid "Placeholder %s is replaced by the address of the form page; a paragraph containing it is left out while no form page is assigned."
 msgstr "Zástupný text %s sa nahradí adresou stránky formulára; odsek, ktorý ho obsahuje, sa vynechá, kým stránka formulára nie je priradená."
 
+msgid "Please check this box to continue."
+msgstr "Pre pokračovanie označte toto políčko."
+
+msgid "Please choose one of the options."
+msgstr "Vyberte, prosím, jednu z možností."
+
+msgid "Please correct the highlighted fields (%d):"
+msgstr "Opravte, prosím, označené polia (%d):"
+
 msgid "Please enter a valid IBAN."
 msgstr "Zadajte platný IBAN."
 
@@ -439,6 +466,9 @@ msgstr "Vyplňte popis ku každej vybranej položke."
 
 msgid "Please fill in the field: %s"
 msgstr "Vyplňte pole: %s"
+
+msgid "Please fill in this field."
+msgstr "Vyplňte, prosím, toto pole."
 
 msgid "Postcode"
 msgstr "PSČ"
@@ -593,9 +623,6 @@ msgstr "Odošle sa zákazníkovi pri pridaní poznámky určenej preňho."
 msgid "Settings"
 msgstr "Nastavenia"
 
-msgid "Shown in My Account orders and as the form link text in e-mails. Leave empty to use the default shown in the field."
-msgstr "Zobrazí sa pri objednávkach v Mojom účte a ako text odkazu na formulár v e-mailoch. Nechajte prázdne pre predvolený text zobrazený v poli."
-
 msgid "Start counting from order status: %s"
 msgstr "Začať počítať od stavu objednávky: %s"
 
@@ -620,9 +647,6 @@ msgstr "Ulica a číslo"
 msgid "Subject"
 msgstr "Predmet"
 
-msgid "Submissions faster than this are treated as bots."
-msgstr "Rýchlejšie odoslania sa považujú za boty."
-
 msgid "Submit a claim"
 msgstr "Reklamovať tovar"
 
@@ -646,6 +670,15 @@ msgstr "Lehota na túto žiadosť už uplynula (skončila %s)."
 
 msgid "The file must not be larger than %d MB."
 msgstr "Súbor nesmie byť väčší ako %d MB."
+
+msgid "The form could not be sent. Check your connection and try again."
+msgstr "Formulár sa nepodarilo odoslať. Skontrolujte pripojenie a skúste to znova."
+
+msgid "The form has expired. Please reload the page and submit it again."
+msgstr "Platnosť formulára vypršala. Obnovte, prosím, stránku a odošlite ho znova."
+
+msgid "The form was submitted too quickly. Please try again in a moment."
+msgstr "Formulár ste odoslali príliš rýchlo. Skúste ho, prosím, odoslať znova o chvíľu."
 
 msgid "The linked order no longer exists."
 msgstr "Prepojená objednávka už neexistuje."
@@ -685,6 +718,9 @@ msgstr "Toto je ukážkový náhľad emailu."
 
 msgid "This is non-destructive and can be run repeatedly — already imported requests are skipped. Customers are NOT e-mailed."
 msgstr "Operácia je nedeštruktívna a dá sa spustiť opakovane — už importované žiadosti sa preskočia. Zákazníkom sa NEodosielajú e-maily."
+
+msgid "This order has been cancelled or fully refunded, so no request can be submitted for it."
+msgstr "Táto objednávka bola zrušená alebo plne refundovaná, preto k nej nie je možné podať žiadosť."
 
 msgid "This product cannot be selected in this request type."
 msgstr "Tento produkt nie je možné vybrať v tomto type žiadosti."
@@ -742,6 +778,9 @@ msgstr "Prijali sme vašu žiadosť {request_type} č. {request_number}"
 
 msgid "When a request reaches the selected status, a refund for the requested items is recorded on the order (amounts after discounts, tax, reports, order status). Money is never sent to the payment gateway — transfer it manually, e.g. to the IBAN from the request."
 msgstr "Keď žiadosť dosiahne zvolený stav, na objednávke sa zaeviduje refundácia požadovaných položiek (sumy po zľavách, DPH, reporty, stav objednávky). Peniaze sa nikdy neposielajú cez platobnú bránu — pošlite ich ručne, napr. na IBAN zo žiadosti."
+
+msgid "Withdraw from contract"
+msgstr "Odstúpiť od zmluvy"
 
 msgid "Withdraw from contract here"
 msgstr "Odstúpiť od zmluvy tu"

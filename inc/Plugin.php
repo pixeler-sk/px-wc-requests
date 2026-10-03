@@ -117,6 +117,21 @@ final class Plugin {
 		wp_register_script( 'pxer-form', PXER_URL . 'assets/ajax-form.js', array( 'jquery' ), PXER_VERSION, true );
 		wp_localize_script( 'pxer-form', 'pxer_ajax', array(
 			'ajax_url' => admin_url( 'admin-ajax.php' ),
+			// Inline validation texts (forms are `novalidate`; the server validates again).
+			'i18n'     => array(
+				'required' => __( 'Please fill in this field.', 'px-wc-requests' ),
+				'checkbox' => __( 'Please check this box to continue.', 'px-wc-requests' ),
+				'choose'   => __( 'Please choose one of the options.', 'px-wc-requests' ),
+				'items'    => __( 'Select at least one item.', 'px-wc-requests' ),
+				'email'    => __( 'Enter a valid e-mail address, e.g. name@example.com.', 'px-wc-requests' ),
+				'iban'     => __( 'Please enter a valid IBAN.', 'px-wc-requests' ),
+				/* translators: 1: minimum, 2: maximum */
+				'range'    => __( 'Enter a number from %1$d to %2$d.', 'px-wc-requests' ),
+				'number'   => __( 'Enter a whole number.', 'px-wc-requests' ),
+				/* translators: %d: number of fields with an error */
+				'summary'  => __( 'Please correct the highlighted fields (%d):', 'px-wc-requests' ),
+				'network'  => __( 'The form could not be sent. Check your connection and try again.', 'px-wc-requests' ),
+			),
 		) );
 	}
 }

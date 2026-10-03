@@ -17,6 +17,8 @@
  *   pxer_eligible_items     ( array $items, WC_Order $order, string $type )
  *   pxer_item_available_qty ( int $qty, WC_Order_Item $item, WC_Order $order, string $type )
  *   pxer_closed_statuses    ( string[] $statuses )
+ *   pxer_closed_order_statuses ( string[] $statuses, string $type )
+ *   pxer_is_closed_order    ( bool $closed, WC_Order $order, string $type )
  *
  * Per-unit reservation: every unit of a line item may sit in at most one open
  * request at a time (any type). Closed requests release their units again so a
@@ -131,6 +133,10 @@ class Eligibility {
 	public static function gate( \WC_Order $order, string $type ) {
 		$cfg = self::config( $type );
 
+		if ( self::is_closed_order( $order, $type ) ) {
+			return new \WP_Error( 'order_closed', __( 'This order has been cancelled or fully refunded, so no request can be submitted for it.', 'px-wc-requests' ) );
+		}
+
 		if ( $cfg['enabled'] ) {
 			if ( ! self::is_started( $order, $cfg ) ) {
 				return new \WP_Error( 'period_not_started', __( 'The period has not started yet — the order is not completed.', 'px-wc-requests' ) );
@@ -162,6 +168,34 @@ class Eligibility {
 		}
 
 		return true;
+	}
+
+	/**
+	 * Cancelled, failed or fully refunded order: nothing left to withdraw from
+	 * or to claim. A refund recorded as an amount only (no line quantities)
+	 * does not reduce the per-item quantities, hence the separate check.
+	 */
+	public static function is_closed_order( \WC_Order $order, string $type ): bool {
+		/**
+		 * Order statuses (without `wc-`) that close every request type.
+		 *
+		 * @param string[] $statuses
+		 * @param string   $type     Request type id.
+		 */
+		$statuses = (array) apply_filters( 'pxer_closed_order_statuses', array( 'cancelled', 'refunded', 'failed' ), $type );
+		$closed   = in_array( $order->get_status(), $statuses, true );
+
+		if ( ! $closed ) {
+			$total  = (float) $order->get_total();
+			$closed = $total > 0 && (float) $order->get_total_refunded() >= $total;
+		}
+
+		/**
+		 * @param bool      $closed
+		 * @param \WC_Order $order
+		 * @param string    $type
+		 */
+		return (bool) apply_filters( 'pxer_is_closed_order', $closed, $order, $type );
 	}
 
 	// =====================================================================

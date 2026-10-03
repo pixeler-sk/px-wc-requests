@@ -83,6 +83,9 @@ class Shortcodes {
 		}
 
 		// Step 1: search form (a failed search queued its error on template_redirect).
+		// The script validates it inline (the form is `novalidate`).
+		wp_enqueue_style( 'pxer-form' );
+		wp_enqueue_script( 'pxer-form' );
 		return pxer_get_template_html( 'order-search-form.php', array(
 			'type'     => $type,
 			'type_def' => RequestTypes::get( $type ),

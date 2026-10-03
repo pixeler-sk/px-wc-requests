@@ -328,7 +328,7 @@ class MyAccount {
 
 			// Logged-in owner → deep-link with the order key to skip the search step.
 			$url   = add_query_arg( 'key', $order->get_order_key(), $page_url );
-			$label = Settings::get_button_label( $id );
+			$label = Settings::get_account_label( $id );
 
 			$action = array(
 				'url'  => $url,
