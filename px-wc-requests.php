@@ -4,12 +4,16 @@
  * Plugin URI: https://pixeler.sk
  * Description: Universal customer-request system for WooCommerce — withdrawal from contract and warranty claims. Requests stored as a CPT with custom statuses, configurable fields (including IBAN), emails and admin UI. Type/config driven and portable between eshops.
  * Version: 1.10.0
- * Author: Roman Kraiger | Pixeler s. r. o.
+ * Author: Pixeler s. r. o.
  * Author URI: https://pixeler.sk
  * Requires Plugins: woocommerce
  * Requires PHP: 8.0
  * Text Domain: px-wc-requests
  * Domain Path: /languages
+ * Tested up to: 7.1
+ * License: GPL v2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * Update URI: https://github.com/pixeler-sk/px-wc-requests
  *
  * @package Pixeler\Requests
  */
