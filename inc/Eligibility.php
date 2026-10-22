@@ -51,10 +51,17 @@ class Eligibility {
 		}
 
 		return array(
-			'enabled'        => ! empty( $period['enabled'] ),
-			'unit'           => ( $period['unit'] ?? 'days' ) === 'months' ? 'months' : 'days',
-			'amount'         => max( 1, $amount ),
-			'start_statuses' => array_map( static fn( $s ) => preg_replace( '/^wc-/', '', (string) $s ), $starts ),
+			'enabled'           => ! empty( $period['enabled'] ),
+			'unit'              => ( $period['unit'] ?? 'days' ) === 'months' ? 'months' : 'days',
+			'amount'            => max( 1, $amount ),
+			'start_statuses'    => array_map( static fn( $s ) => preg_replace( '/^wc-/', '', (string) $s ), $starts ),
+			/**
+			 * Filter whether a request may be submitted before the period
+			 * clock starts (withdrawal: from the conclusion of the contract,
+			 * § 20 (5) z. 108/2024 Z. z.). The deadline then runs from the
+			 * start status, not from the order date.
+			 */
+			'open_before_start' => (bool) apply_filters( 'pxer_period_open_before_start', ! empty( $period['open_before_start'] ), $type ),
 		);
 	}
 
@@ -98,6 +105,10 @@ class Eligibility {
 		if ( ! $cfg['enabled'] || ! $start ) {
 			return null;
 		}
+		// Not received yet — no deadline; it is counted from receipt.
+		if ( $cfg['open_before_start'] && ! self::is_started( $order, $cfg ) ) {
+			return null;
+		}
 
 		$amount = $amount_override ?: $cfg['amount'];
 		$end    = $start->modify( sprintf( '+%d %s', $amount, $cfg['unit'] ) )->setTime( 23, 59, 59 );
@@ -117,7 +128,7 @@ class Eligibility {
 			return true;
 		}
 		if ( ! self::is_started( $order, $cfg ) ) {
-			return false;
+			return $cfg['open_before_start'];
 		}
 		$end = self::period_end( $order, $type );
 
@@ -138,7 +149,7 @@ class Eligibility {
 		}
 
 		if ( $cfg['enabled'] ) {
-			if ( ! self::is_started( $order, $cfg ) ) {
+			if ( ! $cfg['open_before_start'] && ! self::is_started( $order, $cfg ) ) {
 				return new \WP_Error( 'period_not_started', __( 'The period has not started yet — the order is not completed.', 'px-wc-requests' ) );
 			}
 

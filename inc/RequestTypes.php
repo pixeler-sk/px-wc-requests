@@ -259,10 +259,13 @@ class RequestTypes {
 				. "\n\n"
 				. __( 'You can also exercise your right to withdraw from the contract online at {url}. If you use this option, we will provide you without undue delay with a confirmation of receipt of the withdrawal, including its content and the date and time of its submission, on a durable medium (for example by e-mail).', 'px-wc-requests' ),
 			'period'          => array(
-				'enabled'        => true,
-				'unit'           => 'days',
-				'amount'         => 14,
-				'start_statuses' => array( 'completed' ),
+				'enabled'           => true,
+				'unit'              => 'days',
+				'amount'            => 14,
+				'start_statuses'    => array( 'completed' ),
+				// § 20 (5) z. 108/2024 Z. z.: withdrawal is possible already
+				// before receipt; the 14 days run from receipt (completed).
+				'open_before_start' => true,
 			),
 			'fields'         => array_merge(
 				array( FieldSchema::order_items_field( 'multiple', false ) ),
