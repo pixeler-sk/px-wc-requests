@@ -253,7 +253,7 @@ msgstr ""
 msgid "History & updates"
 msgstr ""
 
-msgid "How long a request stays open, counted from the order completion date."
+msgid "How long a request stays open, counted from the first time the order reaches one of the selected statuses (for example Completed or your own Delivered status). Withdrawal can be submitted already before that; its deadline starts at that status."
 msgstr ""
 
 msgid "I agree with the %s."
@@ -415,7 +415,7 @@ msgstr ""
 msgid "Order number:"
 msgstr ""
 
-msgid "Order statuses that start the clock."
+msgid "Order statuses that start the clock — choose the status that means the customer has received the goods."
 msgstr ""
 
 msgid "Order:"
@@ -688,7 +688,7 @@ msgstr ""
 msgid "The order is already fully refunded."
 msgstr ""
 
-msgid "The period has not started yet — the order is not completed."
+msgid "The period has not started yet — the order has not been delivered."
 msgstr ""
 
 msgid "The request has no items to refund."

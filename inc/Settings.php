@@ -197,7 +197,7 @@ class Settings {
 			$settings[] = array(
 				'title' => __( 'Periods & deadlines', 'px-wc-requests' ),
 				'type'  => 'title',
-				'desc'  => __( 'How long a request stays open, counted from the order completion date.', 'px-wc-requests' ),
+				'desc'  => __( 'How long a request stays open, counted from the first time the order reaches one of the selected statuses (for example Completed or your own Delivered status). Withdrawal can be submitted already before that; its deadline starts at that status.', 'px-wc-requests' ),
 				'id'    => 'pxer_section_periods',
 			);
 
@@ -218,7 +218,7 @@ class Settings {
 				$settings[] = array(
 					/* translators: %s: type label */
 					'title'    => sprintf( __( 'Start counting from order status: %s', 'px-wc-requests' ), $type['label'] ),
-					'desc'     => __( 'Order statuses that start the clock.', 'px-wc-requests' ),
+					'desc'     => __( 'Order statuses that start the clock — choose the status that means the customer has received the goods.', 'px-wc-requests' ),
 					'id'       => 'pxer_' . $id . '_period_start_statuses',
 					'type'     => 'multiselect',
 					'class'    => 'wc-enhanced-select',

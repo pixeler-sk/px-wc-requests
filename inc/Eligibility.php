@@ -3,9 +3,14 @@
  * Legal-period eligibility engine.
  *
  * Computes whether a request type is still open for an order based on the
- * order completion date and a configurable period (days for withdrawal,
- * months for warranty claims). Supports per-product exclusions and per-product
- * period overrides — inspired by the WPify Woo Withdrawal & Claims module.
+ * moment the order first reached one of the configured start statuses (by
+ * default Completed; a shop with its own "Delivered" status selects that one)
+ * and a configurable period (days for withdrawal, months for warranty claims).
+ * Supports per-product exclusions and per-product period overrides — inspired
+ * by the WPify Woo Withdrawal & Claims module.
+ *
+ * Order meta:
+ *   _pxer_reached_{status}        int   → first time the order reached the status
  *
  * Product meta:
  *   _pxer_{type}_excluded         'yes' → item excluded from this request type
@@ -65,35 +70,76 @@ class Eligibility {
 		);
 	}
 
+	public const REACHED_META = '_pxer_reached_';
+
 	/**
-	 * The moment the period clock starts ticking for an order.
+	 * Remember when an order first reached a status, so the period can run
+	 * from any status the shop selects (e.g. a custom "Delivered").
+	 * Hooked to woocommerce_order_status_changed.
 	 */
-	public static function start_date( \WC_Order $order ): ?\DateTimeImmutable {
-		$date = $order->get_date_completed() ?: $order->get_date_paid() ?: $order->get_date_created();
-		if ( ! $date ) {
+	public static function record_status( $order_id, $from, $to, $order = null ): void {
+		$order = $order instanceof \WC_Order ? $order : wc_get_order( $order_id );
+		if ( ! $order || '' === (string) $to ) {
+			return;
+		}
+
+		$key = self::REACHED_META . sanitize_key( (string) $to );
+		if ( $order->get_meta( $key ) ) {
+			return;
+		}
+
+		$order->update_meta_data( $key, time() );
+		$order->save_meta_data();
+	}
+
+	/**
+	 * The moment the period clock starts ticking: the earliest time the order
+	 * reached one of the start statuses. Null while it has not reached any.
+	 */
+	public static function start_date( \WC_Order $order, ?array $cfg = null ): ?\DateTimeImmutable {
+		$starts = ( $cfg ?? array() )['start_statuses'] ?? array( 'completed' );
+		$times  = array();
+
+		foreach ( $starts as $status ) {
+			$reached = (int) $order->get_meta( self::REACHED_META . $status );
+			if ( $reached ) {
+				$times[] = $reached;
+			}
+		}
+
+		// Orders that reached the status before the meta existed.
+		if ( in_array( 'completed', $starts, true ) && $order->get_date_completed() ) {
+			$times[] = $order->get_date_completed()->getTimestamp();
+		}
+		if ( in_array( 'processing', $starts, true ) && $order->get_date_paid() ) {
+			$times[] = $order->get_date_paid()->getTimestamp();
+		}
+		// Already in a custom start status with no record: best guess is the
+		// last modification. Freeze it, or every later edit of the order would
+		// move the deadline (and could reopen an expired one).
+		if ( ! $times && in_array( $order->get_status(), $starts, true ) ) {
+			$modified = $order->get_date_modified() ?: $order->get_date_created();
+			if ( $modified ) {
+				$times[] = $modified->getTimestamp();
+				if ( $order->get_id() ) {
+					$order->update_meta_data( self::REACHED_META . $order->get_status(), $modified->getTimestamp() );
+					$order->save_meta_data();
+				}
+			}
+		}
+
+		if ( ! $times ) {
 			return null;
 		}
 
-		return ( new \DateTimeImmutable() )->setTimestamp( $date->getTimestamp() );
+		return ( new \DateTimeImmutable() )->setTimestamp( min( $times ) );
 	}
 
 	/**
 	 * Has the order reached a status that starts the clock?
 	 */
 	public static function is_started( \WC_Order $order, array $cfg ): bool {
-		$status = $order->get_status();
-		if ( in_array( $status, $cfg['start_statuses'], true ) ) {
-			return true;
-		}
-		// Order may have moved past the start status — accept the recorded date.
-		if ( in_array( 'completed', $cfg['start_statuses'], true ) && $order->get_date_completed() ) {
-			return true;
-		}
-		if ( in_array( 'processing', $cfg['start_statuses'], true ) && $order->get_date_paid() ) {
-			return true;
-		}
-
-		return false;
+		return null !== self::start_date( $order, $cfg );
 	}
 
 	/**
@@ -101,12 +147,10 @@ class Eligibility {
 	 */
 	public static function period_end( \WC_Order $order, string $type, ?int $amount_override = null ): ?\DateTimeImmutable {
 		$cfg   = self::config( $type );
-		$start = self::start_date( $order );
+		// Before the start status there is no deadline yet (withdrawal: it is
+		// counted from receipt).
+		$start = self::start_date( $order, $cfg );
 		if ( ! $cfg['enabled'] || ! $start ) {
-			return null;
-		}
-		// Not received yet — no deadline; it is counted from receipt.
-		if ( $cfg['open_before_start'] && ! self::is_started( $order, $cfg ) ) {
 			return null;
 		}
 
@@ -150,7 +194,7 @@ class Eligibility {
 
 		if ( $cfg['enabled'] ) {
 			if ( ! $cfg['open_before_start'] && ! self::is_started( $order, $cfg ) ) {
-				return new \WP_Error( 'period_not_started', __( 'The period has not started yet — the order is not completed.', 'px-wc-requests' ) );
+				return new \WP_Error( 'period_not_started', __( 'The period has not started yet — the order has not been delivered.', 'px-wc-requests' ) );
 			}
 
 			$end = self::period_end( $order, $type );

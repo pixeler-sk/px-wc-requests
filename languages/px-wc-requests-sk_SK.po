@@ -254,8 +254,8 @@ msgstr "Stránky formulárov"
 msgid "History & updates"
 msgstr "História a aktualizácie"
 
-msgid "How long a request stays open, counted from the order completion date."
-msgstr "Ako dlho zostáva žiadosť otvorená, počítané od dátumu dokončenia objednávky."
+msgid "How long a request stays open, counted from the first time the order reaches one of the selected statuses (for example Completed or your own Delivered status). Withdrawal can be submitted already before that; its deadline starts at that status."
+msgstr "Ako dlho zostáva žiadosť otvorená, počítané od chvíle, keď objednávka prvýkrát dosiahne niektorý z vybraných stavov (napríklad Dokončená alebo vlastný stav Doručená). Odstúpenie sa dá podať už skôr; jeho lehota začína plynúť až od tohto stavu."
 
 msgid "I agree with the %s."
 msgstr "Súhlasím so %s."
@@ -416,8 +416,8 @@ msgstr "Číslo objednávky"
 msgid "Order number:"
 msgstr "Číslo objednávky:"
 
-msgid "Order statuses that start the clock."
-msgstr "Stavy objednávky, ktoré spúšťajú počítanie lehoty."
+msgid "Order statuses that start the clock — choose the status that means the customer has received the goods."
+msgstr "Stavy objednávky, ktoré spúšťajú počítanie lehoty — vyberte stav, ktorý znamená, že zákazník tovar prevzal."
 
 msgid "Order:"
 msgstr "Objednávka:"
@@ -689,8 +689,8 @@ msgstr "Bol dosiahnutý maximálny počet žiadostí pre túto objednávku."
 msgid "The order is already fully refunded."
 msgstr "Objednávka je už plne refundovaná."
 
-msgid "The period has not started yet — the order is not completed."
-msgstr "Lehota zatiaľ nezačala — objednávka nie je dokončená."
+msgid "The period has not started yet — the order has not been delivered."
+msgstr "Lehota zatiaľ nezačala — objednávka ešte nebola doručená."
 
 msgid "The request has no items to refund."
 msgstr "Žiadosť neobsahuje položky na refundáciu."

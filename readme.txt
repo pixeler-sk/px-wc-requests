@@ -3,7 +3,7 @@ Contributors: pixeler
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 8.0
-Stable tag: 1.10.1
+Stable tag: 1.11.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -83,6 +83,9 @@ REST API v namespace `px-wc-requests/v1` (kontrola lehoty, odoslanie žiadosti,
 zoznam a detail) pre headless frontendy; hostia sa autorizujú kľúčom objednávky.
 
 == Changelog ==
+
+= 1.11.0 =
+* Lehota žiadosti sa počíta od chvíle, keď objednávka prvýkrát dosiahne stav vybraný v Nastavenia → Žiadosti → „Začať počítať od stavu objednávky“ (napr. vlastný stav Doručená), nie vždy od dokončenia. Čas dosiahnutia stavu sa ukladá do meta `_pxer_reached_{stav}`; staršie objednávky v takom stave dostanú dátum poslednej úpravy, ktorý sa zafixuje.
 
 = 1.10.1 =
 * Odstúpenie od zmluvy je možné podať už pred prevzatím tovaru (§ 20 ods. 5 zákona č. 108/2024 Z. z.) – formulár žiadosť pred dokončením objednávky neodmietne, 14-dňová lehota plynie až od prevzatia (stav Dokončená). Nový kľúč `open_before_start` v perióde typu a filter `pxer_period_open_before_start`.

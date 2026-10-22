@@ -175,7 +175,7 @@ $sk = array(
 	'Max:' => 'Max:',
 	'No photos' => 'Žiadne fotografie',
 	// Eligibility
-	'The period has not started yet — the order is not completed.' => 'Lehota zatiaľ nezačala — objednávka nie je dokončená.',
+	'The period has not started yet — the order has not been delivered.' => 'Lehota zatiaľ nezačala — objednávka ešte nebola doručená.',
 	'The deadline for this request has already passed (it ended on %s).' => 'Lehota na túto žiadosť už uplynula (skončila %s).',
 	'There are no eligible items for this request.' => 'Pre túto žiadosť nie sú žiadne oprávnené položky.',
 	'All items of this order are already covered by an existing request.' => 'Všetky položky tejto objednávky už sú súčasťou inej žiadosti.',
@@ -194,10 +194,10 @@ $sk = array(
 	'Page: %s' => 'Stránka: %s',
 	'Page containing the shortcode %s' => 'Stránka so shortcode %s',
 	'Periods & deadlines' => 'Lehoty a termíny',
-	'How long a request stays open, counted from the order completion date.' => 'Ako dlho zostáva žiadosť otvorená, počítané od dátumu dokončenia objednávky.',
+	'How long a request stays open, counted from the first time the order reaches one of the selected statuses (for example Completed or your own Delivered status). Withdrawal can be submitted already before that; its deadline starts at that status.' => 'Ako dlho zostáva žiadosť otvorená, počítané od chvíle, keď objednávka prvýkrát dosiahne niektorý z vybraných stavov (napríklad Dokončená alebo vlastný stav Doručená). Odstúpenie sa dá podať už skôr; jeho lehota začína plynúť až od tohto stavu.',
 	'Period: %1$s (in %2$s)' => 'Lehota: %1$s (v %2$s)',
 	'Start counting from order status: %s' => 'Začať počítať od stavu objednávky: %s',
-	'Order statuses that start the clock.' => 'Stavy objednávky, ktoré spúšťajú počítanie lehoty.',
+	'Order statuses that start the clock — choose the status that means the customer has received the goods.' => 'Stavy objednávky, ktoré spúšťajú počítanie lehoty — vyberte stav, ktorý znamená, že zákazník tovar prevzal.',
 	'— Select a page —' => '— Vyberte stránku —',
 	'Available shortcodes' => 'Dostupné shortcodes',
 	// Controller
@@ -536,7 +536,7 @@ $cs = array(
 	'Max:' => 'Max:',
 	'No photos' => 'Žádné fotografie',
 	// Eligibility
-	'The period has not started yet — the order is not completed.' => 'Lhůta zatím nezačala — objednávka není dokončena.',
+	'The period has not started yet — the order has not been delivered.' => 'Lhůta zatím nezačala — objednávka ještě nebyla doručena.',
 	'The deadline for this request has already passed (it ended on %s).' => 'Lhůta pro tuto žádost už uplynula (skončila %s).',
 	'There are no eligible items for this request.' => 'Pro tuto žádost nejsou žádné oprávněné položky.',
 	'All items of this order are already covered by an existing request.' => 'Všechny položky této objednávky už jsou součástí jiné žádosti.',
@@ -555,10 +555,10 @@ $cs = array(
 	'Page: %s' => 'Stránka: %s',
 	'Page containing the shortcode %s' => 'Stránka se shortcode %s',
 	'Periods & deadlines' => 'Lhůty a termíny',
-	'How long a request stays open, counted from the order completion date.' => 'Jak dlouho zůstává žádost otevřená, počítáno od data dokončení objednávky.',
+	'How long a request stays open, counted from the first time the order reaches one of the selected statuses (for example Completed or your own Delivered status). Withdrawal can be submitted already before that; its deadline starts at that status.' => 'Jak dlouho zůstává žádost otevřená, počítáno od chvíle, kdy objednávka poprvé dosáhne některého z vybraných stavů (například Dokončená nebo vlastní stav Doručená). Odstoupení lze podat už dříve; jeho lhůta začíná běžet až od tohoto stavu.',
 	'Period: %1$s (in %2$s)' => 'Lhůta: %1$s (v %2$s)',
 	'Start counting from order status: %s' => 'Začít počítat od stavu objednávky: %s',
-	'Order statuses that start the clock.' => 'Stavy objednávky, které spouštějí počítání lhůty.',
+	'Order statuses that start the clock — choose the status that means the customer has received the goods.' => 'Stavy objednávky, které spouštějí počítání lhůty — vyberte stav, který znamená, že zákazník zboží převzal.',
 	'— Select a page —' => '— Vyberte stránku —',
 	'Available shortcodes' => 'Dostupné shortcodes',
 	// Controller

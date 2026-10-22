@@ -44,6 +44,9 @@ final class Plugin {
 		( new Shortcodes() )->setup();
 		( new OrderList() )->setup();
 
+		// When the order reached each status — the period start (Eligibility::start_date()).
+		add_action( 'woocommerce_order_status_changed', array( Eligibility::class, 'record_status' ), 10, 4 );
+
 		add_action( 'init', array( $this, 'load_textdomain' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'register_assets' ) );
 		add_action( 'admin_init', array( $this, 'maybe_upgrade' ) );
