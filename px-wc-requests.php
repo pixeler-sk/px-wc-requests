@@ -3,7 +3,7 @@
  * Plugin Name: Pixeler Woo Requests
  * Plugin URI: https://pixeler.sk
  * Description: Universal customer-request system for WooCommerce — withdrawal from contract and warranty claims. Requests stored as a CPT with custom statuses, configurable fields (including IBAN), emails and admin UI. Type/config driven and portable between eshops.
- * Version: 1.11.0
+ * Version: 1.11.1
  * Author: Pixeler s. r. o.
  * Author URI: https://pixeler.sk
  * Requires Plugins: woocommerce
@@ -11,6 +11,8 @@
  * Text Domain: px-wc-requests
  * Domain Path: /languages
  * Tested up to: 7.1
+ * WC requires at least: 9.6
+ * WC tested up to: 11.3
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Update URI: https://github.com/pixeler-sk/px-wc-requests
@@ -20,7 +22,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'PXER_VERSION', '1.11.0' );
+define( 'PXER_VERSION', '1.11.1' );
 define( 'PXER_FILE', __FILE__ );
 define( 'PXER_PATH', plugin_dir_path( __FILE__ ) );
 define( 'PXER_URL', plugin_dir_url( __FILE__ ) );
@@ -68,6 +70,21 @@ function pxer_bootstrap(): void {
 	\Pixeler\Requests\Plugin::instance()->run();
 }
 add_action( 'plugins_loaded', 'pxer_bootstrap', 11 );
+
+/**
+ * Declare compatibility with WooCommerce High-Performance Order Storage.
+ *
+ * Requests are a custom post type with their own post meta; orders are read
+ * and written only through the CRUD API (wc_get_order(), get_meta(),
+ * update_meta_data()), and the order list column is registered for both the
+ * legacy and the HPOS screen.
+ */
+function pxer_declare_wc_compat(): void {
+	if ( class_exists( '\Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
+		\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+	}
+}
+add_action( 'before_woocommerce_init', 'pxer_declare_wc_compat' );
 
 // Updates from GitHub. Deliberately outside pxer_bootstrap(): the plugin does
 // nothing without WooCommerce, but it must always be updatable.
